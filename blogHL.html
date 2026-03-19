@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Mesa Blog | Half-Life</title>
+    <style>
+/* =========================
+   BLACK MESA IMMERSIVE UI
+   ========================= */
+
+/* RESET BRUTAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CORPO GERAL */
+body {
+    font-family: "Courier New", monospace;
+    background-color: #050505;
+    background-image: 
+        url('https://www.transparenttextures.com/patterns/asfalt-dark.png'),
+        url('https://e1.pxfuel.com/desktop-wallpaper/475/271/desktop-wallpaper-half-life-1-half-thumbnail.jpg');
+    background-repeat: repeat, no-repeat;
+    background-position: center, center;
+    background-size: auto, cover;
+    color: #cfcfcf;
+    font-size: 14px;
+    min-width: 1100px;
+    line-height: 1.4;
+}
+
+/* ================= HUD SUPERIOR ================= */
+.hud {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #111;
+    color: #f57900;
+    font-size: 12px;
+    font-family: "Courier New", monospace;
+    padding: 6px 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #f57900;
+    z-index: 999;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    width: 1100px;
+    margin: 40px auto 0 auto; /* espaço para HUD */
+    background-color: #0b0b0b;
+    border-left: 4px solid #f57900;
+    border-right: 4px solid #f57900;
+    min-height: 100vh;
+}
+
+/* ================= HEADER ================= */
+header {
+    padding: 25px 30px;
+    border-bottom: 2px solid #f57900;
+    background: linear-gradient(#111, #0a0a0a);
+}
+
+.logo {
+    font-size: 32px;
+    color: #f57900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    color: #888;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+/* ================= NAVEGAÇÃO ================= */
+nav {
+    background-color: #111;
+    border-bottom: 1px solid #333;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav li {
+    border-right: 1px solid #333;
+}
+
+nav a {
+    display: block;
+    padding: 14px 22px;
+    color: #ccc;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    background-color: #f57900;
+    color: #000;
+}
+
+/* ================= CONTEÚDO PRINCIPAL ================= */
+.main-content {
+    display: flex;
+    padding: 25px;
+    gap: 25px;
+}
+
+/* ---------------- ARTIGOS ---------------- */
+.articles {
+    flex: 3;
+}
+
+.article {
+    background-color: #141414;
+    border: 1px solid #333;
+    border-left: 6px solid #f57900;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.article h2 {
+    font-size: 20px;
+    color: #f57900;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.article-meta {
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.article p {
+    margin-bottom: 15px;
+}
+
+/* BOTÕES ESTILO PAINEL */
+.read-more {
+    background-color: #0d0d0d;
+    border: 1px solid #f57900;
+    color: #f57900;
+    font-family: "Courier New", monospace;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.read-more:hover {
+    background-color: #f57900;
+    color: #000;
+    box-shadow: 0 0 5px #f57900;
+}
+
+/* ALERTA PISCANTE */
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.5; }
+}
+
+.warning {
+    background-color: #1a1208;
+    border: 1px solid #f57900;
+    padding: 12px;
+    font-size: 12px;
+    margin: 15px 0;
+    animation: blink 1.5s infinite;
+}
+
+/* ================= SIDEBAR ================= */
+aside {
+    flex: 1;
+    background-color: #111;
+    border: 1px solid #333;
+    padding: 15px;
+    font-size: 13px;
+}
+
+/* TÍTULOS DA SIDEBAR */
+aside h3 {
+    color: #f57900;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+/* LISTAS DA SIDEBAR */
+aside ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+aside li {
+    padding: 6px 0;
+    border-bottom: 1px dotted #333;
+}
+
+aside a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+aside a:hover {
+    color: #f57900;
+}
+
+/* LOG DE SISTEMA (IMERSÃO) */
+.system-log {
+    background-color: #0b0b0b;
+    color: #f57900;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    height: 150px;
+    overflow-y: scroll;
+    border: 1px solid #333;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.system-log p {
+    margin: 2px 0;
+}
+
+/* ================= DESTAQUES ================= */
+.hl-highlight {
+    color: #f57900;
+    font-weight: bold;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    background-color: #080808;
+    border-top: 2px solid #f57900;
+    padding: 20px;
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+    font-family: "Courier New", monospace;
+}
+</style>
+<body>
+
+    <!-- ================= HUD SUPERIOR ================= -->
+    <div class="hud">
+        <span>Power: 98%</span>
+        <span>Lambda Sector: RESTRICTED</span>
+        <span>Security Level: 3</span>
+        <span>Alerts: 2 Active</span>
+    </div>
+
+    <!-- ================= CONTAINER PRINCIPAL ================= -->
+    <div class="container">
+
+        <!-- HEADER -->
+        <header>
+            <h1 class="logo">Black Mesa Research</h1>
+            <p class="subtitle">Records, analyses, and undisclosed incidents. Security clearance level 3 required.</p>
+        </header>
+
+        <!-- NAVEGAÇÃO -->
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Lambda Sector</a></li>
+                <li><a href="#">Anomalies</a></li>
+                <li><a href="#">Confidential Files</a></li>
+            </ul>
+        </nav>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <div class="main-content">
+
+            <!-- ARTIGOS / RELATÓRIOS -->
+            <section class="articles">
+
+                <article class="article">
+                    <h2>Material Anomaly: Experiment CS-001</h2>
+                    <p class="article-meta">Published: <span class="hl-highlight">May 16, 200-</span> | Author: Dr. <span class="hl-highlight">Gordon Freeman</span> | Clearance: <span class="hl-highlight">LEVEL 3</span></p>
+                    <p>Preliminary results of the anti-mass crystal resonance test exceeded expectations. Readings indicate a <span class="hl-highlight">dimensional instability</span> in Sector C.</p>
+                    <div class="warning">
+                        <strong>SECURITY NOTICE:</strong> HEV Suit mandatory in test areas at 0800 hours.
+                    </div>
+                    <a href="#" class="read-more">Access Full Report →</a>
+                </article>
+
+                <article class="article">
+                    <h2>Increase in Xenobiological Activity</h2>
+                    <p class="article-meta">Published: <span class="hl-highlight">May 12, 200-</span> | Author: Dr. <span class="hl-highlight">Isaac Kleiner</span> | Clearance: <span class="hl-highlight">LEVEL 2</span></p>
+                    <p>Xen-origin energy signatures increased 300% in 72 hours. Headcrabs are adapting to countermeasures. Security on yellow alert.</p>
+                    <a href="#" class="read-more">View Xenobiological Catalog →</a>
+                </article>
+
+            </section>
+
+            <!-- SIDEBAR / ALERTAS / LOG -->
+            <aside>
+                <h3>Active Alerts</h3>
+                <ul>
+                    <li><a href="#">Ventilation System Failure - Sector G</a></li>
+                    <li><a href="#">Access Restriction: Lambda Complex</a></li>
+                    <li><a href="#">Mandatory HEV Training (Level 3)</a></li>
+                    <li><a href="#">Daily Security Report</a></li>
+                </ul>
+
+                <h3>Classified Files</h3>
+                <ul>
+                    <li><a href="#">Project: Black Mesa</a></li>
+                    <li><a href="#">G-Man Report (Eyes Only)</a></li>
+                    <li><a href="#">Interdimensional Teleportation</a></li>
+                    <li><a href="#">Vortigaunt Countermeasures</a></li>
+                </ul>
+
+                <h3>Facility Status</h3>
+                <ul>
+                    <li><span class="hl-highlight">Sector C:</span> NORMAL*</li>
+                    <li><span class="hl-highlight">Lambda Sector:</span> RESTRICTED</li>
+                    <li><span class="hl-highlight">Underground Levels:</span> CAUTION</li>
+                    <li><span class="hl-highlight">Power System:</span> 98%</li>
+                </ul>
+
+                <h3>System Log</h3>
+                <div class="system-log">
+                    <p>[06:42:15] SYS.LOG :: BM_SEC_0432 NOMINAL</p>
+                    <p>[06:42:18] ALERT :: Xenian activity detected in Sector 7</p>
+                    <p>[06:42:20] HEV Suit check required for personnel in Sector C</p>
+                    <p>[06:42:30] WARNING :: Dimensional instability detected</p>
+                    <p>[06:42:45] SECURITY :: Level 3 personnel only beyond this point</p>
+                </div>
+            </aside>
+
+        </div> <!-- FIM DO MAIN-CONTENT -->
+
+        <!-- FOOTER -->
+        <footer>
+            <p>© 200- Black Mesa Research Facility. All information is property of Black Mesa and classified under the National Security Act.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">"The key to the future lies beyond our known domains"</p>
+        </footer>
+
+    </div> <!-- FIM DO CONTAINER -->
+
+</body>
+</html>

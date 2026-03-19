@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>BLACK EYED PEAS ::: OFFICIAL SITE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ESTILO HTML4 - COM CORES SÓLIDAS E TABELAS */
+        body {
+            background-color: #000000;
+            color: #FF9900;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+            background-repeat: repeat;
+        }
+        
+        /* TIPOGRAFIA ANOS 2000 */
+        h1, h2, h3, h4 {
+            font-family: "Arial Black", Gadget, sans-serif;
+            color: #FFCC00;
+        }
+        
+        a:link {
+            color: #FF9900;
+            text-decoration: none;
+        }
+        
+        a:visited {
+            color: #CC6600;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: #FFFF00;
+            text-decoration: underline;
+        }
+        
+        a:active {
+            color: #FF0000;
+        }
+        
+        /* BORDA DO SITE - CORES SÓLIDAS */
+        #mainborder {
+            background-color: #331100;
+            border: 8px solid #663300;
+            margin: 0;
+            padding: 1px;
+        }
+        
+        #sitecontainer {
+            background-color: #662200;
+            border: 5px solid #FF9900;
+            margin: 10px;
+            padding: 0;
+        }
+        
+        /* HEADER COM BACKGROUND LARANJA */
+        #header {
+            background-color: #FF9900;
+            border-bottom: 5px solid #663300;
+            height: 100px;
+            position: relative;
+        }
+        
+        /* BARRA DOURADA INTERATIVA À ESQUERDA */
+        .interactive-bars {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            background-color: #331100;
+            border-right: 3px solid #FFCC00;
+        }
+        
+        .bar {
+            width: 40px;
+            height: 8px;
+            background-color: #663300;
+            margin: 6px auto;
+            border: 1px solid #996600;
+            cursor: pointer;
+        }
+        
+        .bar:hover {
+            background-color: #FFCC00;
+            border: 1px solid #FF9900;
+        }
+        
+        .bar.active {
+            background-color: #FF9900;
+            border: 1px solid #FFCC00;
+            animation: blink 0.8s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* LOGO */
+        #logo {
+            position: absolute;
+            left: 80px;
+            top: 20px;
+            font-family: "Arial Black", Gadget, sans-serif;
+            font-size: 36px;
+            color: #000000;
+            text-shadow: 2px 2px 0 #FFCC00;
+        }
+        
+        #logo span {
+            display: block;
+            font-size: 20px;
+            color: #331100;
+            text-shadow: 1px 1px 0 #FF9900;
+        }
+        
+        /* MENU PRINCIPAL - FUNDO LARANJA */
+        #mainmenu {
+            background-color: #FF9900;
+            height: 40px;
+            border-top: 2px solid #FFCC00;
+            border-bottom: 2px solid #FFCC00;
+        }
+        
+        .menuitem {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 15px;
+            background-color: #CC6600;
+            color: #000000;
+            font-weight: bold;
+            text-decoration: none;
+            border-right: 1px solid #FF9900;
+        }
+        
+        .menuitem:hover {
+            background-color: #FFCC00;
+            color: #331100;
+        }
+        
+        /* CONTEÚDO PRINCIPAL - FUNDO LARANJA ESCURO */
+        #content {
+            background-color: #663300;
+            padding: 15px;
+            min-height: 500px;
+        }
+        
+        /* SESSÕES COM BACKGROUND LARANJA/AMARELO */
+        .section {
+            background-color: #CC6600;
+            border: 3px solid #FF9900;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        
+        .section-title {
+            background-color: #FF9900;
+            color: #000000;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px;
+            margin: -10px -10px 10px -10px;
+            border-bottom: 2px solid #FFCC00;
+        }
+        
+        /* POSTS DO BLOG - FUNDO ALTERNANDO CORES */
+        .blogpost {
+            background-color: #996600;
+            border: 2px solid #CC6600;
+            margin-bottom: 15px;
+            padding: 15px;
+            position: relative;
+        }
+        
+        .blogpost:nth-child(even) {
+            background-color: #884400;
+        }
+        
+        .post-title {
+            color: #FFCC00;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px dotted #FF9900;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .post-date {
+            background-color: #331100;
+            color: #FF9900;
+            padding: 3px 8px;
+            display: inline-block;
+            font-size: 11px;
+            margin-bottom: 10px;
+            border: 1px solid #663300;
+        }
+        
+        /* EFEITO DE ESCURECIMENTO - OVERLAY SÓLIDO */
+        .post-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            opacity: 0.7;
+            display: none;
+        }
+        
+        .blogpost:hover .post-overlay {
+            display: block;
+        }
+        
+        .overlay-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FF9900;
+            padding: 15px;
+            border: 3px solid #FFCC00;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        /* SIDEBAR - FUNDO LARANJA ESCURO */
+        #sidebar {
+            background-color: #884400;
+            border: 3px solid #CC6600;
+            padding: 15px;
+            width: 200px;
+        }
+        
+        .widget {
+            background-color: #996600;
+            border: 2px solid #CC6600;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        
+        .widget-title {
+            background-color: #FF9900;
+            color: #000000;
+            font-weight: bold;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            border-bottom: 2px solid #FFCC00;
+        }
+        
+        /* MEMBROS DA BANDA */
+        .member {
+            background-color: #663300;
+            border: 1px solid #996600;
+            padding: 8px;
+            margin-bottom: 8px;
+            color: #FFCC00;
+        }
+        
+        .member-name {
+            color: #FF9900;
+            font-weight: bold;
+        }
+        
+        /* PLAYER DE MÚSICA */
+        .music-player {
+            background-color: #331100;
+            border: 3px solid #FF9900;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .player-controls {
+            margin: 10px 0;
+        }
+        
+        .player-btn {
+            background-color: #FF9900;
+            color: #000000;
+            border: 2px solid #FFCC00;
+            padding: 8px 12px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .player-btn:hover {
+            background-color: #FFCC00;
+        }
+        
+        /* MARQUEE ANOS 2000 */
+        .marquee-container {
+            background-color: #331100;
+            border: 2px solid #FF9900;
+            padding: 8px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        /* FOOTER - FUNDO LARANJA ESCURO */
+        #footer {
+            background-color: #331100;
+            border-top: 5px solid #FF9900;
+            padding: 20px;
+            text-align: center;
+            color: #996600;
+            font-size: 11px;
+        }
+        
+        .footer-links a {
+            color: #FF9900;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        
+        /* COPYRIGHT ANOS 2000 */
+        .copyright {
+            margin-top: 15px;
+            color: #663300;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+        
+        /* IMAGENS COM BORDA COLORIDA */
+        .bordered-image {
+            border: 5px solid #FF9900;
+            background-color: #331100;
+            padding: 3px;
+        }
+        
+        /* BOTÕES ANOS 2000 */
+        .old-button {
+            background-color: #FF9900;
+            color: #000000;
+            border: 2px outset #FFCC00;
+            padding: 6px 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .old-button:hover {
+            background-color: #FFCC00;
+            border: 2px inset #FF9900;
+        }
+        
+        /* FORMULÁRIOS ANOS 2000 */
+        input, select, textarea {
+            background-color: #331100;
+            color: #FF9900;
+            border: 2px solid #663300;
+            padding: 4px;
+            font-family: Verdana, sans-serif;
+            font-size: 12px;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border: 2px solid #FF9900;
+            background-color: #662200;
+        }
+        
+        /* SCROLLBAR PERSONALIZADA */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #331100;
+            border: 1px solid #663300;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #FF9900;
+            border: 2px solid #331100;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFCC00;
+        }
+        
+        /* ANIMAÇÕES SIMPLES */
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        .glow {
+            text-shadow: 0 0 5px #FF9900;
+        }
+    </style>
+</head>
+<body>
+    <!-- BORDA PRINCIPAL DO SITE -->
+    <div id="mainborder">
+        <div id="sitecontainer">
+            
+            <!-- HEADER COM FUNDO LARANJA -->
+            <div id="header">
+                <!-- BARRA INTERATIVA À ESQUERDA -->
+                <div class="interactive-bars">
+                    <div class="bar" onclick="navigate('home')"></div>
+                    <div class="bar" onclick="navigate('news')"></div>
+                    <div class="bar" onclick="navigate('music')"></div>
+                    <div class="bar" onclick="navigate('videos')"></div>
+                    <div class="bar" onclick="navigate('tour')"></div>
+                    <div class="bar" onclick="navigate('gallery')"></div>
+                    <div class="bar" onclick="navigate('forum')"></div>
+                    <div class="bar" onclick="navigate('shop')"></div>
+                </div>
+                
+                <!-- LOGO -->
+                <div id="logo">
+                    BLACK EYED PEAS
+                    <span>the experience</span>
+                </div>
+                
+                <!-- CONTADOR DE VISITAS -->
+                <div style="position:absolute; right:20px; bottom:10px; background-color:#331100; color:#FF9900; padding:5px 10px; border:2px solid #663300; font-family:Courier, monospace;">
+                    <i class="fas fa-users"></i> Visitors: <span id="counter">0012345</span>
+                </div>
+            </div>
+            
+            <!-- MENU PRINCIPAL -->
+            <div id="mainmenu">
+                <a href="#" class="menuitem"><i class="fas fa-home"></i> HOME</a>
+                <a href="#" class="menuitem"><i class="fas fa-newspaper"></i> NEWS</a>
+                <a href="#" class="menuitem"><i class="fas fa-music"></i> MUSIC</a>
+                <a href="#" class="menuitem"><i class="fas fa-video"></i> VIDEOS</a>
+                <a href="#" class="menuitem"><i class="fas fa-calendar"></i> TOUR 2005</a>
+                <a href="#" class="menuitem"><i class="fas fa-camera"></i> GALLERY</a>
+                <a href="#" class="menuitem"><i class="fas fa-shopping-cart"></i> SHOP</a>
+                <a href="#" class="menuitem"><i class="fas fa-envelope"></i> CONTACT</a>
+            </div>
+            
+            <!-- MARQUEE ANOS 2000 -->
+            <div class="marquee-container">
+                <marquee behavior="scroll" direction="left" scrollamount="3">
+                    <span style="color:#FFCC00; font-weight:bold;">:: LATEST NEWS ::</span> 
+                    <span style="color:#FFFFFF;">NEW ALBUM "MONKEY BUSINESS" OUT NOW! • WORLD TOUR 2005 DATES ANNOUNCED • "DON'T PHUNK WITH MY HEART" #1 ON CHARTS • JOIN OUR OFFICIAL FAN CLUB TODAY!</span>
+                </marquee>
+            </div>
+            
+            <!-- CONTEÚDO PRINCIPAL -->
+            <div id="content">
+                <!-- USANDO TABELA PARA LAYOUT (ANOS 2000) -->
+                <table width="100%" cellpadding="0" cellspacing="15" border="0">
+                <tr>
+                <td width="70%" valign="top">
+                    
+                    <!-- SEÇÃO DE NOTÍCIAS -->
+                    <div class="section">
+                        <div class="section-title">
+                            <i class="fas fa-bullhorn"></i> LATEST NEWS
+                        </div>
+                        
+                        <!-- POST 1 -->
+                        <div class="blogpost">
+                            <div class="post-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-play-circle"></i> VIEW FULL STORY
+                                </div>
+                            </div>
+                            <div class="post-title">"MONKEY BUSINESS" ALBUM RELEASED!</div>
+                            <div class="post-date">MAY 30, 2005</div>
+                            <table width="100%" cellpadding="5" cellspacing="0">
+                            <tr>
+                            <td width="120" valign="top">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=150" width="110" height="80" class="bordered-image" alt="Album Cover">
+                            </td>
+                            <td valign="top">
+                                <p style="color:#FFCC00; line-height:1.5; text-align:justify;">
+                                    The Black Eyed Peas have released their fourth studio album "Monkey Business"! The album features hit singles "Don't Phunk With My Heart" and "My Humps". Available now in stores and on iTunes.
+                                </p>
+                                <button class="old-button" onclick="readMore(1)">READ MORE</button>
+                            </td>
+                            </tr>
+                            </table>
+                        </div>
+                        
+                        <!-- POST 2 -->
+                        <div class="blogpost">
+                            <div class="post-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-ticket-alt"></i> BUY TICKETS NOW
+                                </div>
+                            </div>
+                            <div class="post-title">WORLD TOUR 2005 ANNOUNCED</div>
+                            <div class="post-date">APRIL 15, 2005</div>
+                            <table width="100%" cellpadding="5" cellspacing="0">
+                            <tr>
+                            <td width="120" valign="top">
+                                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=150" width="110" height="80" class="bordered-image" alt="Tour">
+                            </td>
+                            <td valign="top">
+                                <p style="color:#FFCC00; line-height:1.5; text-align:justify;">
+                                    The Black Eyed Peas are going on a worldwide tour to promote their new album. The tour will visit over 60 cities across North America, Europe, Asia and Australia. Special guests include Sting and James Brown.
+                                </p>
+                                <button class="old-button" onclick="readMore(2)">READ MORE</button>
+                            </td>
+                            </tr>
+                            </table>
+                        </div>
+                        
+                        <!-- POST 3 -->
+                        <div class="blogpost">
+                            <div class="post-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-award"></i> VIEW AWARDS
+                                </div>
+                            </div>
+                            <div class="post-title">GRAMMY AWARD NOMINATIONS</div>
+                            <div class="post-date">MARCH 10, 2005</div>
+                            <table width="100%" cellpadding="5" cellspacing="0">
+                            <tr>
+                            <td width="120" valign="top">
+                                <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=150" width="110" height="80" class="bordered-image" alt="Awards">
+                            </td>
+                            <td valign="top">
+                                <p style="color:#FFCC00; line-height:1.5; text-align:justify;">
+                                    The Black Eyed Peas have received 3 Grammy Award nominations for their album "Elephunk" and single "Where Is The Love?". The awards ceremony will be held on February 8, 2004.
+                                </p>
+                                <button class="old-button" onclick="readMore(3)">READ MORE</button>
+                            </td>
+                            </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </td>
+                <td width="30%" valign="top">
+                    
+                    <!-- SIDEBAR -->
+                    <div id="sidebar">
+                        
+                        <!-- MEMBROS DA BANDA -->
+                        <div class="widget">
+                            <div class="widget-title">
+                                <i class="fas fa-users"></i> BAND MEMBERS
+                            </div>
+                            <div class="member">
+                                <span class="member-name">will.i.am</span><br>
+                                Vocals, Producer
+                            </div>
+                            <div class="member">
+                                <span class="member-name">apl.de.ap</span><br>
+                                Vocals
+                            </div>
+                            <div class="member">
+                                <span class="member-name">Taboo</span><br>
+                                Vocals
+                            </div>
+                            <div class="member">
+                                <span class="member-name">Fergie</span><br>
+                                Vocals
+                            </div>
+                        </div>
+                        
+                        <!-- NOVO ÁLBUM -->
+                        <div class="widget">
+                            <div class="widget-title">
+                                <i class="fas fa-compact-disc"></i> NEW ALBUM
+                            </div>
+                            <center>
+                                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=200" width="150" height="150" class="bordered-image" alt="Monkey Business"><br>
+                                <span style="color:#FFCC00; font-weight:bold;">MONKEY BUSINESS</span><br>
+                                <span style="color:#FF9900;">Released: 2005</span>
+                            </center>
+                        </div>
+                        
+                        <!-- PLAYER DE MÚSICA -->
+                        <div class="music-player">
+                            <div style="color:#FFCC00; font-weight:bold; margin-bottom:10px;">
+                                <i class="fas fa-headphones"></i> MUSIC PLAYER
+                            </div>
+                            <div class="player-controls">
+                                <button class="player-btn" onclick="prevTrack()"><i class="fas fa-backward"></i></button>
+                                <button class="player-btn" onclick="playPause()" id="playBtn"><i class="fas fa-play"></i></button>
+                                <button class="player-btn" onclick="nextTrack()"><i class="fas fa-forward"></i></button>
+                            </div>
+                            <div style="color:#FF9900; font-size:11px; margin-top:10px;" id="nowPlaying">
+                                Don't Phunk With My Heart
+                            </div>
+                        </div>
+                        
+                        <!-- POLL ANOS 2000 -->
+                        <div class="widget">
+                            <div class="widget-title">
+                                <i class="fas fa-poll"></i> FAN POLL
+                            </div>
+                            <div style="color:#FFCC00; margin-bottom:10px;">
+                                What's your favorite album?
+                            </div>
+                            <form>
+                                <input type="radio" name="album" value="elephunk"> Elephunk (2003)<br>
+                                <input type="radio" name="album" value="monkey"> Monkey Business (2005)<br>
+                                <input type="radio" name="album" value="behind"> Behind the Front (1998)<br>
+                                <input type="radio" name="album" value="bridging"> Bridging the Gap (2000)<br>
+                                <center><button type="button" class="old-button" style="margin-top:10px;">VOTE</button></center>
+                            </form>
+                        </div>
+                        
+                    </div>
+                    
+                </td>
+                </tr>
+                </table>
+                
+                <!-- BANNER ANOS 2000 -->
+                <center>
+                    <div style="background-color:#331100; border:3px solid #FF9900; padding:15px; margin:20px 0; width:90%;">
+                        <span style="color:#FFCC00; font-size:16px; font-weight:bold;">
+                            <i class="fas fa-star blink"></i> DOWNLOAD BLACK EYED PEAS RINGTONES! 
+                            <i class="fas fa-star blink"></i>
+                        </span><br>
+                        <span style="color:#FFFFFF;">
+                            Text "BEP" to 55555 for exclusive ringtones!
+                        </span>
+                    </div>
+                </center>
+                
+            </div>
+            
+            <!-- FOOTER -->
+            <div id="footer">
+                <div class="footer-links">
+                    <a href="#">Home</a> | 
+                    <a href="#">News</a> | 
+                    <a href="#">Music</a> | 
+                    <a href="#">Videos</a> | 
+                    <a href="#">Tour</a> | 
+                    <a href="#">Gallery</a> | 
+                    <a href="#">Shop</a> | 
+                    <a href="#">Contact</a>
+                </div>
+                
+                <div style="margin:15px 0;">
+                    <a href="#"><img src="https://img.icons8.com/color/24/000000/msn.png" alt="MSN"></a>
+                    <a href="#"><img src="https://img.icons8.com/color/24/000000/yahoo.png" alt="Yahoo"></a>
+                    <a href="#"><img src="https://img.icons8.com/color/24/000000/aol.png" alt="AOL"></a>
+                    <a href="#"><img src="https://img.icons8.com/color/24/000000/myspace.png" alt="MySpace"></a>
+                    <a href="#"><img src="https://img.icons8.com/color/24/000000/napster.png" alt="Napster"></a>
+                </div>
+                
+                <!-- COPYRIGHT AUTÊNTICO DOS ANOS 2000 -->
+                <div class="copyright">
+                    <hr size="1" color="#663300">
+                    © 2005 BLACK EYED PEAS INTERACTIVE. ALL RIGHTS RESERVED.<br>
+                    "BLACK EYED PEAS" AND "THE EXPERIENCE" ARE TRADEMARKS OF WILL.I.AM MUSIC GROUP.<br>
+                    <br>
+                    THIS SITE IS BEST VIEWED WITH <span style="color:#FF9900;">INTERNET EXPLORER 5.0+</span> AT <span style="color:#FF9900;">800X600</span> RESOLUTION.<br>
+                    SITE DESIGNED BY <span style="color:#FF9900;">INTERSCOPE RECORDS WEB TEAM</span>.<br>
+                    <br>
+                    VISITOR # <span id="visitorNum">00123456</span> SINCE JANUARY 1, 2005<br>
+                    PAGE GENERATED ON <span id="currentDate">TUESDAY, JUNE 7, 2005 2:45 PM PST</span>
+                </div>
+                
+                <!-- VALIDAÇÃO W3C -->
+                <div style="margin-top:15px;">
+                    <a href="http://validator.w3.org/check?uri=referer">
+                        <img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88">
+                    </a>
+                    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                        <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" height="31" width="88">
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // CONFIGURAÇÃO ANOS 2000
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar data antiga
+            var oldDate = new Date(2005, 5, 7, 14, 45, 0);
+            var days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+            var months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
+            
+            var dateString = days[oldDate.getDay()] + ', ' + 
+                            months[oldDate.getMonth()] + ' ' + 
+                            oldDate.getDate() + ', ' + 
+                            oldDate.getFullYear() + ' ' + 
+                            oldDate.getHours() + ':' + 
+                            (oldDate.getMinutes() < 10 ? '0' : '') + oldDate.getMinutes() + ' PM PST';
+            
+            document.getElementById('currentDate').textContent = dateString;
+            
+            // Contador de visitas
+            var visitCount = 123456;
+            setInterval(function() {
+                visitCount += Math.floor(Math.random() * 2) + 1;
+                document.getElementById('counter').textContent = visitCount.toString().padStart(7, '0');
+                document.getElementById('visitorNum').textContent = visitCount.toString().padStart(8, '0');
+            }, 3000);
+            
+            // Interatividade das barras
+            var bars = document.querySelectorAll('.bar');
+            var activeBar = null;
+            
+            bars.forEach(function(bar, index) {
+                bar.addEventListener('mouseover', function() {
+                    if (activeBar !== this) {
+                        // Remover classe active de todas as barras
+                        bars.forEach(function(b) {
+                            b.classList.remove('active');
+                        });
+                        
+                        // Adicionar classe active a esta barra
+                        this.classList.add('active');
+                        
+                        // Efeito sonoro
+                        playBarSound();
+                        
+                        // Efeito visual
+                        createSparkleEffect(this);
+                    }
+                });
+                
+                bar.addEventListener('mouseout', function() {
+                    setTimeout(function() {
+                        bar.classList.remove('active');
+                    }, 300);
+                });
+            });
+            
+            // Alternar barras automaticamente
+            setInterval(function() {
+                var randomIndex = Math.floor(Math.random() * bars.length);
+                bars.forEach(function(bar, index) {
+                    if (index === randomIndex) {
+                        bar.classList.add('active');
+                        setTimeout(function() {
+                            bar.classList.remove('active');
+                        }, 500);
+                    }
+                });
+            }, 4000);
+            
+            // Player de música
+            var playBtn = document.getElementById('playBtn');
+            var playIcon = playBtn.querySelector('i');
+            var nowPlaying = document.getElementById('nowPlaying');
+            var tracks = [
+                "Don't Phunk With My Heart",
+                "My Humps",
+                "Pump It",
+                "Let's Get It Started",
+                "Where Is The Love?",
+                "Shut Up",
+                "Hey Mama"
+            ];
+            
+            var currentTrack = 0;
+            var isPlaying = false;
+            
+            window.playPause = function() {
+                if (!isPlaying) {
+                    playIcon.className = 'fas fa-pause';
+                    nowPlaying.innerHTML = tracks[currentTrack] + ' <span style="color:#FF0000;">[PLAYING]</span>';
+                    isPlaying = true;
+                    simulatePlayback();
+                } else {
+                    playIcon.className = 'fas fa-play';
+                    nowPlaying.textContent = tracks[currentTrack] + ' [PAUSED]';
+                    isPlaying = false;
+                }
+            };
+            
+            window.prevTrack = function() {
+                currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+                updateNowPlaying();
+            };
+            
+            window.nextTrack = function() {
+                currentTrack = (currentTrack + 1) % tracks.length;
+                updateNowPlaying();
+            };
+            
+            function updateNowPlaying() {
+                if (isPlaying) {
+                    nowPlaying.innerHTML = tracks[currentTrack] + ' <span style="color:#FF0000;">[PLAYING]</span>';
+                } else {
+                    nowPlaying.textContent = tracks[currentTrack];
+                }
+            }
+            
+            function simulatePlayback() {
+                if (isPlaying) {
+                    setTimeout(function() {
+                        if (isPlaying) {
+                            currentTrack = (currentTrack + 1) % tracks.length;
+                            updateNowPlaying();
+                            simulatePlayback();
+                        }
+                    }, 8000);
+                }
+            }
+            
+            // Funções auxiliares
+            function playBarSound() {
+                // Simular som (nos anos 2000 era comum MIDI)
+                try {
+                    // Tentar tocar um som simples
+                    var audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ');
+                    audio.play();
+                } catch(e) {
+                    // Fallback silencioso
+                }
+            }
+            
+            function createSparkleEffect(element) {
+                var rect = element.getBoundingClientRect();
+                
+                for (var i = 0; i < 5; i++) {
+                    var sparkle = document.createElement('div');
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.width = '6px';
+                    sparkle.style.height = '6px';
+                    sparkle.style.backgroundColor = '#FFCC00';
+                    sparkle.style.borderRadius = '50%';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.zIndex = '1000';
+                    sparkle.style.left = (rect.left + 20) + 'px';
+                    sparkle.style.top = (rect.top + 4) + 'px';
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    // Animação
+                    var angle = Math.random() * Math.PI * 2;
+                    var distance = 15 + Math.random() * 25;
+                    var duration = 600 + Math.random() * 400;
+                    
+                    animateSparkle(sparkle, angle, distance, duration);
+                }
+            }
+            
+            function animateSparkle(sparkle, angle, distance, duration) {
+                var startTime = Date.now();
+                var startX = parseFloat(sparkle.style.left);
+                var startY = parseFloat(sparkle.style.top);
+                
+                function update() {
+                    var elapsed = Date.now() - startTime;
+                    var progress = Math.min(elapsed / duration, 1);
+                    
+                    var x = startX + Math.cos(angle) * distance * progress;
+                    var y = startY + Math.sin(angle) * distance * progress;
+                    
+                    sparkle.style.left = x + 'px';
+                    sparkle.style.top = y + 'px';
+                    sparkle.style.opacity = 1 - progress;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                        sparkle.remove();
+                    }
+                }
+                
+                requestAnimationFrame(update);
+            }
+            
+            window.navigate = function(section) {
+                alert('Navigating to ' + section.toUpperCase() + ' section...');
+                
+                // Efeito visual
+                document.body.style.opacity = '0.7';
+                setTimeout(function() {
+                    document.body.style.opacity = '1';
+                }, 300);
+            };
+            
+            window.readMore = function(postId) {
+                var titles = [
+                    "MONKEY BUSINESS ALBUM DETAILS",
+                    "WORLD TOUR 2005 SCHEDULE",
+                    "GRAMMY AWARDS CEREMONY INFO"
+                ];
+                
+                alert('Loading: ' + titles[postId - 1]);
+            };
+            
+            // Popup de boas-vindas (típico dos anos 2000)
+            setTimeout(function() {
+                if (confirm('WELCOME TO THE BLACK EYED PEAS OFFICIAL WEBSITE!\n\nJoin our newsletter for exclusive updates?')) {
+                    alert('Thank you! Please check your email (Hotmail, Yahoo or AOL) for confirmation.');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

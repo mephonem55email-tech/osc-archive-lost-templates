@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>Frutiger Aero Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =======================
+   FUNDO GLOBAL
+======================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background:
+        radial-gradient(circle at top, rgba(120,200,255,0.35), transparent 55%),
+        url('https://wallpapers.com/images/high/hp-special-edition-gqa5a3tdjnw55nq3.webp');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #1a2a3a;
+
+    line-height: 1.6;
+    min-height: 100vh;
+    min-width: 1440px;
+}
+
+/* bolhas suaves */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("https://i.postimg.cc/dQpZkLqd/vecteezy-realistisch-illustration-von-seife-luftblasen-im-49580422.png");
+    opacity: 0.08;
+    pointer-events: none;
+    animation: bubbles 80s linear infinite;
+}
+
+@keyframes bubbles {
+    from { background-position: 0 0; }
+    to { background-position: 0 -3000px; }
+}
+
+/* =======================
+   CONTAINER
+======================= */
+.container {
+    width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* =======================
+   AERO BASE
+======================= */
+.aero-element {
+    position: relative;
+    background:
+        radial-gradient(circle at top left, rgba(120,220,255,0.35), transparent 55%),
+        linear-gradient(135deg, rgba(0,40,80,0.85), rgba(0,90,150,0.85));
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(14px) saturate(160%);
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+/* reflexo glossy */
+.aero-element::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    height: 45%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.45),
+        rgba(255,255,255,0)
+    );
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* =======================
+   HEADER
+======================= */
+header {
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.logo-icon {
+    font-size: 2.6rem;
+    color: #e8f9ff;
+    margin-right: 15px;
+    text-shadow:
+        0 0 15px rgba(120,220,255,0.9),
+        0 0 30px rgba(120,220,255,0.6);
+}
+
+.logo-text h1 {
+    color: white;
+    font-size: 2.8rem;
+    letter-spacing: 1px;
+    text-shadow: 0 3px 15px rgba(0,0,0,0.6);
+}
+
+.logo-text p {
+    color: rgba(255,255,255,0.9);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin-top: 15px;
+}
+
+nav li {
+    margin-right: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.25),
+        rgba(255,255,255,0.05)
+    );
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.35s cubic-bezier(.2,.6,.2,1);
+}
+
+nav a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 18px rgba(120,220,255,0.7);
+}
+
+/* =======================
+   MAIN
+======================= */
+main {
+    display: flex;
+    gap: 30px;
+}
+
+/* =======================
+   ARTICLES
+======================= */
+.articles {
+    flex: 3;
+}
+
+article {
+    padding: 25px;
+    margin-bottom: 30px;
+    color: #dff4ff;
+    transition: transform 0.35s;
+}
+
+article:hover {
+    transform: translateY(-6px);
+}
+
+article h2 {
+    color: #5fdcff;
+    font-size: 1.9rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 12px rgba(95,220,255,0.8);
+}
+
+.meta {
+    color: #bfe9ff;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 20px;
+}
+
+article p {
+    margin-bottom: 20px;
+}
+
+.read-more {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    font-weight: bold;
+    color: #e8f9ff;
+    text-decoration: none;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.25);
+
+    /* Fundo de vidro */
+    background: rgba(0, 80, 150, 0.25); /* cor base semi-transparente */
+    backdrop-filter: blur(12px) saturate(160%); /* vidro fosco + saturação */
+
+    /* Reflexo sutil */
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.4), /* sombra externa */
+        inset 0 1px 1px rgba(255,255,255,0.3), /* brilho interno topo */
+        inset 0 -1px 1px rgba(0,0,0,0.2); /* sombra interna inferior */
+
+    transition: all 0.35s ease;
+}
+
+/* Reflexo adicional usando pseudo-elemento */
+.read-more::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    border-radius: inherit;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), rgba(255,255,255,0));
+    pointer-events: none;
+}
+
+/* Hover: glow e leve elevação */
+.read-more:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 22px rgba(0,220,255,0.8),
+        inset 0 1px 2px rgba(255,255,255,0.35),
+        inset 0 -1px 2px rgba(0,0,0,0.25);
+}
+
+/* =======================
+   SIDEBAR
+======================= */
+.sidebar {
+    flex: 1;
+}
+
+.widget {
+    padding: 25px;
+    margin-bottom: 30px;
+    color: #e5f7ff;
+}
+
+.widget h3 {
+    color: #5fdcff;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(95,220,255,0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 10px;
+}
+
+.widget ul {
+    list-style: none;
+}
+
+.widget li {
+    margin-bottom: 15px;
+}
+
+.widget a {
+    color: #bfe9ff;
+    text-decoration: none;
+}
+
+.widget a:hover {
+    color: #5fdcff;
+}
+
+/* =======================
+   FOOTER
+======================= */
+footer {
+    padding: 30px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+footer p {
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.3),
+        rgba(255,255,255,0.05)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.35s;
+}
+
+.social-icons a:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(120,220,255,0.8);
+}
+
+/* =======================
+   HELPERS
+======================= */
+.highlight {
+    color: #5fdcff;
+    text-shadow: 0 0 14px rgba(95,220,255,0.9);
+}
+
+.glow {
+    box-shadow: 0 0 25px rgba(120,220,255,0.9) !important;
+}
+
+i {
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.4),
+        0 2px 5px rgba(0,0,0,0.6);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <header class="aero-element">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-blog"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Frutiger <span class="highlight">Aero</span> Blog</h1>
+                <p>Exploring technology, design, and innovation</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-newspaper"></i> Articles</a></li>
+                <li><a href="#"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="articles">
+
+            <article class="aero-element">
+                <h2>Frutiger Aero Design: An Ode to Optimistic Futurism</h2>
+                <div class="meta">
+                    <span><i class="fas fa-calendar"></i> October 15, 2007</span>
+                    <span><i class="fas fa-user"></i> Alex Designer</span>
+                    <span><i class="fas fa-tag"></i> Design</span>
+                </div>
+                <p>
+                    The Frutiger Aero style emerged in the 2000s as an evolution of interface design, characterized by smooth gradients, reflections, transparency, and elements that evoke nature and technology. Unlike skeuomorphism, this style aimed to represent a clean, efficient, and environmentally harmonious future.
+                </p>
+                <p>
+                    With vibrant blue and green colors, bubble textures, and glowing elements, Frutiger Aero captured the imagination of a generation that believed in a bright, accessible technological future.
+                </p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </article>
+
+            <article class="aero-element">
+                <h2>Technology and Nature: A Fusion in Modern Design</h2>
+                <div class="meta">
+                    <span><i class="fas fa-calendar"></i> October 10, 2007</span>
+                    <span><i class="fas fa-user"></i> Maria Tech</span>
+                    <span><i class="fas fa-tag"></i> Technology</span>
+                </div>
+                <p>
+                    Nature-inspired design has always been present, but Frutiger Aero elevated it by blending organic elements into digital interfaces. Leaves, water, air bubbles, and natural textures merged with technological components to create a unique aesthetic.
+                </p>
+                <p>
+                    This approach was not just visual, but philosophical: it suggested that future technology would coexist harmoniously with the natural world. A vision that remains relevant today with the rise of sustainable technology.
+                </p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </article>
+
+            <article class="aero-element">
+                <h2>The Legacy of Windows Vista and Seven in Contemporary Design</h2>
+                <div class="meta">
+                    <span><i class="fas fa-calendar"></i> October 5, 2007</span>
+                    <span><i class="fas fa-user"></i> Carlos Historian</span>
+                    <span><i class="fas fa-tag"></i> History</span>
+                </div>
+                <p>
+                    Windows Vista and Windows 7 were the most prominent examples of Frutiger Aero in mainstream design. With Aero Glass, transparency, smooth animations, and detailed icons, they defined the aesthetic of an entire era of personal computing.
+                </p>
+                <p>
+                    Although flat design became dominant in the 2010s, elements of Frutiger Aero are returning in modernized forms such as neomorphism and glassmorphism, proving that some visual ideas are timeless.
+                </p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </article>
+
+        </div>
+
+        <aside class="sidebar">
+            <div class="widget aero-element">
+                <h3><i class="fas fa-fire"></i> Popular Articles</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> The Psychology of Color in Digital Design</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Backlash or Revival: The Return of Frutiger Aero</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> How to Create Interfaces with Depth and Dimension</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> The 10 Principles of Timeless Design</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Futurism in Pop Culture: From The Jetsons to Black Mirror</a></li>
+                </ul>
+            </div>
+
+            <div class="widget aero-element">
+                <h3><i class="fas fa-tags"></i> Categories</h3>
+                <div class="tags">
+                    <a href="#" class="tag">Design</a>
+                    <a href="#" class="tag">Technology</a>
+                    <a href="#" class="tag">UI/UX</a>
+                    <a href="#" class="tag">History</a>
+                    <a href="#" class="tag">Futurism</a>
+                    <a href="#" class="tag">Digital Art</a>
+                    <a href="#" class="tag">Windows</a>
+                    <a href="#" class="tag">Nostalgia</a>
+                </div>
+            </div>
+
+            <div class="widget aero-element">
+                <h3><i class="fas fa-info-circle"></i> About the Blog</h3>
+                <p>
+                    This blog explores the Frutiger Aero aesthetic and its influence on contemporary design. We analyze trends, history, and the visual impact of this unique era of digital design.
+                </p>
+                <p style="margin-top: 15px;">
+                    <strong>Inspiration:</strong> Windows Vista/7, interface design (2004–2012).
+                </p>
+            </div>
+            
+            <div class="widget aero-element">
+    <h3><i class="fas fa-ring"></i> Aero Webring</h3>
+    <div id="aero-ring">
+        <script src="https://osc-leaks.neocities.org/Embeds/aerow/webring.js"></script>
+    </div>
+</div>
+
+<style>
+/* =========================
+   Estilo Aero para o Webring
+========================= */
+#aero-ring {
+    background: linear-gradient(to bottom, #0b3c5d 0%, #005b96 100%);
+    border-radius: 12px;
+    box-shadow: 
+        0 0 10px rgba(0, 180, 255, 0.5),
+        inset 0 2px 1px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 1px rgba(0, 0, 0, 0.25);
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 15px;
+    padding: 1rem;
+    transition: box-shadow 0.35s ease-in-out;
+}
+
+#aero-ring:hover {
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.8),
+        inset 0 2px 1px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 1px rgba(0, 0, 0, 0.3);
+}
+
+#aero-ring a,
+#aero-ring a:visited {
+    color: #00f0ff !important;
+    text-decoration: none;
+    transition: color 0.25s;
+}
+
+#aero-ring a:hover,
+#aero-ring a:focus,
+#aero-ring a:active {
+    color: #80ffff !important;
+    text-shadow: 0 0 8px #00f0ff;
+}
+</style>
+            
+        </aside>
+    </main>
+
+    <video
+    src="https://file.garden/aX9OA1junENdw7Kh/Nostalgia%20-votabias))%20-%20Camiiz%20(144p%2C%20h264%2C%20youtube).mp4"
+    autoplay loop playsinline width="0"
+   height="0">></video>
+
+    <footer class="aero-element">
+        <p>© 2007 Frutiger Aero Blog. All rights reserved.</p>
+        <p>This website is a tribute to the Frutiger Aero aesthetic and is not affiliated with any company.</p>
+
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+        </div>
+    </footer>
+</div>
+
+<script>
+document.querySelectorAll('.read-more, nav a, .social-icons a').forEach(element => {
+    element.addEventListener('mouseenter', function() {
+        this.classList.add('glow');
+    });
+    element.addEventListener('mouseleave', function() {
+        this.classList.remove('glow');
+    });
+});
+
+document.querySelectorAll('.read-more').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Article opened! On a real website, this would lead to the full article page.');
+    });
+});
+</script>
+
+</body>
+</html>
