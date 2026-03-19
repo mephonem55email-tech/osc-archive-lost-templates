@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSC-LEAKS | BFDI, TPOT & Inanimate Insanity Leaks</title>
+    <meta name="description" content="OSC-LEAKS: Leaks, vídeos, imagens e conteúdo exclusivo de BFDI, TPOT e Inanimate Insanity.">
+    <meta name="keywords" content="BFDI, TPOT, BFDIA, Inanimate Insanity, OSC, leaks, animation, II">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/NM4zLhzZ/logo.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:title" content="OSC-LEAKS | BFDI, TPOT & Inanimate Insanity Leaks">
+    <meta property="og:description" content="OSC-LEAKS: Leaks, vídeos, imagens e conteúdo exclusivo de BFDI, TPOT e Inanimate Insanity.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://osc-leaks.neocities.org/Googlesitepreview/index.html.jpg">
+    <meta property="og:url" content="https://osc-leaks.neocities.org/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OSC-LEAKS | BFDI, TPOT & Inanimate Insanity Leaks">
+    <meta name="twitter:description" content="OSC-LEAKS: Leaks, vídeos, imagens e conteúdo exclusivo de BFDI, TPOT e Inanimate Insanity.">
+    <meta name="twitter:image" content="https://osc-leaks.neocities.org/Googlesitepreview/index.html.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f0a05;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(128, 0, 128, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.05) 0%, transparent 30%);
+        }
+        
+        .halloween-title {
+            font-family: 'Creepster', cursive;
+            color: #ff8c00;
+            text-shadow: 0 0 10px #ff4500, 0 0 20px #ff8c00, 0 0 30px #ff4500;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .file-item:hover {
+            background-color: rgba(139, 0, 0, 0.3);
+            cursor: pointer;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+        }
+        .ad-card {
+            background-color: rgba(50, 15, 0, 0.5);
+            border: 1px solid rgba(139, 0, 0, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
+        }
+        .glow-button-small {
+            box-shadow: 0 0 5px #ff8c00, 0 0 10px #ff4500;
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+        }
+        .glow-button-small:hover {
+            box-shadow: 0 0 10px #ffa500, 0 0 20px #ff6347;
+            transform: scale(1.05);
+        }
+        .text-glow {
+            text-shadow: 0 0 8px rgba(255, 140, 0, 0.8);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #ff8c00;
+        }
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .image-container {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 2px solid #8b0000;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .mission-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: rgba(50, 205, 50, 0.2);
+            color: #32cd32;
+            border: 1px solid #32cd32;
+        }
+        .mission-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .mission-tab {
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .mission-tab.active {
+            background: linear-gradient(135deg, #ff8c00 0%, #8b0000 100%);
+            color: white;
+            border-color: transparent;
+        }
+        .mission-content {
+            display: none;
+        }
+        .mission-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .webring-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 140, 0, 0.3);
+        }
+        .webring-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            color: white;
+        }
+        .webring-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .webring-link {
+            color: #ffa500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .webring-link:hover {
+            color: #ff6347;
+            text-decoration: underline;
+        }
+        .chat-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .chat-tab {
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .chat-tab.active {
+            background: linear-gradient(135deg, #8b008b 0%, #ff8c00 100%);
+            color: white;
+            border-color: transparent;
+        }
+        .chat-container {
+            display: none;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+            border: 2px solid #8b008b;
+        }
+        .chat-container.active {
+            display: block;
+        }
+        .chat-wrapper {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        /* Halloween decorations */
+        .halloween-decoration {
+            position: fixed;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .bat {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path fill="%23333" d="M50,0 C60,20 80,10 90,20 C100,30 90,40 80,30 C70,20 60,30 50,40 C40,30 30,20 20,30 C10,40 0,30 10,20 C20,10 40,20 50,0 Z"/></svg>') no-repeat;
+            animation: fly 15s linear infinite;
+        }
+        
+        @keyframes fly {
+            0% { transform: translateX(-100px) translateY(0); }
+            50% { transform: translateX(calc(100vw + 100px)) translateY(100px); }
+            100% { transform: translateX(calc(100vw + 100px)) translateY(0); }
+        }
+        
+        .pumpkin {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff8c00" d="M50,10 C70,10 90,20 90,40 C90,70 70,90 50,90 C30,90 10,70 10,40 C10,20 30,10 50,10 Z"/><path fill="%23333" d="M40,30 C35,30 30,35 30,40 C30,45 35,50 40,50 C45,50 50,45 50,40 C50,35 45,30 40,30 Z M60,30 C55,30 50,35 50,40 C50,45 55,50 60,50 C65,50 70,45 70,40 C70,35 65,30 60,30 Z"/><path fill="%23333" d="M40,60 C40,65 45,70 50,70 C55,70 60,65 60,60 L40,60 Z"/></svg>') no-repeat;
+        }
+        
+        .ghost {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150"><path fill="%23f0f0f0" d="M50,10 C70,10 90,20 90,40 C90,70 80,90 70,110 C60,130 50,140 50,140 C50,140 40,130 30,110 C20,90 10,70 10,40 C10,20 30,10 50,10 Z"/><circle fill="%23333" cx="35" cy="35" r="5"/><circle fill="%23333" cx="65" cy="35" r="5"/><path fill="%23333" d="M40,60 C40,65 45,70 50,70 C55,70 60,65 60,60 L40,60 Z"/></svg>') no-repeat;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Spider web corners */
+        .web-corner {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 3px, transparent 4px),
+                linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0.8) 55%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0.8) 55%, transparent 55%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .web-top-left { top: 0; left: 0; }
+        .web-top-right { top: 0; right: 0; transform: rotate(90deg); }
+        .web-bottom-left { bottom: 0; left: 0; transform: rotate(-90deg); }
+        .web-bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
+        
+        /* Halloween-themed navigation */
+        nav {
+            background: rgba(50, 15, 0, 0.7) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ff8c00;
+        }
+        
+        /* Halloween-themed cards */
+        .halloween-card {
+            background: rgba(30, 10, 0, 0.6);
+            border: 1px solid #8b0000;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* Pulsing effect for important elements */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 140, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0); }
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+    <!-- Halloween decorations -->
+    <div class="web-corner web-top-left"></div>
+    <div class="web-corner web-top-right"></div>
+    <div class="web-corner web-bottom-left"></div>
+    <div class="web-corner web-bottom-right"></div>
+    
+    <div class="halloween-decoration bat" style="top: 10%; animation-delay: 0s;"></div>
+    <div class="halloween-decoration bat" style="top: 30%; animation-delay: 5s;"></div>
+    <div class="halloween-decoration bat" style="top: 60%; animation-delay: 10s;"></div>
+    
+    <div class="halloween-decoration ghost" style="left: 5%; top: 20%; animation-delay: 2s;"></div>
+    <div class="halloween-decoration ghost" style="right: 5%; top: 40%; animation-delay: 6s;"></div>
+    
+    <div class="halloween-decoration pumpkin" style="left: 10%; bottom: 10%;"></div>
+    <div class="halloween-decoration pumpkin" style="right: 10%; bottom: 15%;"></div>
+    
+    <div id="particles-js"></div>
+    <div class="content-wrapper flex flex-col min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-gray-800/50 backdrop-blur-sm py-4 relative z-10">
+            <div class="container mx-auto px-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold halloween-title" onclick="showPage('home')">OSC-LEAKS</a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-orange-200 hover:text-orange-400 transition-colors" onclick="showPage('home')">Home</a>
+                    <a href="#" class="text-orange-200 hover:text-orange-400 transition-colors" onclick="showPage('navigation')">BFDI x II Tour</a>
+                    <a href="#" class="text-orange-200 hover:text-orange-400 transition-colors" onclick="showPage('tpot')">TPOT</a>
+                    <a href="#" class="text-orange-200 hover:text-orange-400 transition-colors" onclick="showPage('ii')">II</a>
+                    <a href="#" class="text-orange-200 hover:text-orange-400 transition-colors" onclick="showPage('bfdia')">BFDIA</a>
+                    <a href="#" class="text-orange-200 hover:text-orange-400 transition-colors" onclick="showPage('downloads')">Downloads</a>
+                    <a href="#" class="text-orange-200 hover:text-orange-400 transition-colors" onclick="showPage('chat')">Chat</a>
+                </div>
+                <div class="md:hidden">
+                    <!-- Mobile menu button would go here -->
+                </div>
+            </div>
+        </nav>
+
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center py-8">
+                <div class="w-full">
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <main class="w-full lg:w-4/5 order-1 flex flex-col items-center">
+                            <h1 class="text-4xl md:text-5xl font-extrabold halloween-title mb-8 text-center">OSC-LEAKS</h1>
+                            <p class="text-xl text-orange-200 mb-12 text-center">Exclusive leaks and updates about object shows</p>
+                            
+                            <div class="w-full max-w-4xl mx-auto">
+                                <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                    <h2 class="text-2xl font-bold mb-6 text-orange-300 text-center">Featured Content</h2>
+
+<div class="space-y-4">
+    <!-- BFDI x II 2025 Meet-Up Leaks -->
+    <div class="file-item flex items-center justify-between p-4 border border-orange-800 rounded-lg transition-all duration-300" onclick="showPage('navigation')">
+        <div class="flex items-center min-w-0">
+            <img src="https://i.postimg.cc/N0MvW99C/124-Sem-T-tulo-20250722140726.png" alt="BFDI x II 2025 Meet-Up Leaks" class="w-12 h-12 mr-4 shrink-0 object-contain">
+            <div class="truncate">
+                <h3 class="font-semibold text-lg text-orange-100 truncate">BFDI x II 2025 Meet-Up Leaks</h3>
+                <p class="text-sm text-orange-300">Exclusive content leaked from the 2025 tour event</p>
+            </div>
+        </div>
+        <span class="mission-status">Leaked</span>
+    </div>
+    
+    <!-- Video Placeholder Card -->
+    <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+    <h3 class="text-xl font-bold mb-4 text-orange-200">Video Placeholder</h3>
+    <div class="video-container">
+        <video autoplay loop muted playsinline>
+            <source src="https://oscleaks.nekoweb.org/embeds/output.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+    </div>
+    <p class="text-orange-300 mt-2">Video placeholder - No actual leak content</p>
+    <p class="text-orange-400 text-sm mt-1">📅 Placeholder only</p>
+    <span class="mission-status mt-2 inline-block" style="background: rgba(128, 128, 128, 0.2); color: #ccc; border-color: #666;">Placeholder</span>
+</div>
+    
+    <!-- Downloads -->
+    <div class="file-item flex items-center justify-between p-4 border border-orange-800 rounded-lg transition-all duration-300" onclick="showPage('downloads')">
+        <div class="flex items-center min-w-0">
+            <div class="w-12 h-12 mr-4 shrink-0 flex items-center justify-center bg-orange-600 rounded-lg">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/>
+                </svg>
+            </div>
+            <div class="truncate">
+                <h3 class="font-semibold text-lg text-orange-100 truncate">Downloads</h3>
+                <p class="text-sm text-orange-300">Exclusive files available for download</p>
+            </div>
+        </div>
+        <span class="mission-status">Updated</span>
+    </div>
+    
+    <!-- Credits -->
+    <div class="file-item flex items-center justify-between p-4 border border-orange-800 rounded-lg transition-all duration-300" onclick="showPage('credits')">
+        <div class="flex items-center min-w-0">
+            <div class="w-12 h-12 mr-4 shrink-0 flex items-center justify-center bg-orange-600 rounded-lg">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+                </svg>
+            </div>
+            <div class="truncate">
+                <h3 class="font-semibold text-lg text-orange-100 truncate">Credits</h3>
+                <p class="text-sm text-orange-300">Meet the creators and contributors</p>
+            </div>
+        </div>
+        <span class="mission-status">Info</span>
+    </div>
+    
+    <!-- Community Chat -->
+    <div class="file-item flex items-center justify-between p-4 border border-orange-800 rounded-lg transition-all duration-300" onclick="showPage('chat')">
+        <div class="flex items-center min-w-0">
+            <div class="w-12 h-12 mr-4 shrink-0 flex items-center justify-center bg-orange-600 rounded-lg">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                </svg>
+            </div>
+            <div class="truncate">
+                <h3 class="font-semibold text-lg text-orange-100 truncate">Community Chat</h3>
+                <p class="text-sm text-orange-300">Join live discussions about leaks and theories</p>
+            </div>
+        </div>
+        <span class="mission-status">Live</span>
+    </div>
+</div>
+                                </div>
+                            </div>
+                        </main>
+                        <aside class="w-full lg:w-1/5 order-2">
+                            <h2 class="text-xl font-semibold mb-4 pb-2 text-orange-300 border-b border-orange-700">Announcements</h2>
+                            <div class="space-y-4">
+                                <div class="ad-card p-4 rounded-lg shadow-md">
+                                    <h4 class="font-bold text-md text-orange-200">New Leaks Available</h4>
+                                    <p class="text-sm text-orange-300 mt-1">Check out the latest TPOT and Inanimate Insanity leaks added to our collection.</p>
+                                </div>
+                                <div class="ad-card p-4 rounded-lg shadow-md">
+                                    <h4 class="font-bold text-md text-orange-200">Weekly Spotlight</h4>
+                                    <p class="text-sm text-orange-300 mt-1">This week we highlight BFDI x II 2025 Meet-Up exclusive content.</p>
+                                </div>
+                                <div class="ad-card p-4 rounded-lg shadow-md">
+                                    <h4 class="font-bold text-md text-orange-200">Join Our Community</h4>
+                                    <p class="text-sm text-orange-300 mt-1">Sign up for newsletters, discussions, and exclusive previews.</p>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BFDI x II Tour Page -->
+        <div id="navigation" class="page">
+            <div class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="w-full">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold halloween-title">BFDI x II 2025 MEET-UP LEAKS</h1>
+                        <button class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('home')">
+                            Back to Home
+                        </button>
+                    </div>
+                    
+                    <div class="mission-tabs">
+                        <button class="mission-tab active" data-tab="leaks-overview">Leaks Overview</button>
+                        <button class="mission-tab" data-tab="quick-access">Quick Access</button>
+                    </div>
+                    
+                    <div class="mission-content active" id="leaks-overview">
+                        <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg mb-6">
+                            <h3 class="text-xl font-bold mb-4 text-orange-200">Exclusive Leaked Content</h3>
+                            <p class="text-orange-300 mb-4">Exclusive materials from the BFDI x II Tour 2025 event that leaked online:</p>
+                            <ul class="list-disc list-inside text-orange-300 space-y-2">
+                                <li>TPOT Leaks</li>
+                                <li>Inanimate Insanity Leaks</li>
+                                <li>BFDIA Leaks</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="file-item halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300" onclick="showPage('tpot')">
+                                <div class="text-3xl mb-4 text-center">📺</div>
+                                <h3 class="text-xl font-bold mb-2 text-orange-200 text-center">TPOT Leaks</h3>
+                                <p class="text-orange-300 text-center">TPOT full episodes and exclusive contents</p>
+                                <div class="text-center mt-4">
+                                    <span class="mission-status">Leaked</span>
+                                </div>
+                            </div>
+                            
+                            <div class="file-item halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300" onclick="showPage('ii')">
+                                <div class="text-3xl mb-4 text-center">🎭</div>
+                                <h3 class="text-xl font-bold mb-2 text-orange-200 text-center">Inanimate Insanity Leaks</h3>
+                                <p class="text-orange-300 text-center">Footages and behind the scenes</p>
+                                <div class="text-center mt-4">
+                                    <span class="mission-status">Leaked</span>
+                                </div>
+                            </div>
+                            
+                            <div class="file-item halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300" onclick="showPage('bfdia')">
+                                <div class="text-3xl mb-4 text-center">🔥</div>
+                                <h3 class="text-xl font-bold mb-2 text-orange-200 text-center">BFDIA Leaks</h3>
+                                <p class="text-orange-300 text-center">BFDIA images and concept art</p>
+                                <div class="text-center mt-4">
+                                    <span class="mission-status">Leaked</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-content" id="quick-access">
+                        <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                <button class="glow-button-small flex flex-col items-center justify-center text-white font-bold py-4 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('tpot')">
+                                    <span class="text-2xl mb-2">📺</span>
+                                    <span>TPOT</span>
+                                </button>
+                                
+                                <button class="glow-button-small flex flex-col items-center justify-center text-white font-bold py-4 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('ii')">
+                                    <span class="text-2xl mb-2">🎭</span>
+                                    <span>Inanimate Insanity</span>
+                                </button>
+                                
+                                <button class="glow-button-small flex flex-col items-center justify-center text-white font-bold py-4 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('bfdia')">
+                                    <span class="text-2xl mb-2">🔥</span>
+                                    <span>BFDIA</span>
+                                </button>
+                            </div>
+                            
+                            <div class="bg-orange-900/50 p-4 rounded-lg">
+                                <h3 class="text-lg font-bold mb-2 text-orange-200">Quick Info</h3>
+                                <p class="text-orange-300">Select a section to view all leaked content from the BFDI x II Tour 2025.</p>
+                                <p class="text-orange-300 mt-2">All content was leaked during the meet-up events between June and August 2025.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TPOT Page -->
+        <div id="tpot" class="page">
+            <div class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="w-full">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold halloween-title">TPOT Leaks</h1>
+                        <button class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('navigation')">
+                            Back to Tour
+                        </button>
+                    </div>
+                    
+                    <div class="mission-tabs">
+                        <button class="mission-tab active" data-tab="tpot19">TPOT 19</button>
+                        <button class="mission-tab" data-tab="tpot20">TPOT 20</button>
+                    </div>
+                    
+                    <div class="mission-content active" id="tpot19">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- TPOT 19 Full Video -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">TPOT 19 Full Video</h3>
+                                <div class="video-container">
+                                    <video controls>
+                                        <source src="https://files.catbox.moe/pfojk4.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <p class="text-orange-300 mt-2">Full TPOT 19 video | BFDI x II Tour 2025</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 June 27 – July 13, 2025 (Meetup)</p>
+                                <span class="mission-status mt-2 inline-block">Leaked</span>
+                            </div>
+                            
+                            <!-- Official Clip -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">Official Clip</h3>
+                                <div class="video-container">
+                                    <video controls>
+                                        <source src="https://files.catbox.moe/q2tzgs.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <p class="text-orange-300 mt-2">32-second official clip</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 June 21, 2025 (in-universe)</p>
+                                <span class="mission-status mt-2 inline-block">Official</span>
+                            </div>
+                            
+                            <!-- YouTube Version -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">YouTube Version</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/VrsdG8wJGAg" allowfullscreen></iframe>
+                                </div>
+                                <p class="text-orange-300 mt-2">Official YouTube release</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 July 14, 2025 – 12:59 PM EST</p>
+                                <span class="mission-status mt-2 inline-block">Released</span>
+                            </div>
+                            
+                            <!-- Unused Thumbnails -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">Unused Thumbnails</h3>
+                                <div class="image-container">
+                                    <img src="https://i.postimg.cc/C5JZ8Ffk/Screenshot-20250721-215859-Tik-Tok.jpg" alt="Unused thumbnail 1">
+                                    <img src="https://i.postimg.cc/HnTcjJjT/Screenshot-20250721-215902-Tik-Tok.jpg" alt="Unused thumbnail 2">
+                                </div>
+                                <p class="text-orange-300 mt-2">Concept thumbnails that weren't used</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 Related to TPOT 19 production (2025)</p>
+                                <span class="mission-status mt-2 inline-block">Unused</span>
+                            </div>
+                        </div>
+
+                        <!-- Official Q&A Information for TPOT 19 -->
+                        <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg border-orange-500/30 mt-6" style="max-width: 800px; margin: 30px auto 0;">
+                            <h4 class="text-xl font-bold mb-4 text-orange-400">📋 Official Q&A Revelations - TPOT 19</h4>
+                            <p class="text-orange-300 mb-4">
+                                Behind-the-scenes information revealed during the BFDI x II Tour 2025 Q&A sessions:
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">😢 Grassy's Emotional Moment</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "Grassy cried in TPOT 19 because people wanted to see Grassy do more"
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">✍️ Writing Challenges</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "The hardest scene to write in TPOT 19 was the One and Pencil scene"<br>
+                                        "Sam was excited to write the One and Pencil scene in TPOT 19"
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">🎯 Long-term Planning</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "TPOT 19's world ending has been planned since TPOT 9"
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">😊 Crew Satisfaction</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "The crew felt good writing TPOT 19"
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">🔮 Future Development</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "What will happen to Grassy soon"<br>
+                                        <em class="text-orange-400">(Connects to TPOT 20 continuation)</em>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4 p-3 bg-orange-500/20 rounded-lg">
+                                <p class="text-orange-300 text-sm">
+                                    💡 All information from official BFDI x II Tour 2025 Q&A sessions
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-content" id="tpot20">
+                        <!-- Official Teaser Section -->
+                        <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg mb-6" style="max-width: 800px; margin: 0 auto;">
+                            <h4 class="text-xl font-bold mb-4 text-orange-200">Official TPOT 20 Teaser</h4>
+                            <div class="twitter-container rounded-lg overflow-hidden mb-4">
+                                <blockquote class="twitter-tweet" data-media-max-width="560">
+                                    <p lang="en" dir="ltr">It's nearly here! BFDI:TPOT 20 is releasing in theaters and on YouTube next week!
+                                        <a href="https://t.co/fn1NdtuXbt">pic.twitter.com/fn1NdtuXbt</a>
+                                    </p>
+                                    &mdash; Jacknjellify (@jacknjellify)
+                                    <a href="https://twitter.com/jacknjellify/status/1976688399152238691?ref_src=twsrc%5Etfw">October 10, 2025</a>
+                                </blockquote>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </div>
+                            <p class="text-orange-300">Official announcement from jacknjellify - TPOT 20 coming October 16 and 17!</p>
+                            <p class="text-orange-400 text-sm mt-1">📅 October 16, 2025 - Theaters & YouTube on 17 (EST)</p>
+                            <span class="mission-status mt-2 inline-block">Official</span>
+                        </div>
+
+                        <!-- TPOT 20 Full Leak + Theater Audience Footage Section -->
+                        <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg mb-6" style="max-width: 800px; margin: 0 auto;">
+                            <h4 class="text-xl font-bold mb-4 text-green-400">🎭 TPOT 20 Full & Theater Footage</h4>
+                            <p class="text-orange-300 mb-6">
+                                Clips from TPOT 20 — first the full leak (Vimeo) followed by audience recordings from theater screenings.
+                                ⚠️ Note: Some clips may be repeated. Watermarks may appear.
+                            </p>
+
+                            <div class="space-y-6">
+                                <!-- Official TPOT 20 Video -->
+                                <div class="bg-green-500/10 p-4 rounded-lg border-l-4 border-green-500">
+                                    <div class="video-container">
+                                        <iframe src="https://www.youtube.com/embed/D4dSs-iU1ac?si=pf3nAFIz30M3veLp"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen
+                                            title="Official TPOT 20 Video"></iframe>
+                                    </div>
+                                    <p class="text-orange-300 mt-2 text-center">Official TPOT 20 Video</p>
+                                </div>
+
+                                <!-- Vimeo Full Leak -->
+                                <div class="bg-green-500/10 p-4 rounded-lg border-l-4 border-green-500">
+                                    <div class="video-container">
+                                        <iframe src="https://player.vimeo.com/video/1128164435?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                                            frameborder="0"
+                                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin"
+                                            title="BFDI:TPOT 20 - Alone (1080p, h264)"></iframe>
+                                    </div>
+                                    <script src="https://player.vimeo.com/api/player.js"></script>
+                                    <p class="text-orange-300 mt-2 text-center">BFDI:TPOT 20 — Alone (1080p, Vimeo leak)</p>
+                                </div>
+
+                                <!-- Theater Clips Grid -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Original 6 Catbox Clips -->
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/lkrn7k" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #1</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/9njw2t" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #2</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/0l0chw" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #3</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/ilpfrn.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #4</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/qb35eb.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #5</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/pjrewq.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #6</p>
+                                    </div>
+
+                                    <!-- 9 New Catbox Clips -->
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/uevmek.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #7</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/85uqdx.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #8</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/g93h9i.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #9</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/v8a3gd.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #10</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/ic2s3r.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #11</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/uqq54t.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #12</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/51vobb.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #13</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/ujbqh1.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #14</p>
+                                    </div>
+                                    <div class="bg-orange-900/50 p-3 rounded-lg">
+                                        <video controls class="w-full rounded-lg">
+                                            <source src="https://files.catbox.moe/q17eaj.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="text-orange-300 mt-2 text-sm text-center">TPOT 20 theater clip #15</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-6 p-4 bg-green-500/20 rounded-lg">
+                                <p class="text-green-300 text-sm">
+                                    🎭 Clips filmed by audience members in theaters. Some clips may be repeated. Watermarks may appear.
+                                </p>
+                            </div>
+                            <span class="mission-status mt-4 inline-block">Leaked</span>
+                        </div>
+
+                        <!-- Official Q&A Information for TPOT 20 -->
+                        <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg border-orange-500/30" style="max-width: 800px; margin: 0 auto;">
+                            <h4 class="text-xl font-bold mb-4 text-orange-400">📋 Official Q&A Revelations - TPOT 20</h4>
+                            <p class="text-orange-300 mb-4">
+                                Information revealed during the BFDI x II Tour 2025 Q&A sessions:
+                            </p>
+
+                            <div class="space-y-4">
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">🌿 Leafy's Fate</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "We will find out what happened to leafy in tpot 20"
+                                    </p>
+                                </div>
+
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">👽 Algebralien Lore</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "We will find out more about the algebarliens in future TPOT episodes (later on Sam says we might find out in TPOT 20)"
+                                    </p>
+                                </div>
+
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">🔢 One & Three Origins</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "One and Threes origin story will be revealed in TPOT 20"
+                                    </p>
+                                </div>
+
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">🌱 Grassy's Role</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "Grassy will get more screentime in TPOT 20"<br>
+                                        "Grassy and Winner will have to find a way to get everyone back in TPOT 20"
+                                    </p>
+                                </div>
+
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">📖 Character Development</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "More history of Three and others will be shown maybe in TPOT 20"<br>
+                                        "TPOT 20 and episodes starting from now will focus on the backstories of the other algebaliens in TPOT"
+                                    </p>
+                                </div>
+
+                                <div class="bg-orange-500/10 p-4 rounded-lg border-l-4 border-orange-500">
+                                    <h5 class="font-bold text-orange-300 mb-2">🔄 Rejoin Information</h5>
+                                    <p class="text-orange-300 text-sm">
+                                        "A rejoin for TPOT will happen sometime in TPOT 20-25"<br>
+                                        "Probably no eliminated tpot contestants in tpot 20 but they are definitely getting more screentime"
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-4 p-3 bg-orange-500/20 rounded-lg">
+                                <p class="text-orange-300 text-sm">
+                                    💡 All information from official BFDI x II Tour 2025 Q&A sessions
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inanimate Insanity Page -->
+        <div id="ii" class="page">
+            <div class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="w-full">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold halloween-title">Inanimate Insanity Leaks</h1>
+                        <button class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('navigation')">
+                            Back to Tour
+                        </button>
+                    </div>
+                    
+                    <div class="mission-tabs">
+                        <button class="mission-tab active" data-tab="ii-s4e2">Season 4 Episode 2</button>
+                        <button class="mission-tab" data-tab="ii-s4e3">Season 4 Episode 3</button>
+                    </div>
+                    
+                    <div class="mission-content active" id="ii-s4e2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Season 4 Episode 2 -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">Season 4 Episode 2</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/STMOBoFowjY" allowfullscreen></iframe>
+                                </div>
+                                <p class="text-orange-300 mt-2">Official episode now available</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 August 4, 2025 (YouTube)</p>
+                                <span class="mission-status mt-2 inline-block">Released</span>
+                            </div>
+                            
+                            <!-- Season 4 Episode 2 (Meetup Recording) -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">Season 4 Episode 2 (Meetup Recording)</h3>
+                                <div class="video-container">
+                                    <video controls>
+                                        <source src="https://files.catbox.moe/5889kx.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <p class="text-orange-300 mt-2">Footage from BFDI x II Tour 2025</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 July 19 – August 3, 2025 (Meetup)</p>
+                                <span class="mission-status mt-2 inline-block">Leaked</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-content" id="ii-s4e3">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Season 4 Episode 3 Official -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">Season 4 Episode 3 Official</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/f1D1_4850jQ" allowfullscreen></iframe>
+                                </div>
+                                <p class="text-orange-300 mt-2">Official episode now available</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 September 20, 2025 (YouTube)</p>
+                                <span class="mission-status mt-2 inline-block">Released</span>
+                            </div>
+                            
+                            <!-- Season 4 Episode 3 Early Leak -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">Season 4 Episode 3 Early Leak</h3>
+                                <div class="video-container">
+                                    <video controls>
+                                        <source src="https://files.catbox.moe/79w5uq.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <p class="text-orange-300 mt-2">Early leaked footage before official release</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 September 18, 2025 (2 days before release)</p>
+                                <span class="mission-status mt-2 inline-block">Leaked</span>
+                            </div>
+                            
+                            <!-- Season 4 Episode 3 Leaks -->
+                            <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 text-orange-200">Season 4 Episode 3 Leaks</h3>
+                                <div class="image-container">
+                                    <img src="https://i.postimg.cc/85hMyScf/animationepic-20250917-0001.jpg" alt="II S4E3 Leak 1">
+                                    <img src="https://i.postimg.cc/cHqfMHxN/animationepic-20250917-0002.jpg" alt="II S4E3 Leak 2">
+                                </div>
+                                <p class="text-orange-300 mt-2">Leaked animation frames from upcoming episode</p>
+                                <p class="text-orange-400 text-sm mt-1">📅 September 17, 2025 (Production)</p>
+                                <span class="mission-status mt-2 inline-block">Leaked</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BFDIA Page -->
+        <div id="bfdia" class="page">
+            <div class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="w-full">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold halloween-title">BFDIA Leaks</h1>
+                        <button class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('navigation')">
+                            Back to Tour
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- BFDIA 22 -->
+                        <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold mb-4 text-orange-200">BFDIA 22</h3>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/b8vUzNczUbo?si=CrkfTTh_-HeYAhfg" allowfullscreen></iframe>
+                            </div>
+                            <p class="text-orange-300 mt-2">Official BFDIA episode</p>
+                            <p class="text-orange-400 text-sm mt-1">📅 August 8, 2025 (YouTube)</p>
+                            <span class="mission-status mt-2 inline-block">Released</span>
+                        </div>
+                        
+                        <!-- BFDIA 22 Leaks -->
+                        <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold mb-4 text-orange-200">BFDIA 22 Leaks</h3>
+                            <div class="image-container">
+                                <img src="https://i.postimg.cc/5tJnfTfn/Screenshot-20250721-224128-Tik-Tok.jpg" alt="Leak 1">
+                                <img src="https://i.postimg.cc/c4KDhfDM/Screenshot-20250721-224114-Tik-Tok.jpg" alt="Leak 2">
+                                <img src="https://i.postimg.cc/VvvK3tzw/Screenshot-20250721-224058-Tik-Tok.jpg" alt="Leak 3">
+                            </div>
+                            <p class="text-orange-300 mt-2">Images captured from the 2025 Meet-Up</p>
+                            <p class="text-orange-400 text-sm mt-1">📅 July 19 – August 3, 2025 (Meetup)</p>
+                            <span class="mission-status mt-2 inline-block">Leaked</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloads Page -->
+        <div id="downloads" class="page">
+            <div class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="w-full max-w-4xl mx-auto">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold halloween-title">Downloads</h1>
+                        <button class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('home')">
+                            Back to Home
+                        </button>
+                    </div>
+                    
+                    <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                        <p class="text-orange-300 mb-6">Exclusive files available for download</p>
+                        
+                        <div class="space-y-6">
+                            <!-- 2025 Meet-Up QNAs -->
+                            <div class="file-item flex items-center justify-between p-4 border border-orange-800 rounded-lg transition-all duration-300">
+                                <div class="flex items-center min-w-0">
+                                    <div class="w-12 h-12 mr-4 shrink-0 flex items-center justify-center bg-orange-600 rounded-lg">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="truncate">
+                                        <h3 class="font-semibold text-lg text-orange-100 truncate">2025 Meet-Up QNAs</h3>
+                                        <p class="text-sm text-orange-300">Text document containing Q&A from the 2025 meet-up event</p>
+                                    </div>
+                                </div>
+                                <a href="https://www.dropbox.com/scl/fi/dm15mkr9eokqs68oxzbzg/2025-Meet-Up-QNAs.txt?rlkey=yrc96sfb48wvtzzxbjdxnvrg8&st=vie6yknz&dl=1" class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 ml-4 shrink-0" download>
+                                    Download
+                                </a>
+                            </div>
+                            
+                            <!-- OSC Leaks App -->
+                            <div class="file-item flex items-center justify-between p-4 border border-orange-800 rounded-lg transition-all duration-300">
+                                <div class="flex items-center min-w-0">
+                                    <div class="w-12 h-12 mr-4 shrink-0 flex items-center justify-center bg-orange-600 rounded-lg">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="truncate">
+                                        <h3 class="font-semibold text-lg text-orange-100 truncate">OSC Leaks App</h3>
+                                        <p class="text-sm text-orange-300">Android application with exclusive leaks and updates</p>
+                                    </div>
+                                </div>
+                                <a href="https://www.dropbox.com/scl/fi/yhbx4w8veu2svpm6z4hxu/Osc_leaks.apk?rlkey=fp4ueu8j5y97i11jfd54fwq3w&st=sz4h24a8&dl=1" class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 ml-4 shrink-0" download>
+                                    Download
+                                </a>
+                            </div>
+
+                            <!-- OSC Leaks HTML -->
+                            <div class="file-item flex items-center justify-between p-4 border border-orange-800 rounded-lg transition-all duration-300">
+                                <div class="flex items-center min-w-0">
+                                    <div class="w-12 h-12 mr-4 shrink-0 flex items-center justify-center bg-orange-600 rounded-lg">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="truncate">
+                                        <h3 class="font-semibold text-lg text-orange-100 truncate">OSC Leaks HTML</h3>
+                                        <p class="text-sm text-orange-300">HTML file containing OSC leaks source code</p>
+                                    </div>
+                                </div>
+                                <a href="https://www.dropbox.com/scl/fi/ydbuauko7240g1w161ajw/oscleaks_.html?rlkey=mi237jbbcmjy2nxcac89fjxho&st=xu53x18x&dl=1" class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 ml-4 shrink-0" download>
+                                    Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Page -->
+        <div id="chat" class="page">
+            <div class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="w-full max-w-4xl mx-auto">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold halloween-title">OSC Leaks Chat</h1>
+                        <button class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('home')">
+                            Back to Home
+                        </button>
+                    </div>
+                    
+                    <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                        <p class="text-orange-300 mb-6">Join our community chat to discuss the latest leaks and theories!</p>
+                        
+                        <!-- Chat Selection Tabs -->
+                        <div class="chat-tabs">
+                            <button class="chat-tab active" data-chat="minnit">Minnit Chat (Recommended)</button>
+                            <button class="chat-tab" data-chat="tlkio">Tlk.io Chat</button>
+                            <button class="chat-tab" data-chat="chatango">Chatango Chat</button>
+                            <button class="chat-tab" data-chat="legacy">Legacy Chat</button>
+                        </div>
+                        
+                        <!-- Minnit Chat Container -->
+                        <div class="chat-container active" id="minnit-chat">
+                            <div class="chat-wrapper" style="width: 100%; height: 500px; border-radius: 15px; overflow: hidden; background: rgba(0,0,0,0.2);">
+                                <span class="minnit-chat-sembed" 
+                                      data-chatname="https://organizations.minnit.chat/174569566180246/c/Oscleaks?embed" 
+                                      data-style="width:100%; height:100%;" 
+                                      data-version="1.55">Chat</span>
+                                <script src="https://minnit.chat/js/embed.js" defer></script>
+                            </div>
+                            <div class="mt-4 text-center text-orange-400">
+                                <p>Powered by Minnit Chat - Conversations are saved and persistent</p>
+                                <p class="mt-2">
+                                    <a href="https://minnit.chat" target="_blank" class="text-orange-400 hover:text-orange-300">
+                                        Add a chatroom to your website for free with Minnit Chat
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tlk.io Chat Container -->
+                        <div class="chat-container" id="tlkio-chat">
+                            <div class="chat-wrapper" style="width: 100%; height: 500px; border-radius: 15px; overflow: hidden;">
+                                <div id="tlkio" data-channel="Oscleaks" data-theme="theme--minimal" style="width:100%;height:100%;"></div>
+                                <script async src="https://tlk.io/embed.js" type="text/javascript"></script>
+                            </div>
+                            <div class="mt-4 text-center text-orange-400">
+                                <p>Powered by Tlk.io - Basic chat functionality</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Chatango Chat Container -->
+                        <div class="chat-container" id="chatango-chat">
+                            <div class="chat-wrapper" style="width: 100%; height: 500px; border-radius: 15px; overflow: hidden;">
+                                <iframe src="https://oscleaks2763.chatango.com/" 
+                                        width="100%" 
+                                        height="100%" 
+                                        frameborder="0" 
+                                        scrolling="no"
+                                        style="border-radius: 15px;">
+                                </iframe>
+                            </div>
+                            <div class="mt-4 text-center text-orange-400">
+                                <p>Powered by Chatango - Classic chat platform</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Legacy Chat Container -->
+                        <div class="chat-container" id="legacy-chat">
+                            <div class="chat-wrapper" style="width: 100%; height: 500px; border-radius: 15px; overflow: hidden;">
+                                <iframe src="https://xat.com/embed/chat.php#id=175195763&gn=ObjectShowGroup2763" 
+                                        width="100%" 
+                                        height="100%" 
+                                        frameborder="0" 
+                                        scrolling="no"
+                                        style="border-radius: 15px;">
+                                </iframe>
+                            </div>
+                            <div class="mt-4 text-center text-orange-400">
+                                <p style="color: #ff8888;">Note: This legacy chat system may be unstable or unavailable</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credits Page -->
+        <div id="credits" class="page">
+            <div class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="w-full max-w-4xl mx-auto">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold halloween-title">Credits</h1>
+                        <button class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300" onclick="showPage('home')">
+                            Back to Home
+                        </button>
+                    </div>
+                    
+                    <div class="halloween-card backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                        <p class="text-orange-300 mb-6">Special thanks to all the creators and contributors who make these amazing series possible.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- jacknjellify -->
+                            <div class="file-item p-4 border border-orange-800 rounded-lg transition-all duration-300">
+                                <h3 class="font-semibold text-lg text-orange-100 mb-2">jacknjellify</h3>
+                                <p class="text-sm text-orange-300 mb-2">Creator of TPOT and BFDIA</p>
+                                <p class="text-sm text-orange-300">The talented creator behind the Battle for Dream Island series, including BFDIA and The Power of Two (TPOT). Their creative vision has brought these beloved characters and stories to life.</p>
+                            </div>
+                            
+                            <!-- AnimationEpic -->
+                            <div class="file-item p-4 border border-orange-800 rounded-lg transition-all duration-300">
+                                <h3 class="font-semibold text-lg text-orange-100 mb-2">AnimationEpic</h3>
+                                <p class="text-sm text-orange-300 mb-2">Creator of Inanimate Insanity</p>
+                                <p class="text-sm text-orange-300">The mastermind behind the Inanimate Insanity series, creating compelling stories and memorable characters that have captivated audiences worldwide.</p>
+                            </div>
+                            
+                            <!-- Unknown Person -->
+                            <div class="file-item p-4 border border-orange-800 rounded-lg transition-all duration-300">
+                                <h3 class="font-semibold text-lg text-orange-100 mb-2">Unknown Person</h3>
+                                <p class="text-sm text-orange-300 mb-2">The ones who leak</p>
+                                <p class="text-sm text-orange-300">Our mysterious sources who provide early glimpses and behind-the-scenes content from these animated series. Their contributions help keep the community engaged and excited.</p>
+                            </div>
+                            
+                            <!-- Yoyle Cake -->
+                            <div class="file-item p-4 border border-orange-800 rounded-lg transition-all duration-300">
+                                <h3 class="font-semibold text-lg text-orange-100 mb-2">Yoyle Cake</h3>
+                                <p class="text-sm text-orange-300 mb-2">Music Contributor</p>
+                                <p class="text-sm text-orange-300">Music used: "Places" from BFB OST. This artist did not contribute to website development and is credited here solely for the music.</p>
+                                <p class="text-sm text-orange-300 mt-2"><strong>License:</strong> All rights reserved. Distributed via Symphonic Distribution.</p>
+                                <a href="https://symphonicdistribution.com/" target="_blank" class="glow-button-small inline-flex items-center justify-center text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 mt-2">
+                                    View Distribution Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<footer class="text-center py-6 text-orange-500 relative z-10">
+    <p>© 2025 OSC-LEAKS. All rights reserved.</p>
+
+    <!-- Webrings Section -->
+    <div class="webring-section mt-6 space-y-4">
+
+        <!-- Rock Webring -->
+        <div class="py-2">
+            <center>
+                <script data-widget="images" src="https://rock-webring.neocities.org/webstring.js"></script>
+            </center>
+        </div>
+        
+        <!-- Hotline Webring -->
+        <div class="py-2 border-t border-b border-orange-700">
+            <p class="text-cyan-400 mb-2">Hotline Webring</p>
+            <a href="https://hotlinewebring.club/osc-leaks/previous" class="webring-link">← Previous</a>
+            <span class="mx-3 text-cyan-300">//</span>
+            <a href="https://hotlinewebring.club/osc-leaks/next" class="webring-link">Next →</a>
+        </div>
+        
+        <!-- Ghostring Webring -->
+        <div class="py-2">
+            <p class="text-purple-400 mb-2">Ghostring</p>
+            <a href="https://ghostring.neocities.org/osc-leaks/previous" class="webring-link">← Previous</a>
+            <span class="mx-3 text-purple-300">//</span>
+            <a href="https://ghostring.neocities.org/osc-leaks/next" class="webring-link">Next →</a>
+        </div>
+        
+        <!-- Low Tech Webring -->
+        <div class="py-2 border-t border-b border-orange-600">
+            <p class="text-orange-400 mb-2">Low Tech Webring (Historic)</p>
+            <a href="#" class="webring-link">← Previous</a>
+            <span class="mx-3">//</span>
+            <a href="#" class="webring-link">Next →</a>
+        </div>
+
+        <!-- 404 Salad Webring -->
+        <div class="py-2 border-t border-b border-blue-600">
+            <p class="text-blue-400 mb-2">404 Salad Webring</p>
+            <a href="https://404salad.github.io/webring/osc-leaks/previous" class="webring-link">←</a>
+            <a href="https://404salad.github.io/webring/" class="webring-link mx-2">404 Salad</a>
+            <a href="https://404salad.github.io/webring/osc-leaks/next" class="webring-link">→</a>
+        </div>
+
+        <!-- No AI Webring -->
+        <div class="py-2 border-t border-b border-yellow-600">
+            <p class="text-yellow-500 mb-2">No AI Webring</p>
+            <map name="noaicode">
+                <area href="https://baccyflap.com/noai" target="_blank" shape="poly" coords="55,0,255,0,255,13,294,13,294,51,55,51" alt="no ai webring" title="no ai webring">
+                <area href="https://baccyflap.com/noai/?prv&s=osc" target="_top" shape="poly" coords="1,25,52,0,52,51" alt="previous" title="previous">
+                <area href="https://baccyflap.com/noai/?rnd" target="_top" shape="rect" coords="258,1,294,10" alt="random" title="random">
+                <area href="https://baccyflap.com/noai/?nxt&s=osc" target="_top" shape="poly" coords="349,25,297,0,297,51" alt="next" title="next">
+            </map>
+            <img usemap="#noaicode" src="https://baccyflap.com/noai/codewidget-d.gif" alt="No AI Webring Widget" class="mx-auto">
+        </div>
+
+        <!-- Yoyle City Webring -->
+        <div class="py-2 border-t border-b border-green-500">
+            <p class="text-green-400 mb-2">Yoyle City Webring</p>
+            <div style="background-color:white; display:inline-block; padding:5px; border-radius:10px;">
+                <a href="https://lime360.pythonanywhere.com/prev?url=https://yoyle.city&site=https://osc-leaks.neocities.org">
+                    <img src="https://yoyle.city/img/webring/prev.png" alt="Previous site" />
+                </a>
+                <a href="https://yoyle.city/webring">
+                    <img src="https://yoyle.city/img/webring/button.png" alt="//web" />
+                </a>
+                <a href="https://lime360.pythonanywhere.com/next?url=https://yoyle.city&site=https://osc-leaks.neocities.org">
+                    <img src="https://yoyle.city/img/webring/next.png" alt="Next site" />
+                </a>
+            </div>
+        </div>
+
+        <!-- OSC Webring (Horizontal) -->
+        <div class="py-2 border-t border-b border-pink-500">
+            <div id="templateWebring" class="mx-auto">
+                <link rel="stylesheet" href="https://fan.nekoweb.org/webring.css">
+                <div id="webringiconbox">
+                    <img id="iconWebring" src="https://fan.nekoweb.org/images/oscwricons/fantt.png" alt="OSC Webring Icon" class="mx-auto">
+                </div>
+                <div id="webringdescbox">
+                    <p id="webringdesc" style="font-size: small;">
+                        <strong>Fan</strong> is a certified<br>
+                        <strong>Test Tube</strong> fan in the <strong>OSC Webring</strong>!
+                    </p>
+                </div>
+                <div id="webringlinks">
+                    <p id="linkparaWebring" style="font-size:small;"> | 
+                        <a id="wr" href="https://fan.nekoweb.org/oscwrmem.html">Members List</a> | 
+                        Part of the <a id="wr" href="https://fan.nekoweb.org/oscwr.html">OSC Webring</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RoRing Webring -->
+        <div class="py-2 border-t border-b border-red-500">
+            <p class="text-red-400 mb-2">RoRing</p>
+            <table>
+                <tr>
+                    <td>
+                        <a href="https://lopster.neocities.org/roring/lolzers/prev.html?id=YOUR ID HERE">
+                            <img src="https://lopster.neocities.org/roring/fotos/arr.png" height="30">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://lopster.neocities.org/roring/roring.html">
+                            <img src="https://lopster.neocities.org/roring/fotos/roring%20chan.png" width="150">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://lopster.neocities.org/roring/lolzers/next.html?id=YOUR ID HERE">
+                            <img src="https://lopster.neocities.org/roring/fotos/gimme.png" height="30">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- ILoveWebring Webring Badge - HALLOWEEN Edition 🎃 -->
+<style>
+.badge-group {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* 🔥 Ping com estilo de chama alaranjada */
+.badge-ping {
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  z-index: 10;
+}
+.badge-ping span {
+  position: absolute;
+  display: inline-flex;
+  border-radius: 9999px;
+}
+.badge-ping .ping-bg {
+  height: 20px;
+  width: 20px;
+  animation: flame 1.5s ease-in-out infinite;
+  background: radial-gradient(circle, #ff7b00 0%, transparent 70%);
+  opacity: 0.7;
+}
+.badge-ping .ping-count {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  background-color: #ff6f00;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  box-shadow: 0 0 8px #ff9100aa;
+  text-shadow: 0 0 2px #000;
+}
+
+/* 👻 Animações */
+@keyframes flame {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.8); opacity: 0; }
+}
+@keyframes flicker {
+  0%, 100% { box-shadow: 0 0 14px #ff910022; }
+  50% { box-shadow: 0 0 24px #ff910066; }
+}
+
+/* 🎃 Estilo base do badge */
+.badge-button {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(to bottom right, #1a0a0a, #000);
+  padding: 1px;
+  animation: flicker 3s infinite ease-in-out;
+  transition: box-shadow 0.3s ease;
+}
+.badge-inner {
+  background-color: #0b0b0b;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 12px;
+  transition: background 0.3s ease;
+  flex-direction: column;
+}
+
+/* 🕸️ Ícone do anel */
+.badge-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  width: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff7b00, #a020f0);
+  box-shadow: 0 0 12px #ff6f00aa;
+  transition: transform 0.3s ease;
+}
+.badge-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+/* 🦇 Texto */
+.badge-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.badge-text span:first-child {
+  color: #ffa500;
+  font-size: 15px;
+  font-weight: 700;
+  text-shadow: 0 0 6px #ff6f00aa;
+}
+.badge-text span:last-child {
+  color: #c77dff;
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* 💀 Links */
+.badge-inner a {
+  color: #ffb347;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.badge-inner a:hover {
+  color: #fff;
+  text-shadow: 0 0 6px #ff6f00;
+}
+
+/* 🩸 Dots */
+.badge-dots {
+  display: flex;
+  gap: 3px;
+  margin-left: auto;
+}
+.badge-dots div {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ff6f00;
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+
+/* 🕷️ Hover */
+.badge-group:hover .badge-dots div { transform: scale(1.4); }
+.badge-group:hover .badge-icon { transform: scale(1.1) rotate(-3deg); }
+.badge-group:hover .badge-inner { background: #140808; }
+.badge-group:hover .badge-button { box-shadow: 0 0 24px #ff7b0066; }
+</style>
+
+<div id="ilovewebring-widget"></div>
+
+<script>
+(function() {
+  var sites = [
+    'https://osc-leaks.neocities.org/',
+    'https://ragazzasola.neocities.org/',
+    'https://ilovewebring.neocities.org/'
+  ];
+
+  var ringName = '🎃 ILoveWebring';
+  var ringID = 'ilovewebring-widget';
+  var useIndex = true;
+  var indexPage = 'https://ilovewebring.neocities.org/webring.html';
+  var useRandom = true;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var tag = document.getElementById(ringID);
+    if (!tag) return;
+
+    var thisSite = window.location.href;
+    var thisIndex = null;
+
+    for (var i = 0; i < sites.length; i++) {
+      if (thisSite.startsWith(sites[i])) {
+        thisIndex = i;
+        break;
+      }
+    }
+
+    if (thisIndex === null) thisIndex = 0;
+
+    function randomSite() {
+      var otherSites = sites.slice();
+      if (thisIndex !== null) otherSites.splice(thisIndex, 1);
+      var randomIndex = Math.floor(Math.random() * otherSites.length);
+      location.href = otherSites[randomIndex];
+    }
+
+    var prevIndex = (thisIndex - 1 < 0) ? sites.length - 1 : thisIndex - 1;
+    var nextIndex = (thisIndex + 1 >= sites.length) ? 0 : thisIndex + 1;
+
+    tag.innerHTML = `
+<div class="badge-group">
+  <div class="badge-ping">
+    <span class="ping-bg"></span>
+    <span class="ping-count">🎃</span>
+  </div>
+  <div class="badge-button">
+    <div class="badge-inner">
+      <div class="badge-text">
+        <span>${ringName}</span>
+        <span>Join the spooky circle</span>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a href="${sites[prevIndex]}">← Previous</a>
+        ${useRandom ? `<a href="javascript:void(0)" onclick="randomSite()">Random</a>` : ''}
+        ${useIndex ? `<a href="${indexPage}">Index</a>` : ''}
+        <a href="${sites[nextIndex]}">Next →</a>
+      </div>
+    </div>
+  </div>
+</div>`;
+  });
+})();
+</script>
+
+<div id='gfdkris'> 
+                  <script type="text/javascript" src="https://fabstarotcorner.neocities.org/webring/onionring-variables.js"></script>
+                  <script type="text/javascript" src="https://fabstarotcorner.neocities.org/webring/onionring-widget.js"></script>
+                  
+                  -HEADER-
+<link rel="stylesheet" href="https://dsring.neocities.org/onion/onionring.css">
+
+-WIDGET-
+<div id='dsring'>
+<script type="text/javascript" src="https://dsring.neocities.org/onion/onionring-variables.js"></script>
+<script type="text/javascript" src="https://dsring.neocities.org/onion/onionring-widget.js"></script>
+</div>
+
+                  <div id="objectshowring-badge"></div>
+
+<script>
+var sites = [
+  'https://osc-leaks.neocities.org/',
+  'https://example1.com/',
+  'https://example2.com/',
+  'https://example3.com/'
+];
+
+var thisSite = window.location.href;
+var thisIndex = null;
+
+for (var i = 0; i < sites.length; i++) {
+  if (thisSite.startsWith(sites[i])) {
+    thisIndex = i;
+    break;
+  }
+}
+
+function randomSite() {
+  var otherSites = sites.slice();
+  otherSites.splice(thisIndex, 1);
+  var randomIndex = Math.floor(Math.random() * otherSites.length);
+  location.href = otherSites[randomIndex];
+}
+
+var badgeTag = document.getElementById('objectshowring-badge');
+
+if (thisIndex == null) {
+  badgeTag.innerHTML = `<div style="background: rgba(255,255,255,0.7); padding: 10px; border-radius: 8px;">Este site não está no ObjectShowRing ainda.</div>`;
+} else {
+  var previousIndex = (thisIndex - 1 < 0) ? sites.length - 1 : thisIndex - 1;
+  var nextIndex = (thisIndex + 1 >= sites.length) ? 0 : thisIndex + 1;
+
+  badgeTag.innerHTML = `
+  <div style="
+      width: 300px; 
+      height: 150px; 
+      background-image: url('https://osc-leaks.neocities.org/Oscring/images (3) (6).jpeg'); 
+      background-size: cover; 
+      background-position: center; 
+      display: flex; 
+      align-items: flex-end; 
+      justify-content: center; 
+      padding: 10px; 
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      font-family: sans-serif;
+  ">
+    <div style="
+        display: flex; 
+        gap: 8px; 
+        font-size: 14px; 
+        background: rgba(255,255,255,0.6); 
+        padding: 4px 8px; 
+        border-radius: 8px;
+    ">
+      <a href='${sites[previousIndex]}' style="text-decoration:none;color:#000;font-weight:bold;">← previous</a>
+      <a href='${sites[nextIndex]}' style="text-decoration:none;color:#000;font-weight:bold;">next →</a>
+      <a href='https://osc-leaks.neocities.org/objectshowring.html' style="text-decoration:none;color:#000;font-weight:bold;">← index →</a>
+      <a href='javascript:void(0)' onclick='randomSite()' style="text-decoration:none;color:#000;font-weight:bold;">↻ random</a>
+    </div>
+  </div>
+  `;
+}
+</script>
+              
+              <div id='epicring'>
+    <script type="text/javascript" src="https://epic1.nekoweb.org/epicring/onionring-variables.js"></script>
+    <script type="text/javascript" src="https://epic1.nekoweb.org/epicring/onionring-widget.js"></script>
+    </div>          
+    <div id="ukszWeb"></div><script src="https://webring.uksz.org/webring-widget.js"></script>
+              </div> 
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js configuration - Halloween themed
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {"value":80,"density":{"enable":true,"value_area":800}},
+                "color":{"value":"#ff8c00"},
+                "shape":{"type":"circle"},
+                "opacity":{"value":0.5,"random":false},
+                "size":{"value":3,"random":true},
+                "line_linked":{"enable":true,"distance":150,"color":"#ff4500","opacity":0.2,"width":1},
+                "move":{"enable":true,"speed":2,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false}
+            },
+            "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"repulse":{"distance":100,"duration":0.4},"push":{"particles_nb":4}}},
+            "retina_detect":true
+        });
+
+        // Page Navigation - FUNÇÃO CORRIGIDA
+        function showPage(pageId) {
+            // Esconder todas as páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Mostrar a página selecionada
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Re-inicializar tabs após navegação
+            setTimeout(initTabs, 50);
+        }
+
+        // Tab functionality - CORREÇÃO DOS MISSION CONTENTS
+        function initTabs() {
+            // Re-inicializar todos os mission tabs ativos
+            document.querySelectorAll('.page.active .mission-tab.active').forEach(activeTab => {
+                const tabId = activeTab.getAttribute('data-tab');
+                const parent = activeTab.closest('.page');
+                
+                if (parent) {
+                    parent.querySelectorAll('.mission-content').forEach(c => c.classList.remove('active'));
+                    const targetContent = parent.querySelector(`#${tabId}`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mission tabs - CORREÇÃO: Usar event delegation para tabs dinâmicos
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('mission-tab')) {
+                    const tab = e.target;
+                    const tabId = tab.getAttribute('data-tab');
+                    const parent = tab.closest('.page');
+                    
+                    if (!parent) return;
+                    
+                    // Deactivate all tabs in this section
+                    parent.querySelectorAll('.mission-tab').forEach(t => t.classList.remove('active'));
+                    parent.querySelectorAll('.mission-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Activate current tab
+                    tab.classList.add('active');
+                    
+                    // Ativar o content correspondente
+                    const targetContent = parent.querySelector(`#${tabId}`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                }
+            });
+
+            // Chat tabs
+            const chatTabs = document.querySelectorAll('.chat-tab');
+            chatTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const chatType = this.getAttribute('data-chat');
+                    
+                    // Remove active class from all tabs
+                    chatTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all chat containers
+                    document.getElementById('minnit-chat').classList.remove('active');
+                    document.getElementById('tlkio-chat').classList.remove('active');
+                    document.getElementById('chatango-chat').classList.remove('active');
+                    document.getElementById('legacy-chat').classList.remove('active');
+                    
+                    // Show selected chat container
+                    document.getElementById(chatType + '-chat').classList.add('active');
+                });
+            });
+
+            // Set initial state for chat tabs
+            document.getElementById('minnit-chat').classList.add('active');
+            
+            // Inicializar tabs na página inicial
+            initTabs();
+        });
+    </script>
+</body>
+</html>
