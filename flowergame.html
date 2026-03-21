@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Game</title>
+    <!-- Ruffle Web -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle-web@latest/ruffle.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* opcional, fundo escuro */
+        }
+        ruffle-embed {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Embed do arquivo SWF -->
+    <ruffle-embed src="flowergaem.swf"></ruffle-embed>
+
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("DOMContentLoaded", () => {
+            const ruffle = window.RufflePlayer.newest();
+            const container = document.querySelector("ruffle-embed");
+            ruffle.createPlayer().load("flowergame.swf").then(player => {
+                container.replaceWith(player);
+            });
+        });
+    </script>
+</body>
+</html>
