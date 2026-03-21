@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>lingsOS - Dark Mode Smartphone Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: #050505;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(28, 28, 30, 0.65);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+        }
+
+        /* Animations */
+        @keyframes slideUpUnlock {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100%); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-unlock {
+            animation: slideUpUnlock 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* App transitions */
+        .app-screen {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
+
+        .app-hidden {
+            transform: scale(0.9);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .app-visible {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Icon hover effects */
+        .app-icon {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .app-icon:active {
+            transform: scale(0.85);
+            filter: brightness(0.8);
+        }
+
+        /* Toggle switches */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #34C759;
+        }
+        
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #34C759;
+        }
+
+        /* Progress bar animation */
+        .progress-fill {
+            transition: width 0.1s linear;
+        }
+
+        /* Wallpaper gradient */
+        .wallpaper {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            position: relative;
+        }
+
+        .wallpaper::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(120, 119, 198, 0.15) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        /* Neon accents */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Battery indicator */
+        .battery-level {
+            background: linear-gradient(90deg, #34C759 0%, #30D158 100%);
+            box-shadow: 0 0 8px rgba(52, 199, 89, 0.4);
+        }
+
+        /* Swipe indicator */
+        .swipe-indicator {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Control center toggles */
+        .control-toggle {
+            transition: all 0.3s ease;
+        }
+
+        .control-toggle.active {
+            background: white;
+            color: black;
+        }
+
+        /* Music visualizer bars */
+        .music-bar {
+            animation: musicWave 1s ease-in-out infinite;
+        }
+
+        @keyframes musicWave {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+
+        .music-bar:nth-child(2) { animation-delay: 0.1s; }
+        .music-bar:nth-child(3) { animation-delay: 0.2s; }
+        .music-bar:nth-child(4) { animation-delay: 0.3s; }
+        .music-bar:nth-child(5) { animation-delay: 0.4s; }
+
+        /* Notification badge */
+        .badge {
+            box-shadow: 0 2px 8px rgba(255, 59, 48, 0.4);
+        }
+
+        /* Dock blur */
+        .dock-blur {
+            background: linear-gradient(to bottom, rgba(28, 28, 30, 0.4), rgba(28, 28, 30, 0.8));
+            backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-black text-white h-screen w-screen overflow-hidden relative">
+
+    <!-- Device Frame -->
+    <div class="relative w-full h-full max-w-md mx-auto bg-black shadow-2xl overflow-hidden sm:rounded-[3rem] sm:border-8 sm:border-gray-900 sm:my-4 sm:h-[95vh]">
+        
+        <!-- Wallpaper -->
+        <div class="wallpaper absolute inset-0 z-0"></div>
+
+        <!-- Status Bar -->
+        <div class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-3 text-sm font-medium">
+            <div id="status-time" class="tracking-wide">9:41</div>
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                <div class="w-6 h-3 border border-white/30 rounded-sm relative">
+                    <div class="battery-level absolute top-0.5 left-0.5 bottom-0.5 right-1 rounded-sm"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOCK SCREEN -->
+        <div id="lock-screen" class="absolute inset-0 z-40 flex flex-col items-center justify-between pb-12 pt-20">
+            <!-- Lock Icon -->
+            <div class="mb-4 animate-float">
+                <svg class="w-8 h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+            </div>
+
+            <!-- Time & Date -->
+            <div class="text-center">
+                <div id="lock-time" class="text-8xl font-light tracking-tighter neon-text">09:41</div>
+                <div id="lock-date" class="text-xl font-medium text-white/90 mt-2">Monday, March 20</div>
+            </div>
+
+            <!-- Notifications Preview -->
+            <div class="w-full px-6 space-y-3 mb-8">
+                <div class="glass rounded-2xl p-4 flex items-center gap-3 transform transition hover:scale-102 cursor-pointer">
+                    <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-xl">💬</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-sm">Messages</span>
+                            <span class="text-xs text-white/60">Now</span>
+                        </div>
+                        <p class="text-sm text-white/80 mt-0.5">New message from Alice</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Swipe Prompt -->
+            <div class="flex flex-col items-center gap-2 swipe-indicator cursor-pointer" id="unlock-prompt">
+                <div class="w-32 h-1 bg-white/30 rounded-full"></div>
+                <span class="text-sm font-medium text-white/60 tracking-wide">Swipe up to unlock</span>
+            </div>
+
+            <!-- Bottom Shortcuts -->
+            <div class="flex justify-between w-full px-12 mb-4">
+                <button class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                </button>
+                <button class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- HOME SCREEN -->
+        <div id="home-screen" class="absolute inset-0 z-30 opacity-0 pointer-events-none pt-16 pb-24 px-6">
+            <!-- App Grid -->
+            <div class="grid grid-cols-4 gap-x-4 gap-y-8 mt-4">
+                <!-- Row 1 -->
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('messages')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg relative">
+                        💬
+                        <div class="badge absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center font-bold">3</div>
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Messages</span>
+                </div>
+                
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('calendar')">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex flex-col items-center justify-center shadow-lg text-black">
+                        <span class="text-xs font-bold text-red-500">MAR</span>
+                        <span class="text-2xl font-light">20</span>
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Calendar</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('photos')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg">
+                        🖼️
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Photos</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('camera')">
+                    <div class="w-14 h-14 bg-gray-400/30 rounded-2xl flex items-center justify-center text-2xl shadow-lg backdrop-blur-md">
+                        📷
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Camera</span>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('mail')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg relative">
+                        ✉️
+                        <div class="badge absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center font-bold">12</div>
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Mail</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('clock')">
+                    <div class="w-14 h-14 bg-black rounded-2xl flex items-center justify-center text-2xl shadow-lg border border-white/10">
+                        🕐
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Clock</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('maps')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-300 to-green-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">
+                        🗺️
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Maps</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('weather')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-300 to-blue-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">
+                        🌤️
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Weather</span>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('home')">
+                    <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">
+                        🏠
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Home</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('notes')">
+                    <div class="w-14 h-14 bg-yellow-400 rounded-2xl flex items-center justify-center text-2xl shadow-lg text-yellow-900">
+                        📝
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Notes</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('stocks')">
+                    <div class="w-14 h-14 bg-black rounded-2xl flex items-center justify-center text-2xl shadow-lg border border-white/10">
+                        📈
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Stocks</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('books')">
+                    <div class="w-14 h-14 bg-orange-400 rounded-2xl flex items-center justify-center text-2xl shadow-lg">
+                        📚
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Books</span>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('appstore')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg">
+                        🛍️
+                    </div>
+                    <span class="text-xs font-medium text-white/90">App Store</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('music')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-red-400 to-pink-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg relative overflow-hidden">
+                        🎵
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Music</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('settings')">
+                    <div class="w-14 h-14 bg-gray-500/50 rounded-2xl flex items-center justify-center text-2xl shadow-lg backdrop-blur-md">
+                        ⚙️
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Settings</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 app-icon cursor-pointer" onclick="openApp('phone')">
+                    <div class="w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">
+                        📞
+                    </div>
+                    <span class="text-xs font-medium text-white/90">Phone</span>
+                </div>
+            </div>
+
+            <!-- Page Indicator -->
+            <div class="flex justify-center gap-1.5 mt-8">
+                <div class="w-2 h-2 bg-white rounded-full"></div>
+                <div class="w-2 h-2 bg-white/30 rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- DOCK -->
+        <div id="dock" class="absolute bottom-4 left-4 right-4 h-20 dock-blur rounded-3xl flex items-center justify-around px-4 z-30 opacity-0 pointer-events-none transition-opacity duration-500">
+            <div class="app-icon cursor-pointer" onclick="openApp('phone')">
+                <div class="w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg hover:scale-110 transition">
+                    📞
+                </div>
+            </div>
+            <div class="app-icon cursor-pointer" onclick="openApp('browser')">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-lg text-blue-500 hover:scale-110 transition">
+                    🌐
+                </div>
+            </div>
+            <div class="app-icon cursor-pointer" onclick="openApp('messages')">
+                <div class="w-14 h-14 bg-green-400 rounded-2xl flex items-center justify-center text-2xl shadow-lg hover:scale-110 transition relative">
+                    💬
+                    <div class="badge absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center font-bold">3</div>
+                </div>
+            </div>
+            <div class="app-icon cursor-pointer" onclick="openApp('music')">
+                <div class="w-14 h-14 bg-gradient-to-br from-red-400 to-pink-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg hover:scale-110 transition">
+                    🎵
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTIFICATION CENTER (Pull Down) -->
+        <div id="notification-center" class="absolute top-0 left-0 right-0 z-40 transform -translate-y-full transition-transform duration-300 ease-out">
+            <div class="glass-dark min-h-screen pt-12 px-4 pb-20">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Notifications</h2>
+                    <button onclick="toggleNotificationCenter()" class="text-sm text-blue-400 font-medium">Clear All</button>
+                </div>
+                
+                <div class="space-y-3" id="notification-list">
+                    <div class="glass rounded-2xl p-4 flex items-start gap-3">
+                        <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-xl flex-shrink-0">💬</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <span class="font-semibold">Messages</span>
+                                <span class="text-xs text-white/50">2m ago</span>
+                            </div>
+                            <p class="text-sm text-white/80 mt-1">Alice: Hey! Are we still on for tonight?</p>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl p-4 flex items-start gap-3">
+                        <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-xl flex-shrink-0">✉️</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <span class="font-semibold">Mail</span>
+                                <span class="text-xs text-white/50">15m ago</span>
+                            </div>
+                            <p class="text-sm text-white/80 mt-1">New invoice from Design Studio</p>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl p-4 flex items-start gap-3">
+                        <div class="w-10 h-10 bg-purple-500 rounded-xl flex items-center justify-center text-xl flex-shrink-0">📅</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <span class="font-semibold">Calendar</span>
+                                <span class="text-xs text-white/50">1h ago</span>
+                            </div>
+                            <p class="text-sm text-white/80 mt-1">Meeting with team in 30 minutes</p>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl p-4 flex items-start gap-3">
+                        <div class="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center text-xl flex-shrink-0">🎵</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <span class="font-semibold">Music</span>
+                                <span class="text-xs text-white/50">2h ago</span>
+                            </div>
+                            <p class="text-sm text-white/80 mt-1">Now playing: Midnight City</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold mb-4 text-white/60">Earlier Today</h3>
+                    <div class="glass rounded-2xl p-4 flex items-start gap-3 opacity-60">
+                        <div class="w-10 h-10 bg-gray-500 rounded-xl flex items-center justify-center text-xl flex-shrink-0">🛍️</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <span class="font-semibold">App Store</span>
+                                <span class="text-xs text-white/50">3h ago</span>
+                            </div>
+                            <p class="text-sm text-white/80 mt-1">Update available: lingsOS 2.0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTROL CENTER (Pull Up) -->
+        <div id="control-center" class="absolute bottom-0 left-0 right-0 z-40 transform translate-y-full transition-transform duration-300 ease-out">
+            <div class="glass-dark min-h-[70vh] rounded-t-3xl pt-8 px-4 pb-8">
+                <div class="w-12 h-1 bg-white/30 rounded-full mx-auto mb-6" onclick="toggleControlCenter()"></div>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <!-- Connectivity -->
+                    <div class="glass rounded-2xl p-4 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <button id="toggle-airplane" class="control-toggle w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-xl active" onclick="toggleControl(this)">✈️</button>
+                            <button id="toggle-wifi" class="control-toggle w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-xl active" onclick="toggleControl(this)">📶</button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <button id="toggle-bluetooth" class="control-toggle w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-xl active" onclick="toggleControl(this)">🔷</button>
+                            <button class="control-toggle w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-xl active">📡</button>
+                        </div>
+                    </div>
+
+                    <!-- Music Control -->
+                    <div class="glass rounded-2xl p-4 flex flex-col justify-between" onclick="openApp('music')">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-pink-500 rounded-lg flex items-center justify-center">🎵</div>
+                            <div>
+                                <div class="text-sm font-medium">Midnight City</div>
+                                <div class="text-xs text-white/60">M83</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center px-2">
+                            <button class="text-2xl" onclick="event.stopPropagation()">⏮</button>
+                            <button class="text-3xl" onclick="event.stopPropagation(); toggleMusic()" id="cc-play-btn">⏸</button>
+                            <button class="text-2xl" onclick="event.stopPropagation()">⏭</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sliders -->
+                <div class="space-y-4 mb-6">
+                    <div class="glass rounded-2xl p-4 flex items-center gap-4">
+                        <span class="text-xl">🔆</span>
+                        <input type="range" class="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer" min="0" max="100" value="80">
+                    </div>
+                    <div class="glass rounded-2xl p-4 flex items-center gap-4">
+                        <span class="text-xl">🔊</span>
+                        <input type="range" class="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer" min="0" max="100" value="60">
+                    </div>
+                </div>
+
+                <!-- Toggles Grid -->
+                <div class="grid grid-cols-4 gap-4">
+                    <button class="glass rounded-2xl p-3 flex flex-col items-center gap-2 aspect-square justify-center">
+                        <span class="text-2xl">🔒</span>
+                        <span class="text-xs">Lock</span>
+                    </button>
+                    <button class="glass rounded-2xl p-3 flex flex-col items-center gap-2 aspect-square justify-center">
+                        <span class="text-2xl">🔦</span>
+                        <span class="text-xs">Flash</span>
+                    </button>
+                    <button class="glass rounded-2xl p-3 flex flex-col items-center gap-2 aspect-square justify-center">
+                        <span class="text-2xl">⏱️</span>
+                        <span class="text-xs">Timer</span>
+                    </button>
+                    <button class="glass rounded-2xl p-3 flex flex-col items-center gap-2 aspect-square justify-center">
+                        <span class="text-2xl">📷</span>
+                        <span class="text-xs">Cam</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- APP: MUSIC -->
+        <div id="app-music" class="app-screen app-hidden absolute inset-0 z-50 bg-black flex flex-col">
+            <div class="flex-1 flex flex-col items-center justify-center p-8 relative overflow-hidden">
+                <!-- Background blur -->
+                <div class="absolute inset-0 bg-gradient-to-b from-pink-900/40 to-black opacity-50"></div>
+                
+                <!-- Album Art -->
+                <div class="relative z-10 w-64 h-64 rounded-3xl shadow-2xl mb-8 overflow-hidden">
+                    <div class="w-full h-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-8xl">
+                        🌆
+                    </div>
+                </div>
+
+                <!-- Track Info -->
+                <div class="relative z-10 text-center mb-8">
+                    <h2 class="text-2xl font-bold mb-2">Midnight City</h2>
+                    <p class="text-white/60">M83 • Hurry Up, We're Dreaming</p>
+                </div>
+
+                <!-- Progress -->
+                <div class="relative z-10 w-full mb-8">
+                    <div class="h-1 bg-white/20 rounded-full overflow-hidden">
+                        <div id="music-progress" class="progress-fill h-full bg-white w-1/3 rounded-full"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-white/50 mt-2">
+                        <span id="current-time">1:24</span>
+                        <span>4:03</span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="relative z-10 flex items-center gap-8">
+                    <button class="text-3xl text-white/60 hover:text-white transition">🔀</button>
+                    <button class="text-4xl hover:text-white/80 transition">⏮</button>
+                    <button id="music-play-btn" class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-3xl text-black hover:scale-105 transition" onclick="toggleMusic()">⏸</button>
+                    <button class="text-4xl hover:text-white/80 transition">⏭</button>
+                    <button class="text-3xl text-white/60 hover:text-white transition">🔁</button>
+                </div>
+
+                <!-- Volume -->
+                <div class="relative z-10 w-full mt-8 flex items-center gap-4">
+                    <span class="text-xl">🔉</span>
+                    <input type="range" class="flex-1 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer" min="0" max="100" value="70">
+                    <span class="text-xl">🔊</span>
+                </div>
+            </div>
+
+            <!-- Mini Player Handle -->
+            <div class="h-1 w-12 bg-white/30 rounded-full mx-auto mb-2" onclick="closeApp()"></div>
+        </div>
+
+        <!-- APP: APP STORE -->
+        <div id="app-appstore" class="app-screen app-hidden absolute inset-0 z-50 bg-black flex flex-col">
+            <div class="pt-12 px-6 pb-4 bg-black/90 backdrop-blur-xl z-10">
+                <div class="flex justify-between items-center mb-4">
+                    <h1 class="text-3xl font-bold">App Store</h1>
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-xl">👤</div>
+                </div>
+                <div class="flex gap-4 overflow-x-auto pb-2 text-sm font-medium">
+                    <span class="text-white/60">Apps</span>
+                    <span class="text-white border-b-2 border-blue-500 pb-1">Games</span>
+                    <span class="text-white/60">Arcade</span>
+                    <span class="text-white/60">Search</span>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto px-6 pb-8">
+                <!-- Featured -->
+                <div class="mt-4 mb-6">
+                    <div class="text-xs text-blue-400 font-semibold mb-2">NOW AVAILABLE</div>
+                    <div class="glass rounded-3xl p-6 relative overflow-hidden">
+                        <div class="relative z-10">
+                            <div class="text-xs font-medium text-white/60 mb-1">UPDATE</div>
+                            <h3 class="text-2xl font-bold mb-1">lingsOS 2.0</h3>
+                            <p class="text-sm text-white/70 mb-4">Dark mode reimagined with AI</p>
+                            <button class="bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:bg-white/90 transition">Update</button>
+                        </div>
+                        <div class="absolute right-0 top-0 w-32 h-32 bg-gradient-to-bl from-blue-500/50 to-transparent rounded-bl-full"></div>
+                    </div>
+                </div>
+
+                <!-- Apps List -->
+                <h3 class="text-xl font-bold mb-4">Top Charts</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 glass rounded-2xl p-3">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center text-2xl">💬</div>
+                        <div class="flex-1">
+                            <div class="font-semibold">Messages Pro</div>
+                            <div class="text-xs text-white/60">Social Networking</div>
+                            <div class="flex items-center gap-1 mt-1">
+                                <span class="text-xs">⭐ 4.9</span>
+                            </div>
+                        </div>
+                        <button class="bg-white/20 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white/30 transition">Get</button>
+                    </div>
+
+                    <div class="flex items-center gap-4 glass rounded-2xl p-3">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-2xl">🎵</div>
+                        <div class="flex-1">
+                            <div class="font-semibold">Music Studio</div>
+                            <div class="text-xs text-white/60">Music & Audio</div>
+                            <div class="flex items-center gap-1 mt-1">
+                                <span class="text-xs">⭐ 4.8</span>
+                            </div>
+                        </div>
+                        <button class="bg-white/20 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white/30 transition">$4.99</button>
+                    </div>
+
+                    <div class="flex items-center gap-4 glass rounded-2xl p-3">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center text-2xl">✉️</div>
+                        <div class="flex-1">
+                            <div class="font-semibold">Mail Master</div>
+                            <div class="text-xs text-white/60">Productivity</div>
+                            <div class="flex items-center gap-1 mt-1">
+                                <span class="text-xs">⭐ 4.7</span>
+                            </div>
+                        </div>
+                        <button class="bg-white/20 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white/30 transition">Get</button>
+                    </div>
+
+                    <div class="flex items-center gap-4 glass rounded-2xl p-3">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center text-2xl">🎮</div>
+                        <div class="flex-1">
+                            <div class="font-semibold">Cyber Quest</div>
+                            <div class="text-xs text-white/60">Games</div>
+                            <div class="flex items-center gap-1 mt-1">
+                                <span class="text-xs">⭐ 5.0</span>
+                            </div>
+                        </div>
+                        <button class="bg-white/20 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white/30 transition">Get</button>
+                    </div>
+
+                    <div class="flex items-center gap-4 glass rounded-2xl p-3">
+                        <div class="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center text-2xl">🧘</div>
+                        <div class="flex-1">
+                            <div class="font-semibold">Mindful</div>
+                            <div class="text-xs text-white/60">Health & Fitness</div>
+                            <div class="flex items-center gap-1 mt-1">
+                                <span class="text-xs">⭐ 4.9</span>
+                            </div>
+                        </div>
+                        <button class="bg-white/20 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white/30 transition">Get</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Handle -->
+            <div class="h-1 w-12 bg-white/30 rounded-full mx-auto mb-2 mt-auto" onclick="closeApp()"></div>
+        </div>
+
+        <!-- APP: MESSAGES -->
+        <div id="app-messages" class="app-screen app-hidden absolute inset-0 z-50 bg-black flex flex-col">
+            <div class="pt-12 px-6 pb-4 bg-black/90 backdrop-blur-xl z-10 border-b border-white/10">
+                <div class="flex justify-between items-center mb-4">
+                    <h1 class="text-3xl font-bold">Messages</h1>
+                    <button class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-xl hover:bg-green-400 transition">✏️</button>
+                </div>
+                <div class="glass rounded-full p-1 flex items-center px-4">
+                    <span class="text-white/50 mr-2">🔍</span>
+                    <input type="text" placeholder="Search" class="bg-transparent border-none outline-none text-sm w-full py-2 text-white placeholder-white/50">
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+                <div class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/5 transition cursor-pointer">
+                    <div class="relative">
+                        <div class="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-2xl">👩</div>
+                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-black"></div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Alice</span>
+                            <span class="text-xs text-green-400">Now</span>
+                        </div>
+                        <p class="text-sm text-white/70 mt-0.5">Hey! Are we still on for tonight? 🎉</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/5 transition cursor-pointer">
+                    <div class="relative">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-2xl">👨</div>
+                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-gray-500 rounded-full border-2 border-black"></div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Bob</span>
+                            <span class="text-xs text-white/50">2h ago</span>
+                        </div>
+                        <p class="text-sm text-white/70 mt-0.5">Sent a photo 📷</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/5 transition cursor-pointer">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center text-2xl">👥</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Family Group</span>
+                            <span class="text-xs text-white/50">Yesterday</span>
+                        </div>
+                        <p class="text-sm text-white/70 mt-0.5">Mom: Dinner at 7!</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/5 transition cursor-pointer">
+                    <div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-2xl">🏢</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Work Team</span>
+                            <span class="text-xs text-white/50">Yesterday</span>
+                        </div>
+                        <p class="text-sm text-white/70 mt-0.5">Meeting rescheduled to 3 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-1 w-12 bg-white/30 rounded-full mx-auto mb-2" onclick="closeApp()"></div>
+        </div>
+
+        <!-- APP: SETTINGS -->
+        <div id="app-settings" class="app-screen app-hidden absolute inset-0 z-50 bg-black flex flex-col">
+            <div class="pt-12 px-6 pb-4 bg-black/90 backdrop-blur-xl z-10 border-b border-white/10">
+                <h1 class="text-3xl font-bold">Settings</h1>
+            </div>
+
+            <div class="flex-1 overflow-y-auto px-6 py-4">
+                <div class="glass rounded-2xl overflow-hidden mb-6">
+                    <div class="p-4 flex items-center gap-4 border-b border-white/10">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center text-3xl">👤</div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-lg">User Name</div>
+                            <div class="text-sm text-white/60">Apple ID, iCloud, Media & Purchases</div>
+                        </div>
+                        <span class="text-white/40">›</span>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden mb-6">
+                    <div class="p-4 flex items-center justify-between border-b border-white/10 hover:bg-white/5 transition cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">✈️</div>
+                            <span>Airplane Mode</span>
+                        </div>
+                        <div class="w-12 h-7 bg-green-500 rounded-full relative cursor-pointer" onclick="this.classList.toggle('bg-gray-600'); this.classList.toggle('bg-green-500')">
+                            <div class="absolute right-1 top-1 w-5 h-5 bg-white rounded-full shadow-md transition-all"></div>
+                        </div>
+                    </div>
+                    <div class="p-4 flex items-center justify-between border-b border-white/10 hover:bg-white/5 transition cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">📶</div>
+                            <span>Wi-Fi</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-white/60">
+                            <span class="text-sm">HomeNetwork</span>
+                            <span>›</span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex items-center justify-between hover:bg-white/5 transition cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">🔷</div>
+                            <span>Bluetooth</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-white/60">
+                            <span class="text-sm">On</span>
+                            <span>›</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden">
+                    <div class="p-4 flex items-center justify-between border-b border-white/10 hover:bg-white/5 transition cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">🔔</div>
+                            <span>Notifications</span>
+                        </div>
+                        <span class="text-white/40">›</span>
+                    </div>
+                    <div class="p-4 flex items-center justify-between border-b border-white/10 hover:bg-white/5 transition cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-pink-500 rounded-lg flex items-center justify-center">🔊</div>
+                            <span>Sounds & Haptics</span>
+                        </div>
+                        <span class="text-white/40">›</span>
+                    </div>
+                    <div class="p-4 flex items-center justify-between border-b border-white/10 hover:bg-white/5 transition cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">🌙</div>
+                            <span>Display & Brightness</span>
+                        </div>
+                        <span class="text-white/40">›</span>
+                    </div>
+                    <div class="p-4 flex items-center justify-between hover:bg-white/5 transition cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center">⚙️</div>
+                            <span>General</span>
+                        </div>
+                        <span class="text-white/40">›</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-1 w-12 bg-white/30 rounded-full mx-auto mb-2" onclick="closeApp()"></div>
+        </div>
+
+        <!-- Gesture Areas -->
+        <div class="absolute top-0 left-0 right-0 h-8 z-50" onclick="toggleNotificationCenter()"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-8 z-50" onclick="toggleControlCenter()"></div>
+    </div>
+
+    <script>
+        // Time updates
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const timeStr = `${hours}:${minutes}`;
+            
+            document.getElementById('lock-time').textContent = timeStr;
+            document.getElementById('status-time').textContent = timeStr;
+            
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            document.getElementById('lock-date').textContent = now.toLocaleDateString('en-US', options);
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Unlock functionality
+        let unlockStartY = 0;
+        const lockScreen = document.getElementById('lock-screen');
+        const homeScreen = document.getElementById('home-screen');
+        const dock = document.getElementById('dock');
+        const unlockPrompt = document.getElementById('unlock-prompt');
+
+        unlockPrompt.addEventListener('click', unlock);
+        unlockPrompt.addEventListener('touchstart', (e) => {
+            unlockStartY = e.touches[0].clientY;
+        });
+        unlockPrompt.addEventListener('touchend', (e) => {
+            const endY = e.changedTouches[0].clientY;
+            if (unlockStartY - endY > 50) {
+                unlock();
+            }
+        });
+
+        function unlock() {
+            lockScreen.classList.add('animate-unlock');
+            setTimeout(() => {
+                lockScreen.style.display = 'none';
+                homeScreen.classList.remove('opacity-0', 'pointer-events-none');
+                homeScreen.classList.add('animate-fade-in');
+                dock.classList.remove('opacity-0', 'pointer-events-none');
+                dock.classList.add('animate-fade-in');
+            }, 600);
+        }
+
+        // App Management
+        let currentApp = null;
+        let isPlaying = true;
+        let musicInterval;
+
+        function openApp(appName) {
+            const app = document.getElementById(`app-${appName}`);
+            if (app) {
+                app.classList.remove('app-hidden');
+                app.classList.add('app-visible');
+                currentApp = appName;
+                
+                if (appName === 'music') {
+                    startMusicProgress();
+                }
+            }
+        }
+
+        function closeApp() {
+            if (currentApp) {
+                const app = document.getElementById(`app-${currentApp}`);
+                app.classList.remove('app-visible');
+                app.classList.add('app-hidden');
+                
+                if (currentApp === 'music') {
+                    stopMusicProgress();
+                }
+                
+                currentApp = null;
+            }
+        }
+
+        // Music Player
+        function toggleMusic() {
+            isPlaying = !isPlaying;
+            const btns = [document.getElementById('music-play-btn'), document.getElementById('cc-play-btn')];
+            btns.forEach(btn => {
+                if (btn) btn.textContent = isPlaying ? '⏸' : '▶';
+            });
+            
+            if (isPlaying) {
+                startMusicProgress();
+            } else {
+                stopMusicProgress();
+            }
+        }
+
+        function startMusicProgress() {
+            clearInterval(musicInterval);
+            const progressBar = document.getElementById('music-progress');
+            const timeDisplay = document.getElementById('current-time');
+            let progress = 33;
+            let seconds = 84;
+            
+            musicInterval = setInterval(() => {
+                if (isPlaying && progress < 100) {
+                    progress += 0.5;
+                    seconds++;
+                    progressBar.style.width = `${progress}%`;
+                    
+                    const mins = Math.floor(seconds / 60);
+                    const secs = seconds % 60;
+                    timeDisplay.textContent = `${mins}:${String(secs).padStart(2, '0')}`;
+                }
+            }, 1000);
+        }
+
+        function stopMusicProgress() {
+            clearInterval(musicInterval);
+        }
+
+        // Notification Center
+        let notifOpen = false;
+        function toggleNotificationCenter() {
+            const nc = document.getElementById('notification-center');
+            notifOpen = !notifOpen;
+            if (notifOpen) {
+                nc.classList.remove('-translate-y-full');
+                nc.classList.add('translate-y-0');
+            } else {
+                nc.classList.remove('translate-y-0');
+                nc.classList.add('-translate-y-full');
+            }
+        }
+
+        // Control Center
+        let controlOpen = false;
+        function toggleControlCenter() {
+            const cc = document.getElementById('control-center');
+            controlOpen = !controlOpen;
+            if (controlOpen) {
+                cc.classList.remove('translate-y-full');
+                cc.classList.add('translate-y-0');
+            } else {
+                cc.classList.remove('translate-y-0');
+                cc.classList.add('translate-y-full');
+            }
+        }
+
+        // Control Toggles
+        function toggleControl(btn) {
+            btn.classList.toggle('active');
+            const isActive = btn.classList.contains('active');
+            
+            if (btn.id === 'toggle-wifi') {
+                btn.style.background = isActive ? '#3B82F6' : '#374151';
+            } else if (btn.id === 'toggle-bluetooth') {
+                btn.style.background = isActive ? '#2563EB' : '#374151';
+            } else if (btn.id === 'toggle-airplane') {
+                btn.style.background = isActive ? '#F97316' : '#374151';
+            }
+        }
+
+        // Swipe gestures for notification/control center
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const threshold = 50;
+            const diff = touchStartY - touchEndY;
+            
+            // Swipe down from top
+            if (diff < -threshold && touchStartY < 100 && !notifOpen && !currentApp) {
+                toggleNotificationCenter();
+            }
+            // Swipe up to close notification
+            else if (diff > threshold && notifOpen) {
+                toggleNotificationCenter();
+            }
+            // Swipe up from bottom
+            else if (diff > threshold && touchStartY > window.innerHeight - 100 && !controlOpen && !currentApp) {
+                toggleControlCenter();
+            }
+            // Swipe down to close control center
+            else if (diff < -threshold && controlOpen) {
+                toggleControlCenter();
+            }
+        }
+
+        // Close centers when clicking outside
+        document.addEventListener('click', (e) => {
+            const nc = document.getElementById('notification-center');
+            const cc = document.getElementById('control-center');
+            
+            if (notifOpen && !nc.contains(e.target) && e.target.clientY > 50) {
+                toggleNotificationCenter();
+            }
+            if (controlOpen && !cc.contains(e.target) && e.target.clientY < window.innerHeight - 50) {
+                toggleControlCenter();
+            }
+        });
+
+        // Keyboard shortcuts for desktop testing
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (currentApp) closeApp();
+                else if (notifOpen) toggleNotificationCenter();
+                else if (controlOpen) toggleControlCenter();
+            }
+        });
+    </script>
+</body>
+</html>
