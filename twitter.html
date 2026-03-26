@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter</title>
+    <style>
+        /* Reset básico da época */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Propriedade moderna da época */
+        }
+
+        body {
+            background: #C0DEED url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAI0lEQVQYV2NkYGBoYmBg+M8ABYxgKgaKMTIwMDx/+vQpA8wDAIt/Bj4RzJ0WAAAAAElFTkSuQmCC') repeat;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-size: 13px;
+            line-height: 16px;
+            color: #333;
+            min-width: 980px;
+        }
+
+        /* Container principal estilo old Twitter */
+        .container {
+            width: 960px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* Header topo com gradiente */
+        .top-header {
+            background: #ffffff; /* fallback */
+            background: -moz-linear-gradient(top, #ffffff 0%, #f5f8fa 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f5f8fa));
+            background: -webkit-linear-gradient(top, #ffffff 0%,#f5f8fa 100%);
+            background: -o-linear-gradient(top, #ffffff 0%,#f5f8fa 100%);
+            background: -ms-linear-gradient(top, #ffffff 0%,#f5f8fa 100%);
+            background: linear-gradient(to bottom, #ffffff 0%,#f5f8fa 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f8fa',GradientType=0 );
+            border-bottom: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            width: 960px;
+            margin: 0 auto;
+            padding: 8px 0;
+        }
+
+        /* Navegação estilo old */
+        .nav-menu {
+            float: left;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            float: left;
+            margin-right: 20px;
+            padding: 5px 0;
+        }
+
+        .nav-menu li a {
+            color: #55ACEE;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .nav-menu li a:hover {
+            color: #3C8DC5;
+            text-decoration: underline;
+        }
+
+        /* Logo Twitter original */
+        .logo {
+            position: absolute;
+            left: 50%;
+            margin-left: -12px;
+            top: 5px;
+        }
+
+        .logo svg {
+            width: 24px;
+            height: 24px;
+            fill: #55ACEE;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+        }
+
+        /* Caixa de busca vintage */
+        .search-box {
+            float: right;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 15px; /* Rounded corners bem 2010 */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 1px 0 #fff;
+            padding: 3px 10px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 200px;
+            font-size: 12px;
+            padding: 3px 0;
+        }
+
+        .search-box button {
+            border: none;
+            background: none;
+            color: #55ACEE;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Estrutura principal de colunas */
+        .content-wrapper {
+            margin-top: 60px;
+            position: relative;
+        }
+
+        /* Sidebar esquerda */
+        .sidebar-left {
+            width: 240px;
+            float: left;
+        }
+
+        /* Perfil card com efeitos glossy */
+        .profile-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header {
+            height: 95px;
+            background: #55ACEE;
+            background: -moz-linear-gradient(top, #55ACEE 0%, #3C8DC5 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#55ACEE), color-stop(100%,#3C8DC5));
+            background: -webkit-linear-gradient(top, #55ACEE 0%,#3C8DC5 100%);
+            background: -o-linear-gradient(top, #55ACEE 0%,#3C8DC5 100%);
+            background: -ms-linear-gradient(top, #55ACEE 0%,#3C8DC5 100%);
+            background: linear-gradient(to bottom, #55ACEE 0%,#3C8DC5 100%);
+            border-bottom: 1px solid #2C6C9C;
+        }
+
+        .avatar {
+            position: absolute;
+            top: 55px;
+            left: 15px;
+            border: 4px solid #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            background: #fff;
+        }
+
+        .profile-info {
+            padding: 40px 15px 15px 15px;
+        }
+
+        .fullname {
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .username {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            border-top: 1px solid #e8e8e8;
+            padding-top: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .stat-item {
+            float: left;
+            width: 33.33%;
+            text-align: center;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            font-size: 16px;
+            color: #55ACEE;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        /* Timeline central */
+        .timeline {
+            width: 440px;
+            float: left;
+            margin: 0 20px;
+        }
+
+        /* Tweet composer - estilo vintage */
+        .tweet-composer {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .composer-avatar {
+            float: left;
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        .composer-input {
+            overflow: hidden;
+        }
+
+        .composer-input textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 13px;
+            resize: none;
+            height: 60px;
+            margin-bottom: 8px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .composer-actions {
+            overflow: hidden;
+        }
+
+        .tweet-btn {
+            background: #55ACEE;
+            border: 1px solid #3C8DC5;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: bold;
+            padding: 6px 16px;
+            float: right;
+            cursor: pointer;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .tweet-btn:hover {
+            background: #3C8DC5;
+        }
+
+        .char-count {
+            float: left;
+            color: #999;
+            font-size: 12px;
+            padding: 6px 0;
+        }
+
+        /* Tweet individual */
+        .tweet {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.2s ease; /* Transição CSS3 moderna */
+        }
+
+        .tweet:hover {
+            border-color: #55ACEE;
+            box-shadow: 0 2px 5px rgba(85,172,238,0.2);
+        }
+
+        .tweet-avatar {
+            float: left;
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        .tweet-content {
+            overflow: hidden;
+        }
+
+        .tweet-header {
+            margin-bottom: 5px;
+        }
+
+        .tweet-author {
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .tweet-author:hover {
+            color: #55ACEE;
+        }
+
+        .tweet-meta {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .tweet-text {
+            margin-bottom: 8px;
+            line-height: 18px;
+        }
+
+        .tweet-actions {
+            border-top: 1px solid #e8e8e8;
+            padding-top: 8px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .action-btn {
+            float: left;
+            margin-right: 15px;
+            color: #999;
+            font-size: 12px;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            color: #55ACEE;
+        }
+
+        /* Sidebar direita */
+        .sidebar-right {
+            width: 240px;
+            float: left;
+        }
+
+        /* Widgets */
+        .widget {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .widget-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e8e8e8;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        /* Trending topics */
+        .trend-item {
+            display: block;
+            padding: 6px 0;
+            color: #55ACEE;
+            text-decoration: none;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .trend-item:hover {
+            text-decoration: underline;
+        }
+
+        .trend-count {
+            color: #999;
+            font-size: 11px;
+            margin-left: 5px;
+        }
+
+        /* Who to follow */
+        .follow-item {
+            overflow: hidden;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .follow-avatar {
+            float: left;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        .follow-info {
+            overflow: hidden;
+        }
+
+        .follow-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 12px;
+        }
+
+        .follow-user {
+            color: #999;
+            font-size: 11px;
+        }
+
+        .follow-btn {
+            background: #fff;
+            border: 1px solid #55ACEE;
+            border-radius: 4px;
+            color: #55ACEE;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 8px;
+            float: right;
+            cursor: pointer;
+        }
+
+        .follow-btn:hover {
+            background: #55ACEE;
+            color: #fff;
+        }
+
+        /* Clearfix - técnica clássica */
+        .clearfix:before,
+        .clearfix:after {
+            content: " ";
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        /* Footer simples */
+        .footer {
+            clear: both;
+            padding: 20px 0;
+            text-align: center;
+            color: #999;
+            font-size: 11px;
+        }
+
+        .footer a {
+            color: #55ACEE;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-header">
+        <div class="header-content clearfix">
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Messages</a></li>
+                <li><a href="#">Who to follow</a></li>
+            </ul>
+            
+            <div class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.48 2.323-2.42z"/>
+                </svg>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Search Twitter">
+                <button type="submit">Go</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content-wrapper clearfix">
+        <!-- Sidebar Esquerda -->
+        <div class="sidebar-left">
+            <div class="profile-card">
+                <div class="profile-header"></div>
+                <div class="avatar">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2355ACEE'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'%3E:)%3C/text%3E%3C/svg%3E" width="48" height="48" alt="Avatar">
+                </div>
+                <div class="profile-info">
+                    <div class="fullname">Usuário Vintage</div>
+                    <div class="username">@vintage_twitter</div>
+                    <div class="bio" style="color: #666; font-size: 12px; margin-bottom: 8px;">
+                        Usando Twitter da era de ouro • 2010 vibes • CSS3
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-value">187</span>
+                            <span class="stat-label">Tweets</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">342</span>
+                            <span class="stat-label">Following</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">1.2K</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">Trends</div>
+                <a href="#" class="trend-item">#ThrowbackThursday <span class="trend-count">2,345 tweets</span></a>
+                <a href="#" class="trend-item">#CSS3Rocks <span class="trend-count">1,892 tweets</span></a>
+                <a href="#" class="trend-item">Old Twitter <span class="trend-count">1,456 tweets</span></a>
+                <a href="#" class="trend-item">#2010Vibes <span class="trend-count">987 tweets</span></a>
+                <a href="#" class="trend-item">RetroWeb <span class="trend-count">654 tweets</span></a>
+            </div>
+        </div>
+
+        <!-- Timeline Central -->
+        <div class="timeline">
+            <div class="tweet-composer">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2355ACEE'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'%3E:)%3C/text%3E%3C/svg%3E" alt="Avatar" class="composer-avatar">
+                <div class="composer-input">
+                    <textarea placeholder="What's happening?"></textarea>
+                    <div class="composer-actions">
+                        <span class="char-count">140</span>
+                        <button class="tweet-btn">Tweet</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tweet">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23FF6B6B'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'%3E:)%3C/text%3E%3C/svg%3E" alt="Avatar" class="tweet-avatar">
+                <div class="tweet-content">
+                    <div class="tweet-header">
+                        <a href="#" class="tweet-author">João Retrô</a>
+                        <span class="tweet-meta"> @joaoretro · 5m</span>
+                    </div>
+                    <div class="tweet-text">
+                        Lembram quando o Twitter tinha essas bordas arredondadas lindas e gradientes? #saudades #css3
+                    </div>
+                    <div class="tweet-actions">
+                        <button class="action-btn">Reply</button>
+                        <button class="action-btn">Retweet</button>
+                        <button class="action-btn">Favorite</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tweet">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234CAF50'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'%3E:)%3C/text%3E%3C/svg%3E" alt="Avatar" class="tweet-avatar">
+                <div class="tweet-content">
+                    <div class="tweet-header">
+                        <a href="#" class="tweet-author">Maria Vintage</a>
+                        <span class="tweet-meta"> @maria_vintage · 15m</span>
+                    </div>
+                    <div class="tweet-text">
+                        Testando o novo Internet Explorer 9, CSS3 tá funcionando perfeitamente! border-radius e box-shadow são mágicos! ✨
+                    </div>
+                    <div class="tweet-actions">
+                        <button class="action-btn">Reply</button>
+                        <button class="action-btn">Retweet</button>
+                        <button class="action-btn">Favorite</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tweet">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23FFD93D'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'%3E:)%3C/text%3E%3C/svg%3E" alt="Avatar" class="tweet-avatar">
+                <div class="tweet-content">
+                    <div class="tweet-header">
+                        <a href="#" class="tweet-author">Dev Nostalgia</a>
+                        <span class="tweet-meta"> @dev_nostalgia · 32m</span>
+                    </div>
+                    <div class="tweet-text">
+                        Alguém mais lembra quando o @twitter atualizou com design "New Twitter" em 2010? Essa interface marcou época! Usando @font-face e tudo mais...
+                    </div>
+                    <div class="tweet-actions">
+                        <button class="action-btn">Reply</button>
+                        <button class="action-btn">Retweet</button>
+                        <button class="action-btn">Favorite</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Direita -->
+        <div class="sidebar-right">
+            <div class="widget">
+                <div class="widget-title">Who to follow</div>
+                <div class="follow-item clearfix">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%239C27B0'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'%3E:)%3C/text%3E%3C/svg%3E" alt="Avatar" class="follow-avatar">
+                    <div class="follow-info">
+                        <div class="follow-name">CSS3 Master</div>
+                        <div class="follow-user">@css3master</div>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="follow-item clearfix">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23E91E63'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'%3E:)%3C/text%3E%3C/svg%3E" alt="Avatar" class="follow-avatar">
+                    <div class="follow-info">
+                        <div class="follow-name">HTML5 Rocks</div>
+                        <div class="follow-user">@html5rocks</div>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="follow-item clearfix">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%232196F3'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'%3E:)%3C/text%3E%3C/svg%3E" alt="Avatar" class="follow-avatar">
+                    <div class="follow-info">
+                        <div class="follow-name">jQuery Fan</div>
+                        <div class="follow-user">@jqueryfan</div>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">© 2012 Twitter</div>
+                <div style="font-size: 11px; color: #999; line-height: 1.5;">
+                    About · Help · Blog · Status · Jobs · Terms · Privacy · Advertisers · Media · Developers · Directory
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="#">© 2012 Twitter</a> · 
+        <a href="#">About</a> · 
+        <a href="#">Help</a> · 
+        <a href="#">Terms</a> · 
+        <a href="#">Privacy</a> · 
+        <a href="#">Blog</a> · 
+        <a href="#">Status</a>
+        <br>
+        <span style="color: #999;">Feito com CSS3 e HTML5 - like it's 2010</span>
+    </div>
+
+    <!-- Script simples estilo época -->
+    <script>
+        // Contador de caracteres - feature vintage
+        document.addEventListener('DOMContentLoaded', function() {
+            var textarea = document.querySelector('textarea');
+            var counter = document.querySelector('.char-count');
+            
+            if (textarea && counter) {
+                textarea.addEventListener('keyup', function() {
+                    var remaining = 140 - this.value.length;
+                    counter.textContent = remaining;
+                    
+                    if (remaining < 10) {
+                        counter.style.color = '#f00';
+                    } else if (remaining < 20) {
+                        counter.style.color = '#ff9900';
+                    } else {
+                        counter.style.color = '#999';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>  <!-- [spacehey.com] SpaceHey Server: webserver-1 -->
+  
+  <div class="container">
+    <nav class="">
+                  <div class="top">
+        <div class="left">
+          <a href="https://spacehey.com">
+                        <img class="logo logo-fallback" src="https://static.spacehey.net/img/logo_optimized.svg" alt="SpaceHey" fetchpriority="high" style="aspect-ratio: 55/14;">
+          </a>
+                  </div>
+        <div class="center">
+                                    <form action="https://spacehey.com/search" role="search">
+                                <label for="q">Search Users:</label>
+                <div class="search-wrapper">
+                  <input id="q" type="text" name="q" autocomplete="off">
+                </div>
+                <button type="submit">Search</button>
+              </form>
+                              </div>
+        <div class="right">
+          <a href="https://spacehey.com/help" rel="help">Help</a> | <a href="https://spacehey.com/login">LogIn</a> | <a href="https://spacehey.com/signup">SignUp</a>                              </div>
+      </div>
+              <ul class="links">
+                    <li class=""><a href="https://spacehey.com">Home</a></li>
+          <li class=""><a href="https://spacehey.com/browse">Browse</a></li>
+          <li class=""><a href="https://spacehey.com/search">Search</a></li>
+          <li class=""><a href="https://im.spacehey.com">Messages</a></li>
+          <li class=""><a href="https://blog.spacehey.com">Blog</a></li>
+          <li class=""><a href="https://spacehey.com/bulletins">Bulletins</a></li>
+          <li class=""><a href="https://forum.spacehey.com/">Forum</a></li>
+          <li class=""><a href="https://groups.spacehey.com">Groups</a></li>
+          <li class=""><a href="https://layouts.spacehey.com">Layouts</a></li>
+                    <li class=""><a href="https://spacehey.com/favorites">Favs</a></li>
+          <li class=""><a href="https://spacehey.com/invite">Invite</a></li>
+                    <li class=""><a href="https://spacehey.com/mobile" title="SpaceHey Mobile">App</a></li>
+          <li><a href="https://shop.spacehey.com/">Shop</a></li>
+          <li class=""><a href="https://spacehey.com/about">About</a></li>
+                  </ul>
+          </nav>
+    <main><div class="row profile" itemscope itemtype="https://schema.org/Person">
+  <meta itemprop="url" content="https://spacehey.com/nineofc">
+  <meta itemprop="identifier" content="2189388">
+
+  <div class="col w-40 left">
+    <span itemprop="name">
+      <h1>9️⃣☆~Nine~☆9️⃣</h1>
+    </span>
+        <div class="general-about">
+      <div class="profile-pic">
+        <img class="pfp-fallback" src="https://cdn.spacehey.net/profilepics/2189388_bcc526dfbccb5d35e61e558961d3411e.jpg?expires=1771151925&token=99ea1eb57876105c332576ff64c552a72c9c8ba6f230e8ddc1ce4e15e30a374d" alt="9️⃣☆~Nine~☆9️⃣'s profile picture">
+      </div>
+      <div class="details">
+        <p>"watching tpot 17 "</p><p>14 years old, Brazil</p><p class="online"><img src="https://static.spacehey.net/img/green_person.svg" aria-hidden="true" alt="Online icon" loading="lazy"> ONLINE!</p>      </div>
+    </div>
+    <div class="mood">
+      <p>
+        <b>Mood:</b>
+        IDK      </p>
+      <p>
+        <b>View my:
+          <a href="https://blog.spacehey.com/user?id=2189388">Blog</a>
+                    | <a href="https://forum.spacehey.com/user?id=2189388">Forum Topics</a>
+                  </b>
+      </p>
+    </div>
+    <div class="contact">
+      <div class="heading">
+        <h4>Contacting 9️⃣☆~Nine~☆9️⃣</h4>
+      </div>
+      <div class="inner">
+        <div class="f-row">
+          <div class="f-col">
+                            <a href="/addfriend?id=2189388" rel="nofollow">
+                  <img src="https://static.spacehey.net/icons/add.png" class="icon" aria-hidden="true" loading="lazy" alt="">                  Add to Friends
+                </a>
+                      </div>
+          <div class="f-col">
+                          <a href="/addfavorite?id=2189388" rel="nofollow">
+                <img src="https://static.spacehey.net/icons/award_star_add.png" class="icon" aria-hidden="true" loading="lazy" alt="">                Add to Favorites
+              </a>
+                      </div>
+        </div>
+        <div class="f-row">
+          <div class="f-col">
+            <a href="https://im.spacehey.com?user=2189388" rel="nofollow">
+              <img src="https://static.spacehey.net/icons/comment.png" class="icon" aria-hidden="true" loading="lazy" alt="">              Send Message
+            </a>
+          </div>
+          <div class="f-col">
+            <a href="https://im.spacehey.com/new?text=https://spacehey.com/nineofc" rel="nofollow">
+              <img src="https://static.spacehey.net/icons/arrow_right.png" class="icon" aria-hidden="true" loading="lazy" alt="">              Forward to Friend
+            </a>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-col">
+            <a href="https://im.spacehey.com?user=2189388" rel="nofollow">
+              <img src="https://static.spacehey.net/icons/email.png" class="icon" aria-hidden="true" loading="lazy" alt="">              Instant Message
+            </a>
+          </div>
+          <div class="f-col">
+            <a href="/block?id=2189388" rel="nofollow">
+              <img src="https://static.spacehey.net/icons/exclamation.png" class="icon" aria-hidden="true" loading="lazy" alt="">              Block User
+            </a>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-col">
+            <a href="/soon?new">
+              <img src="https://static.spacehey.net/icons/group_add.png" class="icon" aria-hidden="true" loading="lazy" alt="">              Add to Group
+            </a>
+          </div>
+          <div class="f-col">
+            <a href="/report?type=user&id=2189388" rel="nofollow">
+              <img src="https://static.spacehey.net/icons/flag_red.png" class="icon" aria-hidden="true" loading="lazy" alt="">              Report User
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="url-info">
+      <p><b>SpaceHey URL:</b></p>
+      <p>
+        https://spacehey.com/nineofc      </p>
+    </div>
+    <div class="table-section">
+      <div class="heading">
+        <h4>9️⃣☆~Nine~☆9️⃣'s Interests</h4>
+      </div>
+      <div class="inner">
+        <table class="details-table" cellspacing="3" cellpadding="3">
+          <tbody>
+            <tr>
+              <td>
+                <p>General</p>
+              </td>
+              <td>
+                <p>
+                  object shows, counter strike, eddsworld                 </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Music</p>
+              </td>
+              <td>
+                <p>
+                  <p>Bfdi: tpot 17 official soundtrack </p>                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Movies</p>
+              </td>
+              <td>
+                <p>
+                  <p>bfdia 23</p>                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Television</p>
+              </td>
+              <td>
+                <p>
+                  <p>None</p>                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Books</p>
+              </td>
+              <td>
+                <p>
+                  <p>IDK</p>                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Heroes</p>
+              </td>
+              <td>
+                <p>
+                  <tr>
+</tr>
+
+<div style="margin-top: 4px;margin-bottom: -12px;">
+
+<div id="music">
+                            <iframe src="https://www.youtube.com/embed/YhD_Iz-f-GA?autoplay=1&loop=1&playlist=YhD_Iz-f-GA" loading="lazy" width="560" height="315" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" loading="lazy">
+</iframe>
+                        <div>
+                            <span class="song">She's Homeless</span>
+                            <span class="artist">Creep P</span>
+</div>
+                    </div>
+
+</div>
+
+<style>
+
+#music {
+  position: relative;
+  background: url('https://external-media.spacehey.net/media/sEpY56IKUlhCSqiV8BzxTZU1nju6NO14jZKW0WCD9T4I=/https://file.garden/ZRYtsnIP2EXOR4Kw/Site%20Files/musicplayer.png') top left no-repeat;
+    background-size: auto;
+  background-size: auto;
+  background-size: 100% 100%;
+  overflow: hidden;
+  height: 50px;
+  max-width: 305px;
+  border: 1px solid #000000;
+}
+#music iframe {
+  position: absolute;
+  top: 0px;
+  height: 47px;
+  opacity: 0.00000000000000000000000001;
+  z-index: 0;
+  left: 0px;
+}
+#music div {
+  position: absolute;
+  top: 10px;
+  left: 55px;
+  width: 51%;
+  margin: 0 !important;
+}
+#music span {
+  display: block;
+  color: #FFFFFF;
+  font-weight: normal;
+  text-align: left;
+  font-size: 12px;
+  width: 240px;
+}
+
+</style>                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+          </div>
+          <div class="table-section">
+        <div class="heading">
+          <h4>9️⃣☆~Nine~☆9️⃣'s Links</h4>
+        </div>
+        <div class="inner">
+          <table class="details-table" cellspacing="3" cellpadding="3">
+            <tbody>
+              
+          <tr>
+            <td>
+              <p>
+                <a href="https://osc-leaks.neocities.org" target="_blank" rel="noopener ugc"><img src="https://static.spacehey.net/social-icons/custom_web.png" class="icon" aria-hidden="true" loading="lazy" alt=""> Website
+                </a>
+              </p>
+            </td>
+            <td>
+              <p>
+                <a href="https://osc-leaks.neocities.org" target="_blank" rel="noopener ugc me">osc-leaks.neocities.org
+                </a>
+              </p>
+            </td>
+          </tr>            </tbody>
+          </table>
+        </div>
+              </div>
+      </div>
+  <div class="col right">
+        <div class="blog-preview">
+      <h4>9️⃣☆~Nine~☆9️⃣'s Latest Blog Entries [<a href="https://blog.spacehey.com/user?id=2189388">View Blog</a>]</h4>
+      <p><i>There are no Blog Entries yet.</i></p>    </div>
+    <div class="blurbs">
+      <div class="heading">
+        <h4>9️⃣☆~Nine~☆9️⃣'s Blurbs</h4>
+      </div>
+      <div class="inner">
+        <div class="section">
+          <h4>About me:</h4>
+          <p itemprop="description">
+            <style>
+
+/* ===== ABOUT ME - BRUTALISMO ISOLADO ===== */
+
+.profile .about p:first-of-type {
+  font-family: Impact, "Arial Black", sans-serif !important;
+  font-size: 32px !important;
+  text-transform: uppercase !important;
+  font-weight: 900 !important;
+  letter-spacing: 4px;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 6px solid #000000 !important;
+  padding: 20px !important;
+
+  margin: 20px 0 !important;
+  text-align: left !important;
+
+  box-shadow: 8px 8px 0 #000000 !important;
+}
+
+</style>          </p>
+                  </div>
+        <div class="section">
+          <h4>Who I'd like to meet:</h4>
+          <p>
+            <p>Cary Huang </p>          </p>
+                  </div>
+      </div>
+    </div>
+    <div class="friends">
+      <div class="heading">
+        <h4>9️⃣☆~Nine~☆9️⃣'s Friend Space</h4>
+        <a class="more" href="/friends?id=2189388">[view all]</a>
+      </div>
+      <div class="inner">
+                <p><b>9️⃣☆~Nine~☆9️⃣ has <span class="count">17</span> friends.</b></p>
+        <div class="friends-grid">
+                      <div class="person">
+              <a href="/profile?id=4432587">
+                <p>DowW</p>
+              </a>
+              <a href="/profile?id=4432587">
+                <img class="pfp-fallback" src="https://cdn.spacehey.net/profilepics/4432587_1c49e6e095d660578c66e60a8535f144.jpg?expires=1771133998&token=3522424ce0495d075debdeab96adac066f5e971f788b2f91b853797f1c6790fa" alt="DowW's profile picture" loading="lazy">
+              </a>
+            </div>
+                      <div class="person">
+              <a href="/profile?id=3599184">
+                <p>K1tuy!(Bfdi fan!)</p>
+              </a>
+              <a href="/profile?id=3599184">
+                <img class="pfp-fallback" src="https://cdn.spacehey.net/profilepics/3599184_aa512166d125e5a72f30f14411aeccbb.jpg?expires=1771151957&token=76c6d5c3b835c0ef24cbcd29b8a977a139219b5a8bddeb589cd389ed05711bcd" alt="K1tuy!(Bfdi fan!)'s profile picture" loading="lazy">
+              </a>
+            </div>
+                      <div class="person">
+              <a href="/profile?id=2533433">
+                <p>ItsEdan!</p>
+              </a>
+              <a href="/profile?id=2533433">
+                <img class="pfp-fallback" src="https://cdn.spacehey.net/profilepics/2533433_7f1676bde79bab469367d4978f52271e.jpg?expires=1771115597&token=8d0c73ea3482afa928444002691636c6045d0d7e6614bbf248724b1ff77d80ca" alt="ItsEdan!'s profile picture" loading="lazy">
+              </a>
+            </div>
+                      <div class="person">
+              <a href="/profile?id=2477701">
+                <p>Kasper !!</p>
+              </a>
+              <a href="/profile?id=2477701">
+                <img class="pfp-fallback" src="https://cdn.spacehey.net/profilepics/2477701_7941f3f51e8dc8bc57aadbb7f1a00041.jpg?expires=1771139266&token=d2d6a436a0a0d9fae14a9c5276a253239b1b028c4d2109259aff507f36124860" alt="Kasper !!'s profile picture" loading="lazy">
+              </a>
+            </div>
+                      <div class="person">
+              <a href="/profile?id=2533292">
+                <p>Hara / Ray  &gt;__&lt;</p>
+              </a>
+              <a href="/profile?id=2533292">
+                <img class="pfp-fallback" src="https://cdn.spacehey.net/profilepics/2533292_4e6a78ba15e0bea289a642d37f49f2b4.jpg?expires=1771115597&token=985b2cd76fc1e755736cbabff032102ff6133b76d07f2b715bdff625c92d401d" alt="Hara / Ray  &gt;__&lt;'s profile picture" loading="lazy">
+              </a>
+            </div>
+                      <div class="person">
+              <a href="/profile?id=2285177">
+                <p>☆Kooky☆</p>
+              </a>
+              <a href="/profile?id=2285177">
+                <img class="pfp-fallback" src="https://cdn.spacehey.net/profilepics/2285177_1548dac1cc7551689ad9981733954183.png?expires=1771151009&token=71998f2cb9023f06fe947dabefd7460e35e56cbafc3c9a6805073ca5108ffb78" alt="☆Kooky☆'s profile picture" loading="lazy">
+              </a>
+            </div>
+                      <div class="person">
+              <a href="/profile?id=2014738">
+                <p>drhelado</p>
+              </a>
+              <a href="/profile?id=2014738">
+                <img class="pfp-fallback" src="https://static.spacehey.net/img/default/profilepic.png" alt="drhelado's profile picture" loading="lazy">
+              </a>
+            </div>
+                      <div class="person">
+              <a href="/profile?id=2275700">
+                <p>haku ᡣ𐭩.ᐟ</p>
+              </a>
+              <a href="/profile?id=2275700">
+                <img class="pfp-fallback" src="https://cdn.spacehey.net/profilepics/2275700_220909aa9ddee9241464523f483ec7fd.jpg?expires=1771115012&token=b2fa5bd056341c42e2dd73a17edad851b7ca1c5093b07d731f854140d6adc4f6" alt="haku ᡣ𐭩.ᐟ's profile picture" loading="lazy">
+              </a>
+            </div>
+                  </div>
+      </div>
+    </div>
+    <div class="friends" id="comments">
+      <div class="heading">
+        <h4>9️⃣☆~Nine~☆9️⃣'s Friends Comments</h4>
+      </div>
+      <div class="inner">
+                <p>
+          <b>
+            Displaying <span class="count">0</span> of <span class="count">0</span> comments
+            ( <a href="/comments?id=2189388">View all</a> | <a href="/addcomment?id=2189388">Add Comment</a> )
+          </b>
+        </p>
+        <table class="comments-table" cellspacing="0" cellpadding="3" bordercolor="ffffff" border="1">
+          <tbody>
+                      </tbody>
+        </table>
+                      </div>
+    </div>
+
+  </div>
+</div>
+<div id="code">
+  <style>
+
+/* ===== BRUTALISMO DARK - SPACEHEY ===== */
+/* VERSÃO CORRIGIDA E EXPANDIDA */
+
+/* Reset básico - sem quebrar layout */
+body {
+  background: #0a0a0a !important;
+  color: #ffffff !important;
+  font-family: "Arial Black", Impact, "Franklin Gothic Bold", sans-serif !important;
+  font-size: 18px !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Remover apenas elementos decorativos antigos */
+body::before,
+body::after,
+html::before,
+html::after {
+  display: none !important;
+}
+
+/* ===== CORES PRINCIPAIS ===== */
+:root {
+  --preto: #000000;
+  --preto-fundo: #0a0a0a;
+  --cinza-escuro: #1a1a1a;
+  --cinza-medio: #2a2a2a;
+  --branco: #ffffff;
+  --vermelho: #ff0000;
+  --vermelho-escuro: #8b0000;
+}
+
+/* ===== CONTAINERS PRINCIPAIS - CORRIGIDO ===== */
+.container,
+.main-content,
+.content-wrapper,
+.profile-content,
+.forum-content,
+.blog-content {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 20px !important;
+  background: var(--preto-fundo) !important;
+}
+
+.left,
+.right,
+.main-column,
+.sidebar {
+  background: var(--preto-fundo) !important;
+  border: 4px solid var(--vermelho) !important;
+  padding: 25px !important;
+  margin: 20px 0 !important;
+  box-shadow: 10px 10px 0 0 var(--preto) !important;
+}
+
+/* ===== PERFIL E SEÇÕES ===== */
+.profile,
+.blog-entry,
+.forum-post,
+.comment,
+.message,
+.status-update,
+.about-section,
+.friends-section,
+.photos-section,
+.videos-section,
+.groups-section,
+.interests-section,
+.details-section {
+  background: var(--cinza-escuro) !important;
+  border: 6px solid var(--preto) !important;
+  border-left: 20px solid var(--vermelho) !important;
+  padding: 30px !important;
+  margin: 30px 0 !important;
+  box-shadow: 
+    15px 15px 0 0 var(--preto),
+    inset 0 0 0 2px var(--cinza-medio) !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+/* ===== TABELAS ===== */
+.details-table,
+.comments-table,
+.music-table,
+.friends-table,
+.groups-table,
+.photos-table,
+.videos-table,
+.forum-table,
+.poll-table,
+.events-table {
+  width: 100% !important;
+  background: var(--cinza-escuro) !important;
+  border: 6px solid var(--preto) !important;
+  border-collapse: collapse !important;
+  margin: 25px 0 !important;
+}
+
+.details-table td,
+.details-table th,
+.comments-table td,
+.comments-table th,
+.music-table td,
+.music-table th {
+  border: 4px solid var(--preto) !important;
+  padding: 20px !important;
+  color: var(--branco) !important;
+  font-size: 18px !important;
+}
+
+.details-table th,
+.comments-table th,
+.music-table th {
+  background: var(--preto) !important;
+  color: var(--vermelho) !important;
+  font-size: 22px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+}
+
+.details-table tr:hover,
+.comments-table tr:hover,
+.music-table tr:hover {
+  background: var(--cinza-medio) !important;
+}
+
+/* ===== TÍTULOS ===== */
+h1, h2, h3, h4, h5, h6,
+.title,
+.heading,
+.section-title,
+.widget-title,
+.block-title,
+.profile-title,
+.page-title {
+  font-family: "Arial Black", Impact, sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 900 !important;
+  letter-spacing: 3px !important;
+  background: var(--preto) !important;
+  color: var(--branco) !important;
+  padding: 15px 25px !important;
+  margin: 20px 0 30px 0 !important;
+  border-left: 15px solid var(--vermelho) !important;
+  border-bottom: 6px solid var(--vermelho) !important;
+  font-size: 28px !important;
+  display: block !important;
+  width: 100% !important;
+  box-shadow: 8px 8px 0 0 var(--cinza-medio) !important;
+}
+
+h1 {
+  font-size: 36px !important;
+}
+
+h2 {
+  font-size: 32px !important;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--branco) !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+  border-bottom: 3px solid var(--vermelho) !important;
+  padding: 2px 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+a:hover {
+  color: var(--preto) !important;
+  background: var(--vermelho) !important;
+  border-bottom: 3px solid var(--branco) !important;
+  padding: 2px 5px !important;
+}
+
+/* Links de navegação */
+nav a,
+.menu a,
+.nav-links a,
+.links a {
+  display: inline-block !important;
+  padding: 12px 20px !important;
+  background: var(--preto) !important;
+  border: 4px solid var(--cinza-medio) !important;
+  margin: 0 5px 5px 0 !important;
+  font-size: 20px !important;
+  text-transform: uppercase !important;
+  border-bottom: 6px solid var(--vermelho) !important;
+}
+
+nav a:hover,
+.menu a:hover,
+.nav-links a:hover,
+.links a:hover {
+  background: var(--vermelho) !important;
+  border-color: var(--branco) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 0 0 var(--preto) !important;
+}
+
+/* ===== BOTÕES ===== */
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.button,
+.btn,
+.submit-button,
+.action-button {
+  background: var(--preto) !important;
+  color: var(--branco) !important;
+  border: 5px solid var(--vermelho) !important;
+  padding: 15px 30px !important;
+  font-family: "Arial Black", sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+  box-shadow: 8px 8px 0 0 var(--cinza-medio) !important;
+  transition: all 0.1s ease !important;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.button:hover {
+  background: var(--vermelho) !important;
+  color: var(--preto) !important;
+  border-color: var(--branco) !important;
+  transform: translate(-3px, -3px) !important;
+  box-shadow: 12px 12px 0 0 var(--preto) !important;
+}
+
+button:active,
+input[type="submit"]:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 4px 4px 0 0 var(--preto) !important;
+}
+
+/* ===== FORMULÁRIOS ===== */
+input,
+textarea,
+select {
+  background: var(--cinza-escuro) !important;
+  border: 4px solid var(--cinza-medio) !important;
+  padding: 15px !important;
+  font-family: monospace !important;
+  font-size: 18px !important;
+  color: var(--branco) !important;
+  width: 100% !important;
+  max-width: 500px !important;
+  margin: 10px 0 !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--vermelho) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 4px var(--preto) !important;
+  background: var(--preto) !important;
+}
+
+/* ===== IMAGENS ===== */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  border: 8px solid var(--preto) !important;
+  outline: 4px solid var(--cinza-medio) !important;
+  margin: 15px 0 !important;
+  filter: grayscale(80%) contrast(120%) brightness(70%) !important;
+  transition: all 0.3s ease !important;
+}
+
+img:hover {
+  filter: grayscale(0%) contrast(100%) brightness(100%) !important;
+  outline: 4px solid var(--vermelho) !important;
+  transform: scale(1.02) !important;
+}
+
+/* Avatar e fotos de perfil */
+.profile-picture img,
+.avatar img,
+.user-image img {
+  border: 10px solid var(--preto) !important;
+  outline: 6px solid var(--vermelho) !important;
+  filter: grayscale(100%) contrast(150%) !important;
+  max-width: 300px !important;
+}
+
+/* ===== LISTAS ===== */
+ul, ol,
+.friends-list,
+.favorites-list,
+.interests-list,
+.groups-list,
+.categories-list {
+  background: var(--cinza-escuro) !important;
+  border: 4px solid var(--preto) !important;
+  padding: 25px 25px 25px 50px !important;
+  margin: 20px 0 !important;
+  list-style-type: square !important;
+}
+
+li {
+  margin: 15px 0 !important;
+  padding: 5px 0 !important;
+  border-bottom: 2px solid var(--cinza-medio) !important;
+  color: var(--branco) !important;
+  font-size: 18px !important;
+}
+
+li:last-child {
+  border-bottom: none !important;
+}
+
+li:hover {
+  border-left: 10px solid var(--vermelho) !important;
+  padding-left: 15px !important;
+  background: var(--preto) !important;
+}
+
+/* ===== BARRA DE NAVEGAÇÃO ===== */
+nav,
+.navigation,
+.menu-bar,
+.top-nav {
+  background: var(--preto) !important;
+  border-bottom: 10px solid var(--vermelho) !important;
+  padding: 15px !important;
+  margin-bottom: 30px !important;
+  width: 100% !important;
+}
+
+nav ul,
+.navigation ul,
+.menu-bar ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+nav li,
+.navigation li,
+.menu-bar li {
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+nav li:hover,
+.navigation li:hover,
+.menu-bar li:hover {
+  border-left: none !important;
+  background: transparent !important;
+}
+
+/* ===== RODAPÉ ===== */
+footer,
+.footer,
+.page-footer,
+.site-footer {
+  background: var(--preto) !important;
+  border-top: 15px solid var(--vermelho) !important;
+  padding: 40px 20px !important;
+  margin-top: 60px !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+footer a,
+.footer a {
+  background: transparent !important;
+  border-bottom: 3px solid var(--vermelho) !important;
+  padding: 5px !important;
+}
+
+footer a:hover {
+  background: var(--vermelho) !important;
+  color: var(--preto) !important;
+}
+
+/* ===== COMENTÁRIOS ===== */
+.comment,
+.reply,
+.forum-reply {
+  background: var(--cinza-escuro) !important;
+  border: 4px solid var(--preto) !important;
+  border-left: 15px solid var(--vermelho) !important;
+  padding: 20px !important;
+  margin: 20px 0 !important;
+  box-shadow: 8px 8px 0 0 var(--preto) !important;
+}
+
+.comment-author,
+.reply-author,
+.post-author {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: var(--vermelho) !important;
+  background: var(--preto) !important;
+  display: inline-block !important;
+  padding: 10px 20px !important;
+  margin-bottom: 15px !important;
+  border-right: 8px solid var(--vermelho) !important;
+}
+
+.comment-date,
+.reply-date,
+.post-date {
+  color: var(--cinza-medio) !important;
+  font-family: monospace !important;
+  font-size: 16px !important;
+  margin-left: 20px !important;
+}
+
+.comment-content,
+.reply-content,
+.post-content {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+  padding: 15px !important;
+  background: var(--preto-fundo) !important;
+  border: 2px solid var(--cinza-medio) !important;
+}
+
+/* ===== MENSAGENS DE STATUS ===== */
+.status,
+.update,
+.status-update {
+  background: var(--preto) !important;
+  border: 6px solid var(--vermelho) !important;
+  padding: 25px !important;
+  margin: 25px 0 !important;
+  font-size: 22px !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  letter-spacing: 3px !important;
+}
+
+/* ===== BADGES E ÍCONES ===== */
+.badge,
+.icon,
+.tag,
+.label {
+  display: inline-block !important;
+  background: var(--preto) !important;
+  border: 4px solid var(--vermelho) !important;
+  padding: 10px 15px !important;
+  margin: 5px !important;
+  font-weight: 900 !important;
+  font-size: 16px !important;
+  text-transform: uppercase !important;
+  color: var(--branco) !important;
+  box-shadow: 5px 5px 0 0 var(--cinza-medio) !important;
+}
+
+.badge:hover,
+.icon:hover {
+  background: var(--vermelho) !important;
+  color: var(--preto) !important;
+  border-color: var(--branco) !important;
+}
+
+/* ===== PAGINAÇÃO ===== */
+.pagination,
+.pages,
+.page-links {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  justify-content: center !important;
+  margin: 40px 0 !important;
+  padding: 20px !important;
+  background: var(--cinza-escuro) !important;
+  border: 4px solid var(--preto) !important;
+}
+
+.pagination a,
+.pagination span,
+.page-link,
+.page-number {
+  display: inline-block !important;
+  padding: 12px 20px !important;
+  background: var(--preto) !important;
+  color: var(--branco) !important;
+  border: 3px solid var(--cinza-medio) !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  min-width: 50px !important;
+  text-align: center !important;
+}
+
+.pagination .current,
+.page-number.current,
+.active-page {
+  background: var(--vermelho) !important;
+  color: var(--preto) !important;
+  border-color: var(--branco) !important;
+  box-shadow: inset 0 0 0 3px var(--preto) !important;
+}
+
+.pagination a:hover {
+  background: var(--cinza-medio) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* ===== BARRAS DE PROGRESSO ===== */
+.progress-bar,
+.meter,
+.skill-bar,
+.rating-bar {
+  height: 30px !important;
+  background: var(--cinza-escuro) !important;
+  border: 4px solid var(--preto) !important;
+  margin: 20px 0 !important;
+  width: 100% !important;
+}
+
+.progress-fill,
+.meter-fill,
+.skill-level,
+.rating-fill {
+  height: 100% !important;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--vermelho),
+    var(--vermelho) 15px,
+    var(--vermelho-escuro) 15px,
+    var(--vermelho-escuro) 30px
+  ) !important;
+  border-right: 4px solid var(--branco) !important;
+}
+
+/* ===== BLOCOS DE CÓDIGO ===== */
+code,
+pre,
+.code-block {
+  background: var(--preto) !important;
+  border: 4px solid var(--cinza-medio) !important;
+  padding: 20px !important;
+  font-family: "Courier New", monospace !important;
+  font-size: 16px !important;
+  color: #00ff00 !important;
+  margin: 20px 0 !important;
+  white-space: pre-wrap !important;
+  border-left: 10px solid var(--vermelho) !important;
+}
+
+/* ===== ALERTAS E MENSAGENS ===== */
+.alert,
+.notification,
+.message-box {
+  padding: 25px !important;
+  margin: 25px 0 !important;
+  border: 6px solid var(--preto) !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  font-size: 20px !important;
+}
+
+.alert-error,
+.error-message {
+  background: var(--vermelho) !important;
+  color: var(--branco) !important;
+}
+
+.alert-success,
+.success-message {
+  background: var(--preto) !important;
+  color: var(--vermelho) !important;
+  border-color: var(--vermelho) !important;
+}
+
+.alert-warning,
+.warning-message {
+  background: var(--cinza-escuro) !important;
+  color: var(--vermelho) !important;
+  border-color: var(--branco) !important;
+}
+
+/* ===== WIDGETS E BLOQUINHOS ===== */
+.widget,
+.sidebar-box,
+.info-box {
+  background: var(--cinza-escuro) !important;
+  border: 4px solid var(--preto) !important;
+  padding: 20px !important;
+  margin: 20px 0 !important;
+  box-shadow: 10px 10px 0 0 var(--preto) !important;
+}
+
+.widget-title,
+.box-title {
+  background: var(--preto) !important;
+  color: var(--vermelho) !important;
+  padding: 15px !important;
+  margin: -20px -20px 20px -20px !important;
+  border-bottom: 6px solid var(--vermelho) !important;
+  font-size: 24px !important;
+}
+
+/* ===== EFEITOS ESPECIAIS ===== */
+
+/* Cantos retos garantidos */
+* {
+  border-radius: 0 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 20px !important;
+  background: var(--preto) !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cinza-escuro) !important;
+  border: 3px solid var(--cinza-medio) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vermelho) !important;
+  border: 3px solid var(--preto) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--branco) !important;
+}
+
+/* Seleção de texto */
+::selection {
+  background: var(--vermelho) !important;
+  color: var(--preto) !important;
+}
+
+::-moz-selection {
+  background: var(--vermelho) !important;
+  color: var(--preto) !important;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px !important;
+  }
+  
+  h1 {
+    font-size: 28px !important;
+  }
+  
+  h2 {
+    font-size: 24px !important;
+  }
+  
+  h3 {
+    font-size: 22px !important;
+  }
+  
+  .container,
+  .profile,
+  .blog-entry {
+    padding: 15px !important;
+  }
+  
+  button,
+  .button,
+  input[type="submit"] {
+    padding: 10px 20px !important;
+    font-size: 18px !important;
+  }
+  
+  nav a,
+  .menu a {
+    padding: 8px 12px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* ===== GARANTIAS DE CORES ===== */
+body,
+html,
+main,
+header,
+section,
+article,
+div,
+span,
+p {
+  background-color: var(--preto-fundo) !important;
+  color: var(--branco) !important;
+}
+
+/* Exceções para elementos coloridos */
+button,
+.badge,
+.pagination .current,
+.alert-error,
+.profile-picture img,
+::-webkit-scrollbar-thumb {
+  background-color: var(--vermelho) !important;
+}
+
+/* Fundos específicos */
+.profile,
+.blog-entry,
+.comment,
+.widget,
+.sidebar-box,
+.details-table,
+.comments-table,
+.music-table {
+  background-color: var(--cinza-escuro) !important;
+}
+
+/* Bordas sempre retas e grossas */
+table,
+td,
+th,
+div,
+section,
+article,
+header,
+footer,
+nav,
+main,
+aside,
+.container,
+.profile,
+.blog-entry,
+.comment,
+.message,
+.widget,
+.box,
+.card {
+  border-radius: 0 !important;
+}
+
+</style></div>
+
+
+  </main>
+  <footer>
+    <p>
+      brought to you by <a href="https://tibush.com/labs" target="_blank" rel="noopener">tibush labs</a>
+          </p>
+    <p>       <i>Disclaimer: This is a fan-based project and is not affiliated with MySpace&reg; in any way.</i>
+    </p>
+    <ul class="links">
+            <li><a href="https://spacehey.com/about">About</a></li>
+      <li><a href="https://spacehey.com/news">News</a></li>
+      <li><a href="https://spacehey.com/rules">Rules</a></li>
+      <li><a href="https://spacehey.com/mobile">App</a></li>
+      <li><a href="https://spacehey.com/brand">Brand</a></li>
+      <li><a href="https://spacehey.com/credits">Credits</a></li>
+      <li><a href="https://rss.spacehey.com">RSS</a></li>
+      <li><a href="https://spacehey.com/tos">Terms</a></li>
+      <li><a href="https://spacehey.com/privacy">Privacy</a></li>
+      <li><a href="https://spacehey.com/imprint">Imprint</a></li>
+      <li><a href="mailto:support@spacehey.com?subject=SpaceHey.com">Contact</a></li>
+      <li><a href="https://spacehey.com/report">Report Abuse</a></li>
+      <li><a href="https://status.spacehey.com">Status</a></li>
+      <li><a href="https://shop.spacehey.com/">SpaceHey Shop</a></li>
+    </ul>
+    <p class="copyright">
+      <a href="https://spacehey.com/">&copy;2020-2026 SpaceHey.com All Rights Reserved.</a>
+    </p>
+  </footer>
+  </div>
+
+  <link rel="stylesheet" href="https://spacehey.com/css/important.css?c=994aafba76bf9205f4f293837ea21a3ecdfd1dbc4223ec4de3cac4e15c853257">
+    </body>
+
+  </html>
