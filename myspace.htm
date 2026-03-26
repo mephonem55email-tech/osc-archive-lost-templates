@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>MySpace.com - Seu Espaço</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+        body {
+            background-color: #003399;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+        }
+        
+        #container {
+            width: 950px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+        }
+        
+        #header {
+            background-color: #003399;
+            height: 60px;
+            padding: 10px;
+            border-bottom: 1px solid #000000;
+        }
+        
+        #header h1 {
+            color: #FFFFFF;
+            font-size: 32px;
+            margin: 0;
+            padding: 0;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            letter-spacing: -1px;
+        }
+        
+        #top-nav {
+            background-color: #6699CC;
+            padding: 8px;
+            border-bottom: 1px solid #000000;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+        
+        #top-nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 0 10px;
+            border-right: 1px solid #FFFFFF;
+        }
+        
+        #top-nav a:hover {
+            text-decoration: underline;
+            background-color: #003399;
+        }
+        
+        #profile-content {
+            padding: 20px;
+            background-color: #FFFFFF;
+        }
+        
+        #profile-left {
+            width: 320px;
+            float: left;
+            margin-right: 20px;
+        }
+        
+        #profile-right {
+            width: 550px;
+            float: left;
+        }
+        
+        .profile-pic {
+            background-color: #FFCC99;
+            border: 2px solid #6699CC;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .profile-pic img {
+            border: 1px solid #003399;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .box {
+            background-color: #FFFFCC;
+            border: 1px solid #6699CC;
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+        
+        .box h3 {
+            background-color: #6699CC;
+            color: #FFFFFF;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            font-size: 14px;
+        }
+        
+        .friend {
+            float: left;
+            width: 80px;
+            margin: 5px;
+            text-align: center;
+        }
+        
+        .friend img {
+            width: 75px;
+            height: 75px;
+            border: 2px solid #FF9900;
+        }
+        
+        .friend a {
+            color: #003399;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .friend a:hover {
+            text-decoration: underline;
+            color: #FF6600;
+        }
+        
+        .comment {
+            background-color: #F0F0F0;
+            border: 1px solid #CCCCCC;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .comment img {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #6699CC;
+            float: left;
+            margin-right: 10px;
+        }
+        
+        .clear {
+            clear: both;
+        }
+        
+        #footer {
+            background-color: #6699CC;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #000000;
+            clear: both;
+            font-size: 11px;
+        }
+        
+        #footer a {
+            color: #FFFFCC;
+            text-decoration: none;
+        }
+        
+        .music-player {
+            background-color: #000000;
+            color: #00FF00;
+            padding: 8px;
+            font-family: "Courier New", monospace;
+            font-size: 11px;
+            text-align: center;
+        }
+        
+        .blink {
+            text-decoration: blink;
+            color: #FF0000;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td {
+            padding: 5px;
+            border-bottom: 1px solid #CCCCCC;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+
+    <div id="header">
+        <h1>MySpace.com</h1>
+        <div style="color: #FFFFFF; font-size: 14px; margin-top: -5px;">Seu Espaço na Internet</div>
+    </div>
+    
+    <div id="top-nav">
+        <a href="#">Home</a>
+        <a href="#">Perfil</a>
+        <a href="#">Amigos</a>
+        <a href="#">Inbox (5)</a>
+        <a href="#">Vídeos</a>
+        <a href="#">Música</a>
+        <a href="#">Fotos</a>
+        <a href="#" style="border-right: none;">Sair</a>
+        
+        <div style="float: right; margin-top: -5px;">
+            <input type="text" name="search" size="20" style="border: 1px solid #000000;">
+            <input type="submit" value="Buscar" style="background-color: #003399; color: #FFFFFF; border: 1px solid #000000;">
+        </div>
+    </div>
+    
+    <div id="profile-content">
+    
+        <div id="profile-left">
+            <div class="profile-pic">
+                <img src="http://placekitten.com/200/200?1" alt="Foto de perfil">
+                <div style="margin-top: 10px;">
+                    <strong><a href="#" style="color: #003399;">editar perfil</a></strong> | 
+                    <strong><a href="#" style="color: #003399;">ver mais fotos</a></strong>
+                </div>
+            </div>
+            
+            <div class="box">
+                <h3>.: Infos :.</h3>
+                <table>
+                    <tr>
+                        <td><strong>Nome:</strong></td>
+                        <td>Tom Anderson</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Idade:</strong></td>
+                        <td>32</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cidade:</strong></td>
+                        <td>Los Angeles, CA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Status:</strong></td>
+                        <td><span style="color: #FF6600;">Online</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Último login:</strong></td>
+                        <td>2 minutos atrás</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="box">
+                <h3>.: MySpace ID :.</h3>
+                <div style="text-align: center;">
+                    <strong style="font-size: 18px; color: #6699CC;">#123456789</strong>
+                </div>
+            </div>
+            
+            <div class="box">
+                <h3>.: Top Amigos (8) :.</h3>
+                <div class="friend">
+                    <img src="http://placekitten.com/75/75?2" alt="Amigo"><br>
+                    <a href="#">Amigo1</a>
+                </div>
+                <div class="friend">
+                    <img src="http://placekitten.com/75/75?3" alt="Amigo"><br>
+                    <a href="#">Amigo2</a>
+                </div>
+                <div class="friend">
+                    <img src="http://placekitten.com/75/75?4" alt="Amigo"><br>
+                    <a href="#">Amigo3</a>
+                </div>
+                <div class="friend">
+                    <img src="http://placekitten.com/75/75?5" alt="Amigo"><br>
+                    <a href="#">Amigo4</a>
+                </div>
+                <div class="friend">
+                    <img src="http://placekitten.com/75/75?6" alt="Amigo"><br>
+                    <a href="#">Amigo5</a>
+                </div>
+                <div class="friend">
+                    <img src="http://placekitten.com/75/75?7" alt="Amigo"><br>
+                    <a href="#">Amigo6</a>
+                </div>
+                <div class="friend">
+                    <img src="http://placekitten.com/75/75?8" alt="Amigo"><br>
+                    <a href="#">Amigo7</a>
+                </div>
+                <div class="friend">
+                    <img src="http://placekitten.com/75/75?9" alt="Amigo"><br>
+                    <a href="#">Amigo8</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        
+        <div id="profile-right">
+            <div class="box">
+                <h3>.: Tom Anderson :.</h3>
+                <div style="margin-bottom: 10px;">
+                    <span style="font-size: 16px; font-weight: bold;">Tom</span> 
+                    <span style="color: #666666;">(Fundador do MySpace)</span>
+                </div>
+                
+                <div style="background-color: #FFCC99; padding: 10px; border: 1px solid #FF9900; margin-bottom: 10px;">
+                    <img src="http://placekitten.com/50/50?10" alt="Tom" style="float: left; margin-right: 10px; border: 1px solid #003399;">
+                    <strong>"Bem-vindo ao seu novo perfil! Adicione seus amigos, personalize seu espaço e compartilhe sua música favorita!"</strong>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            
+            <div class="music-player">
+                <strong>♪ MySpace Music Player ♪</strong><br>
+                [ Agora Tocando: 50 Cent - In Da Club ]<br>
+                <span class="blink">▶</span> 01:32 / 03:45 <span class="blink">◼</span> <span style="color: #FFFF00;">[===>>>>>   ]</span>
+            </div>
+            
+            <div class="box">
+                <h3>.: Detalhes :.</h3>
+                <strong>Interesses:</strong> Música, programação HTML, conhecer pessoas novas<br><br>
+                <strong>Músicas favoritas:</strong> Rock alternativo, Hip Hop 90's, Pop Punk<br><br>
+                <strong>Filmes favoritos:</strong> Clube da Luta, Matrix, Brilho Eterno<br><br>
+                <strong>Sobre mim:</strong> Criei o MySpace para todos vocês! Adicione layout personalizado no seu perfil usando <blink>&lt;table&gt;</blink> e muito <span style="background-color: #FFFF00;">brilho</span>! ✿◕‿◕✿
+            </div>
+            
+            <div class="box">
+                <h3>.: Comentários (últimos 5) :.</h3>
+                
+                <div class="comment">
+                    <img src="http://placekitten.com/40/40?11" alt="Avatar">
+                    <strong><a href="#" style="color: #003399;">Amanda88</a></strong> - 15/01/2006<br>
+                    <span style="color: #FF00FF;">adorei seu perfil!! add back pls? ★</span>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="comment">
+                    <img src="http://placekitten.com/40/40?12" alt="Avatar">
+                    <strong><a href="#" style="color: #003399;">Marcos_22</a></strong> - 12/01/2006<br>
+                    <span style="color: #FF0000;">e ai Tom, curti o som no seu perfil! já add! ;)</span>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="comment">
+                    <img src="http://placekitten.com/40/40?13" alt="Avatar">
+                    <strong><a href="#" style="color: #003399;">julia_rock</a></strong> - 10/01/2006<br>
+                    <span style="color: #0000FF;">seu layout é o máximo!!! como vc fez? ♥♥♥</span>
+                    <div class="clear"></div>
+                </div>
+                
+                <div align="right" style="margin-top: 10px;">
+                    <a href="#">ver todos os 123 comentários</a> | 
+                    <a href="#">deixar comentário</a>
+                </div>
+            </div>
+            
+            <div class="box">
+                <h3>.: Adicione um Comentário :.</h3>
+                <form>
+                    <textarea name="comment" rows="3" style="width: 98%; border: 1px solid #6699CC;"></textarea><br>
+                    <input type="submit" value="Enviar" style="background-color: #6699CC; color: #FFFFFF; border: 1px solid #003399; margin-top: 5px;">
+                    <input type="reset" value="Limpar" style="background-color: #CCCCCC; border: 1px solid #003399; margin-top: 5px;">
+                </form>
+            </div>
+        </div>
+        
+        <div class="clear"></div>
+    </div>
+    
+    <div id="footer">
+        ©2006 MySpace.com. Todos os direitos reservados.<br>
+        <a href="#">Sobre</a> | <a href="#">Imprensa</a> | <a href="#">Termos</a> | <a href="#">Privacidade</a> | <a href="#">Desenvolvedores</a><br>
+        <span style="color: #FFFF00;">★゜・。。・゜゜・。。・゜☆</span><br>
+        <span style="font-size: 10px;">melhor visualizado em Internet Explorer 6.0, resolução 1024x768</span>
+    </div>
+    
+</div>
+
+</body>
+  </html>
