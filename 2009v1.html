@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>★★★ Meu Site Pessoal 2009 ★★★</title>
+<meta name="viewport" content="width=800, user-scalable=yes">
+<style>
+/* Fontes clássicas do Windows 98/XP */
+body {
+    background-color: #008080; /* Teal clássico do Windows */
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/8/87/Checkerboard_pattern.png");
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Geneva, sans-serif;
+    font-size: 12px;
+    color: black;
+    margin: 0;
+    padding: 20px;
+    cursor: default;
+}
+
+/* Container principal com borda 3D estilo Windows 98 */
+#container {
+    width: 800px;
+    margin: auto;
+    background-color: #c0c0c0; /* Cinza clássico */
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    box-shadow: 2px 2px 0 #000000;
+}
+
+/* Barra de título estilo Windows */
+.title-bar {
+    background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+    color: white;
+    padding: 3px 5px 3px 3px;
+    font-weight: bold;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-bar-text {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.title-bar-buttons {
+    display: flex;
+    gap: 2px;
+}
+
+.title-btn {
+    width: 16px;
+    height: 14px;
+    background-color: #c0c0c0;
+    border: 1px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-family: "Marlett", sans-serif;
+    cursor: pointer;
+}
+
+/* HEADER com efeito de relevo */
+#header {
+    background-color: #000080;
+    padding: 2px;
+    border-bottom: 2px solid #808080;
+}
+
+#header img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #000000;
+    display: block;
+}
+
+/* MENU estilo botões 3D */
+#menu {
+    background-color: #c0c0c0;
+    padding: 4px;
+    border-bottom: 2px solid #808080;
+    text-align: center;
+}
+
+#menu a {
+    display: inline-block;
+    background-color: #c0c0c0;
+    color: black;
+    text-decoration: none;
+    padding: 4px 12px;
+    margin: 2px;
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    font-size: 11px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#menu a:active {
+    border-top-color: #000000;
+    border-left-color: #000000;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    padding: 5px 11px 3px 13px;
+}
+
+/* Marquee estilo clássico */
+.marquee-container {
+    background-color: #000000;
+    color: #00ff00; /* Verde terminal */
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    padding: 4px;
+    border-top: 2px solid #808080;
+    border-bottom: 2px solid #ffffff;
+}
+
+/* Layout em tabela (como se fazia antigamente) */
+#content {
+    display: flex;
+    background-color: #c0c0c0;
+    padding: 4px;
+}
+
+/* SIDEBAR estilo painel */
+#sidebar {
+    width: 200px;
+    background-color: #c0c0c0;
+    padding: 4px;
+    margin-right: 4px;
+}
+
+/* Janelas internas estilo Windows */
+.window-panel {
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    margin-bottom: 8px;
+}
+
+.window-header {
+    background: linear-gradient(90deg, #808080 0%, #c0c0c0 100%);
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 2px 4px;
+    border-bottom: 1px solid #808080;
+}
+
+.window-content {
+    background-color: #ffffff;
+    padding: 8px;
+    border: 1px solid #c0c0c0;
+    border-top: none;
+}
+
+/* MAIN */
+#main {
+    flex: 1;
+    background-color: #ffffff;
+    border: 2px solid;
+    border-top-color: #808080;
+    border-left-color: #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    padding: 10px;
+}
+
+/* Caixas de conteúdo estilo "grupo de campos" */
+fieldset {
+    border: 2px groove #c0c0c0;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #f0f0f0;
+}
+
+legend {
+    color: #000080;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 4px;
+}
+
+/* FOOTER */
+#footer {
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    padding: 6px;
+    text-align: center;
+    font-size: 11px;
+    color: #000000;
+}
+
+/* Status bar estilo Windows */
+.status-bar {
+    background-color: #c0c0c0;
+    border-top: 1px solid #ffffff;
+    padding: 2px 4px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+}
+
+.status-panel {
+    border: 1px inset #c0c0c0;
+    padding: 2px 6px;
+    flex: 1;
+    margin-right: 2px;
+}
+
+/* Links estilo clássico */
+a {
+    color: #000080;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #ff0000;
+}
+
+a:visited {
+    color: #800080;
+}
+
+/* Listas estilo antigo */
+ul {
+    list-style-type: square;
+    margin: 4px 0;
+    padding-left: 20px;
+}
+
+li {
+    margin: 2px 0;
+}
+
+/* Ícones de redes sociais estilo pixelado */
+.social-icon {
+    image-rendering: pixelated;
+    border: 1px solid #808080;
+    margin: 2px;
+    background-color: #ffffff;
+    padding: 2px;
+}
+
+/* Texto piscante (blink) - simulado com animação */
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.blink {
+    animation: blink 1s infinite;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+/* Contador de visitas estilo */
+.visitor-counter {
+    background-color: #000000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    padding: 4px;
+    text-align: center;
+    border: 2px inset #808080;
+    letter-spacing: 2px;
+}
+
+/* Botões estilo Windows 98 */
+button, .btn {
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    padding: 4px 12px;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+button:active {
+    border-top-color: #000000;
+    border-left-color: #000000;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+/* Separadores */
+hr {
+    border: none;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+    margin: 8px 0;
+}
+
+/* Imagem com borda 3D */
+.img-3d {
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    background-color: #c0c0c0;
+    padding: 2px;
+}
+
+/* GIF de under construction */
+.under-construction {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Scrollbar estilo antigo (Webkit) */
+::-webkit-scrollbar {
+    width: 16px;
+    background: #c0c0c0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+}
+
+::-webkit-scrollbar-button {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    height: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+    <!-- Barra de título estilo Windows -->
+    <div class="title-bar">
+        <div class="title-bar-text">
+            <span style="font-family: 'Marlett';">0</span>
+            MeuSitePessoal.exe
+        </div>
+        <div class="title-bar-buttons">
+            <div class="title-btn">0</div>
+            <div class="title-btn">1</div>
+            <div class="title-btn">r</div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <div id="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg" alt="Header Image">
+    </div>
+
+    <!-- MENU -->
+    <div id="menu">
+        <a href="#">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Fotos</a>
+        <a href="#">Links</a>
+        <a href="#">Contato</a>
+        <a href="#">Webmasters</a>
+    </div>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <marquee scrollamount="3" behavior="alternate">
+            *** Bem-vindo ao meu site feito no FrontPage 2003 !!! *** Última atualização: 15/03/2009 *** Melhor visualizado no Internet Explorer 6.0 ou Netscape Navigator ***
+        </marquee>
+    </div>
+
+    <div id="content">
+
+        <!-- SIDEBAR -->
+        <div id="sidebar">
+            
+            <!-- Links -->
+            <div class="window-panel">
+                <div class="window-header">Links Rápidos</div>
+                <div class="window-content">
+                    <ul style="list-style-image: url('data:image/gif;base64,R0lGODlhDQANAJEAAAAAAP///////wAAACH5BAEHAAIALAAAAAANAA0AAAIalI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuCQA7');">
+                        <li><a href="#">Orkut</a></li>
+                        <li><a href="#">MSN Messenger</a></li>
+                        <li><a href="#">Fotolog</a></li>
+                        <li><a href="#">DeviantArt</a></li>
+                        <li><a href="#">MySpace</a></li>
+                        <li><a href="#">NeoPets</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Redes Sociais -->
+            <div class="window-panel">
+                <div class="window-header">Me Adicione</div>
+                <div class="window-content" style="text-align: center;">
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Twitter_icon.png" width="32" height="32" class="social-icon" title="Twitter"></a>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="32" height="32" class="social-icon" title="Facebook"></a>
+                    <br>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" width="32" height="32" class="social-icon" title="Pinterest"></a>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="32" height="32" class="social-icon" title="Instagram"></a>
+                </div>
+            </div>
+
+            <!-- Status -->
+            <div class="window-panel">
+                <div class="window-header">Meu Status</div>
+                <div class="window-content">
+                    <p>🟢 <b>Online agora!</b></p>
+                    <p>🎵 Ouvindo: Linkin Park</p>
+                    <p>💬 "Só sei que nada sei..."</p>
+                    <hr>
+                    <p style="font-size: 10px; color: #808080;">Atualizado: 14:32</p>
+                </div>
+            </div>
+
+            <!-- Contador -->
+            <div class="window-panel">
+                <div class="window-header">Visitantes</div>
+                <div class="window-content">
+                    <p style="font-size: 10px; text-align: center; margin-bottom: 4px;">Você é o visitante nº:</p>
+                    <div class="visitor-counter">
+                        0 0 4 2 9 1
+                    </div>
+                    <p style="font-size: 9px; text-align: center; margin-top: 4px; color: #808080;">Desde 01/01/2009</p>
+                </div>
+            </div>
+
+            <!-- Pet Virtual -->
+            <div class="window-panel">
+                <div class="window-header">Meu Pet Virtual</div>
+                <div class="window-content" style="padding: 0; background-color: #000000;">
+                    <iframe width="100%" height="250" scrolling="no"
+                        src="https://gifypet.neocities.org/pet/pet.html?name=NetCente&dob=1774712347&gender=m&element=Water&pet=https%3A%2F%2Fi.postimg.cc%2FfRtX3B93%2F268-Sem-Titulo-20260328123445.png&map=https%3A%2F%2Fweb1.eng.famu.fsu.edu%2F~dommelen%2Fl2h%2Fvista%2F22.jpg&background=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F8%2F89%2FHD_transparent_picture.png&tablecolor=black&textcolor=black"
+                        frameborder="0" style="display: block;">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Em construção -->
+            <div class="under-construction">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Under_construction_graphic.gif" width="120" alt="Under Construction">
+            </div>
+
+        </div>
+
+        <!-- MAIN -->
+        <div id="main">
+            
+            <fieldset>
+                <legend>★ Bem-vindo ao meu site! ★</legend>
+                <p>Olá mundo! Esta é a minha página pessoal feita com <span class="blink">HTML</span> e <span class="blink">CSS</span>!</p>
+                <p>Este layout é inspirado nos sites antigos da internet de 2009, feitos no Microsoft FrontPage e Expression Web 4.</p>
+                <p align="center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Montanhas.JPG" width="300" class="img-3d" alt="Paisagem">
+                </p>
+                <p align="center"><i>Uma bela imagem de paisagem!</i></p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Sobre Mim</legend>
+                <table cellpadding="4" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td width="100" valign="top"><b>Nome:</b></td>
+                        <td>WebMaster2009</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"><b>Idade:</b></td>
+                        <td>16 anos</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"><b>Cidade:</b></td>
+                        <td>São Paulo, Brasil</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"><b>Interesses:</b></td>
+                        <td>Web design, Programação, Jogos, Música</td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Atualizações do Site</legend>
+                <ul>
+                    <li><b>[15/03/2009]</b> - Criei o site no FrontPage!</li>
+                    <li><b>[14/03/2009]</b> - Adicionei a sidebar com links</li>
+                    <li><b>[10/03/2009]</b> - Aprendendo CSS básico</li>
+                    <li><b>[01/03/2009]</b> - Registrei o domínio</li>
+                </ul>
+            </fieldset>
+
+            <fieldset>
+                <legend>Coisas Aleatórias</legend>
+                <p>★ Melhor visualizado em 1024x768</p>
+                <p>★ Navegador recomendado: Internet Explorer 6+</p>
+                <p>★ Resolução mínima: 800x600</p>
+                <p>★ Feito com: Microsoft FrontPage 2003</p>
+                <hr>
+                <p align="center">
+                    <button onclick="alert('Obrigado por visitar!')">Clique Aqui!</button>
+                    <button onclick="window.location.href='mailto:webmaster@site.com'">Me Envie um E-mail</button>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Livro de Visitas</legend>
+                <p>Assine meu livro de visitas:</p>
+                <textarea rows="3" cols="50" style="font-family: 'MS Sans Serif'; font-size: 11px; width: 100%;"></textarea>
+                <br><br>
+                <button>Enviar Mensagem</button>
+            </fieldset>
+
+        </div>
+
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-panel">Pronto</div>
+        <div class="status-panel" style="flex: 0 0 auto; width: 100px;">CAPS</div>
+        <div class="status-panel" style="flex: 0 0 auto; width: 60px;">NUM</div>
+        <div class="status-panel" style="flex: 0 0 auto; width: 80px;">16:22</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="footer">
+        <p>© 2009 Meu Site Pessoal | Todos os direitos reservados</p>
+        <p style="font-size: 10px; color: #808080;">
+            Hospedado por: GeoCities | 
+            <a href="#">Mapa do Site</a> | 
+            <a href="#">Webmaster</a>
+        </p>
+        <p style="font-size: 9px; margin-top: 5px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Under_construction_graphic.gif" width="40" style="vertical-align: middle;">
+            Site sempre em construção!
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Under_construction_graphic.gif" width="40" style="vertical-align: middle;">
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
