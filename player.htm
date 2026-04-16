@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player - And One</title>
+    <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* CONTAINER */
+.player-container {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 40px;
+    width: 380px;
+    text-align: center;
+    border: 2px solid #ff0000;
+    box-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.7),
+        inset 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+/* ALBUM */
+.album-art {
+    width: 280px;
+    height: 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto 30px;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+    position: relative;
+}
+
+.album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.album-art.playing img {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+/* INFO */
+.track-info {
+    margin-bottom: 30px;
+}
+
+.track-title {
+    color: #ff1a1a;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.track-artist {
+    color: rgba(255, 0, 0, 0.6);
+}
+
+/* VISUALIZER */
+.visualizer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 4px;
+    height: 30px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.visualizer.active {
+    opacity: 1;
+}
+
+.bar {
+    width: 4px;
+    background: linear-gradient(to top, #ff0000, #ff4d4d);
+    border-radius: 2px;
+    animation: equalizer 0.8s ease-in-out infinite;
+}
+
+.bar:nth-child(1) { height: 20%; animation-delay: 0s; }
+.bar:nth-child(2) { height: 40%; animation-delay: 0.1s; }
+.bar:nth-child(3) { height: 60%; animation-delay: 0.2s; }
+.bar:nth-child(4) { height: 30%; animation-delay: 0.3s; }
+.bar:nth-child(5) { height: 50%; animation-delay: 0.4s; }
+
+@keyframes equalizer {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1); }
+}
+
+/* PROGRESSO */
+.progress-container {
+    margin-bottom: 25px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 0, 0, 0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ff0000, #e60023);
+    width: 0%;
+}
+
+/* TEMPO */
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 0, 0, 0.6);
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+/* CONTROLES */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* BOTÕES */
+.control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #ff4d4d;
+}
+
+.control-btn:hover {
+    transform: scale(1.15);
+    color: #ff0000;
+}
+
+.control-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+}
+
+/* PLAY */
+.play-btn {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #ff0000, #e60023);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    transition: 0.3s;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 45px rgba(255, 0, 0, 1);
+}
+
+.play-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+}
+
+/* VOLUME */
+.volume-container {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.volume-slider {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 0, 0, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.volume-level {
+    height: 100%;
+    background: #ff0000;
+    width: 70%;
+}
+
+.volume-icon {
+    color: #ff4d4d;
+}
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <div class="album-art" id="albumArt">
+            <img src="https://i.postimg.cc/1tZ7S3KZ/ab67616d0000b273a7303de462fb0b7a095341c2.jpg" alt="Album Cover">
+        </div>
+
+        <div class="track-info">
+            <div class="track-title">Military Fashion Show</div>
+            <div class="track-artist">And One</div>
+        </div>
+
+        <div class="visualizer" id="visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="time-display">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" id="prevBtn">
+                <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+            </button>
+            
+            <button class="play-btn" id="playBtn">
+                <svg viewBox="0 0 24 24" id="playIcon">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg viewBox="0 0 24 24" id="pauseIcon" style="display: none;">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+            </button>
+            
+            <button class="control-btn" id="nextBtn">
+                <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+            </button>
+        </div>
+
+        <div class="volume-container">
+            <div class="volume-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            </div>
+            <div class="volume-slider" id="volumeSlider">
+                <div class="volume-level" id="volumeLevel"></div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer" src="https://file.garden/aX9OA1junENdw7Kh/Military%20Fashion%20Show%20-%20And%20One%20(144p%2C%20h264).mp4"></audio>
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const progressBar = document.getElementById('progressBar');
+        const progress = document.getElementById('progress');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeLevel = document.getElementById('volumeLevel');
+        const albumArt = document.getElementById('albumArt');
+        const visualizer = document.getElementById('visualizer');
+
+        let isPlaying = false;
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+                albumArt.classList.remove('playing');
+                visualizer.classList.remove('active');
+            } else {
+                audio.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                albumArt.classList.add('playing');
+                visualizer.classList.add('active');
+            }
+            isPlaying = !isPlaying;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progress.style.width = `${percent}%`;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = percent * audio.duration;
+        });
+
+        volumeSlider.addEventListener('click', (e) => {
+            const rect = volumeSlider.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audio.volume = percent;
+            volumeLevel.style.width = `${percent * 100}%`;
+        });
+
+        audio.addEventListener('ended', () => {
+            isPlaying = false;
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            albumArt.classList.remove('playing');
+            visualizer.classList.remove('active');
+            progress.style.width = '0%';
+            currentTimeEl.textContent = '0:00';
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            audio.currentTime = 0;
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            audio.currentTime = 0;
+            if (isPlaying) audio.play();
+        });
+    </script>
+</body>
+</html>
