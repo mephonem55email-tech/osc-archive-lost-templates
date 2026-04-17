@@ -160,5 +160,96 @@
     customElements.define('my-card', MyCard);
   </script>
 
+  <!-- picture -->
+  <h2>Picture</h2>
+  <picture>
+    <source media="(max-width: 600px)" srcset="small.jpg">
+    <source media="(max-width: 1200px)" srcset="medium.jpg">
+    <img src="large.jpg" alt="Example image">
+  </picture>
+
+  <!-- datalist -->
+  <h2>Datalist</h2>
+  <input list="browsers" placeholder="Choose a browser">
+  <datalist id="browsers">
+    <option value="Chrome">
+    <option value="Firefox">
+    <option value="Edge">
+  </datalist>
+
+  <!-- fieldset + legend -->
+  <h2>Fieldset</h2>
+  <fieldset>
+    <legend>Personal Info</legend>
+    <input type="text" placeholder="Name">
+  </fieldset>
+
+  <!-- figure + figcaption -->
+  <h2>Figure</h2>
+  <figure>
+    <img src="cat.jpg" alt="Cat">
+    <figcaption>A cute cat 🐱</figcaption>
+  </figure>
+
+  <!-- cite -->
+  <h2>Cite</h2>
+  <p>Inspired by <cite>The Matrix</cite></p>
+
+  <!-- bdi -->
+  <h2>BDI</h2>
+  <p>User: <bdi>Username123</bdi></p>
+
+  <!-- bdo -->
+  <h2>BDO</h2>
+  <p><bdo dir="rtl">This text is reversed</bdo></p>
+
+  <!-- data -->
+  <h2>Data</h2>
+  <p>Price: <data value="29.99">$29.99</data></p>
+
+  <!-- ruby -->
+  <h2>Ruby</h2>
+  <ruby>
+    漢 <rt>kan</rt>
+  </ruby>
+
+  <!-- abbr -->
+  <h2>Abbreviation</h2>
+  <p><abbr title="HyperText Markup Language">HTML</abbr></p>
+
+  <!-- address -->
+  <h2>Address</h2>
+  <address>
+    Contact: email@example.com
+  </address>
+
+  <!-- main -->
+  <h2>Main</h2>
+  <main>
+    <p>This is the main content area.</p>
+  </main>
+
+  <!-- noscript -->
+  <h2>NoScript</h2>
+  <noscript>
+    Please enable JavaScript.
+  </noscript>
+
+  <!-- iframe srcdoc -->
+  <h2>Iframe srcdoc</h2>
+  <iframe srcdoc="<p>Hello inside iframe!</p>"></iframe>
+
+  <!-- colgroup + col -->
+  <h2>Table Columns</h2>
+  <table border="1">
+    <colgroup>
+      <col style="background: lightblue">
+      <col style="background: lightgreen">
+    </colgroup>
+    <tr>
+      <td>Column 1</td>
+      <td>Column 2</td>
+    </tr>
+  </table>
 </body>
 </html>
