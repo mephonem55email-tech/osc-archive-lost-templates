@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uncommon HTML Tags</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    details {
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    meter, progress {
+      width: 200px;
+      height: 20px;
+    }
+
+    input {
+      width: 60px;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    dialog {
+      border: none;
+      padding: 20px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    #container div {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      background: white;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Example of Uncommon HTML Tags</h1>
+
+  <!-- mark -->
+  <p>This is <mark>very important</mark> to remember!</p>
+
+  <!-- time -->
+  <p>Today is <time datetime="2026-04-16">April 16, 2026</time></p>
+
+  <!-- details + summary -->
+  <details>
+    <summary>Click to see more</summary>
+    <p>This content was hidden 😎</p>
+  </details>
+
+  <br>
+
+  <!-- meter -->
+  <p>Energy level:</p>
+  <meter value="0.7">70%</meter>
+
+  <br><br>
+
+  <!-- progress -->
+  <p>Download progress:</p>
+  <progress value="50" max="100"></progress>
+
+  <br><br>
+
+  <!-- output with calculation -->
+  <form oninput="result.value = parseInt(a.value) + parseInt(b.value)">
+    <input type="number" id="a" value="0"> +
+    <input type="number" id="b" value="0"> =
+    <output name="result">0</output>
+  </form>
+
+  <br>
+
+  <!-- wbr -->
+  <p>Very long word:
+    super<wbr>mega<wbr>hyper<wbr>ultra<wbr>giant
+  </p>
+
+  <!-- dialog -->
+  <button onclick="document.getElementById('modal').showModal()">
+    Open modal
+  </button>
+
+  <dialog id="modal">
+    <p>This is a native modal!</p>
+    <button onclick="document.getElementById('modal').close()">
+      Close
+    </button>
+  </dialog>
+
+  <!-- template -->
+  <template id="cardTemplate">
+    <div>
+      Generated card!
+    </div>
+  </template>
+
+  <button onclick="createCard()">Create Card</button>
+  <div id="container"></div>
+
+  <!-- slot (simple Web Component example) -->
+  <my-card>
+    <span slot="content">Content inside the slot</span>
+  </my-card>
+
+  <script>
+    function createCard() {
+      const template = document.getElementById("cardTemplate");
+      const clone = template.content.cloneNode(true);
+      document.getElementById("container").appendChild(clone);
+    }
+
+    class MyCard extends HTMLElement {
+      constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
+
+        shadow.innerHTML = `
+          <div style="border:2px solid blue; padding:10px; border-radius:5px;">
+            <slot name="content"></slot>
+          </div>
+        `;
+      }
+    }
+
+    customElements.define('my-card', MyCard);
+  </script>
+
+</body>
+</html>
