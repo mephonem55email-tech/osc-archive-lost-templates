@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PDF Reader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid black;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>PDF Reader</h2>
+
+  <input type="file" id="fileInput" accept="application/pdf">
+  <br>
+
+  <button onclick="prevPage()">⬅ Previous</button>
+  <span id="pageInfo"></span>
+  <button onclick="nextPage()">Next ➡</button>
+
+  <br>
+  <canvas id="pdfCanvas"></canvas>
+
+  <!-- PDF.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+  <script>
+    let pdfDoc = null;
+    let pageNum = 1;
+    let canvas = document.getElementById("pdfCanvas");
+    let ctx = canvas.getContext("2d");
+
+    document.getElementById("fileInput").addEventListener("change", function(e) {
+      const file = e.target.files[0];
+      if (file.type !== "application/pdf") {
+        alert("Please select a PDF file!");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function() {
+        let typedarray = new Uint8Array(this.result);
+
+        pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
+          pdfDoc = pdf;
+          pageNum = 1;
+          renderPage(pageNum);
+        });
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+
+    function renderPage(num) {
+      pdfDoc.getPage(num).then(function(page) {
+        let viewport = page.getViewport({ scale: 1.5 });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        let renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        page.render(renderContext);
+
+        document.getElementById("pageInfo").textContent =
+          `Page ${num} of ${pdfDoc.numPages}`;
+      });
+    }
+
+    function nextPage() {
+      if (pageNum >= pdfDoc.numPages) return;
+      pageNum++;
+      renderPage(pageNum);
+    }
+
+    function prevPage() {
+      if (pageNum <= 1) return;
+      pageNum--;
+      renderPage(pageNum);
+    }
+  </script>
+
+</body>
+</html>
