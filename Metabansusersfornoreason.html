@@ -96,8 +96,12 @@ footer {
 <footer>
 SYSTEM NOTE: this interface is not affiliated with Meta Platforms Inc.
 </footer>
-
+<audio id="bgAudio" loop>
+  <source src="https://file.garden/aX9OA1junENdw7Kh/ssstik.io_@mary_mations_1778089673702.mp4" type="audio/mp4">
+</audio>
 <script>
+let audioStarted = false;
+
 function checkBan() {
   const statuses = [
     "❌ FLAGGED: you liked too many posts in 0.3 seconds",
@@ -110,6 +114,13 @@ function checkBan() {
 
   const random = statuses[Math.floor(Math.random() * statuses.length)];
   document.getElementById("status").innerText = random;
+
+  if (!audioStarted) {
+    const audio = document.getElementById("bgAudio");
+    audio.volume = 0.5;
+    audio.play();
+    audioStarted = true;
+  }
 }
 </script>
 
