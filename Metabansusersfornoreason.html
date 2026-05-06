@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Meta Security System // BAN CHECK</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace;
+  background: radial-gradient(circle at top, #120012, #000);
+  color: #ff3cff;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* efeito glitch leve */
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red, -2px 0 blue; }
+  20% { text-shadow: -2px 0 red, 2px 0 blue; }
+  40% { text-shadow: 2px 2px red, -2px -2px blue; }
+  60% { text-shadow: -1px 2px red, 1px -2px blue; }
+  80% { text-shadow: 2px -1px red, -2px 1px blue; }
+  100% { text-shadow: 0 0 transparent; }
+}
+
+header {
+  padding: 40px 20px;
+  font-size: 26px;
+  font-weight: bold;
+  animation: glitch 2s infinite;
+}
+
+.card {
+  background: rgba(255, 0, 255, 0.05);
+  border: 1px solid rgba(255, 0, 255, 0.3);
+  margin: 30px auto;
+  padding: 25px;
+  width: 85%;
+  max-width: 520px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+button {
+  padding: 14px 18px;
+  font-size: 16px;
+  border: 1px solid #ff3cff;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+  color: #ff3cff;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #ff3cff;
+  color: black;
+  transform: scale(1.05);
+}
+
+#status {
+  margin-top: 20px;
+  font-size: 18px;
+  min-height: 40px;
+  color: #ffffff;
+}
+
+footer {
+  margin-top: 50px;
+  font-size: 11px;
+  opacity: 0.4;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+⚠ META SECURITY TERMINAL v6.66 ⚠<br>
+<small>// scanning behavioral anomalies //</small>
+</header>
+
+<div class="card">
+  <h2>account integrity check</h2>
+  <p>system will analyze your existence on instagram servers...</p>
+
+  <button onclick="checkBan()">init scan</button>
+
+  <div id="status"></div>
+</div>
+
+<footer>
+SYSTEM NOTE: this interface is not affiliated with Meta Platforms Inc.
+</footer>
+
+<script>
+function checkBan() {
+  const statuses = [
+    "❌ FLAGGED: you liked too many posts in 0.3 seconds",
+    "❌ DETECTED: suspicious happiness level above threshold",
+    "❌ ACTION: account removed for breathing inconsistently",
+    "⚠ OK: account stable... but we are watching you",
+    "❌ ERROR 404: your account was never supposed to exist",
+    "❌ BAN EVENT: user showed human behavior (forbidden)"
+  ];
+
+  const random = statuses[Math.floor(Math.random() * statuses.length)];
+  document.getElementById("status").innerText = random;
+}
+</script>
+
+</body>
+</html>
