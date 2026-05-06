@@ -10,19 +10,19 @@
 body {
   margin: 0;
   font-family: 'Share Tech Mono', monospace;
-  background: radial-gradient(circle at top, #120012, #000);
-  color: #ff3cff;
+  background: radial-gradient(circle at top, #b8b93c, #91972d);
+  color: #e9ea68;
   text-align: center;
   overflow-x: hidden;
 }
 
 /* efeito glitch leve */
 @keyframes glitch {
-  0% { text-shadow: 2px 0 red, -2px 0 blue; }
-  20% { text-shadow: -2px 0 red, 2px 0 blue; }
-  40% { text-shadow: 2px 2px red, -2px -2px blue; }
-  60% { text-shadow: -1px 2px red, 1px -2px blue; }
-  80% { text-shadow: 2px -1px red, -2px 1px blue; }
+  0% { text-shadow: 2px 0 #b8b93c, -2px 0 #d5d551; }
+  20% { text-shadow: -2px 0 #b8b93c, 2px 0 #d5d551; }
+  40% { text-shadow: 2px 2px #b8b93c, -2px -2px #d5d551; }
+  60% { text-shadow: -1px 2px #b8b93c, 1px -2px #d5d551; }
+  80% { text-shadow: 2px -1px #b8b93c, -2px 1px #d5d551; }
   100% { text-shadow: 0 0 transparent; }
 }
 
@@ -34,31 +34,31 @@ header {
 }
 
 .card {
-  background: rgba(255, 0, 255, 0.05);
-  border: 1px solid rgba(255, 0, 255, 0.3);
+  background: rgba(233, 234, 104, 0.05);
+  border: 1px solid rgba(212, 214, 89, 0.3);
   margin: 30px auto;
   padding: 25px;
   width: 85%;
   max-width: 520px;
   border-radius: 12px;
-  box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+  box-shadow: 0 0 30px rgba(213, 213, 81, 0.2);
   backdrop-filter: blur(8px);
 }
 
 button {
   padding: 14px 18px;
   font-size: 16px;
-  border: 1px solid #ff3cff;
+  border: 1px solid #d4d659;
   border-radius: 8px;
   cursor: pointer;
   background: transparent;
-  color: #ff3cff;
+  color: #e9ea68;
   transition: 0.2s;
 }
 
 button:hover {
-  background: #ff3cff;
-  color: black;
+  background: #d5d551;
+  color: #b8b93c;
   transform: scale(1.05);
 }
 
@@ -66,7 +66,7 @@ button:hover {
   margin-top: 20px;
   font-size: 18px;
   min-height: 40px;
-  color: #ffffff;
+  color: #e9ea68;
 }
 
 footer {
@@ -115,14 +115,14 @@ function checkBan() {
   const random = statuses[Math.floor(Math.random() * statuses.length)];
   document.getElementById("status").innerText = random;
 
+  // só inicia uma vez
   if (!audioStarted) {
     const audio = document.getElementById("bgAudio");
-    audio.volume = 0.5;
+    audio.volume = 0.5; // opcional
     audio.play();
     audioStarted = true;
   }
 }
 </script>
-
 </body>
 </html>
