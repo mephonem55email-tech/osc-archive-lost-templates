@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stacked Column Layout</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ececec;
+}
+
+/* Container principal */
+.grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* Coluna empilhada */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+}
+
+/* Aside */
+aside {
+  width: 300px;
+  height: 200px;
+  background-image: url('https://picsum.photos/300/200');
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #000;
+}
+
+/* Section empilhada abaixo */
+section {
+  width: 300px;
+  background: white;
+  border: 3px solid #000;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Conteúdo principal */
+main {
+  width: 850px;
+  min-height: 420px;
+  background-color: #ffffff;
+  border: 4px double #000000;
+  color: #3d3028;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+article {
+  background: #f4f4f4;
+  padding: 10px;
+  border: 1px solid #999;
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid">
+
+  <!-- Coluna empilhada -->
+  <div class="sidebar">
+
+    <aside></aside>
+
+    <section>
+      <article>
+        Other articles come after
+      </article>
+    </section>
+
+  </div>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <h1>Main content goes here</h1>
+
+    <p>
+      Esse é um exemplo de layout com stacked columns usando Flexbox.
+    </p>
+
+    <p>
+      A sidebar possui elementos empilhados verticalmente.
+    </p>
+  </main>
+
+</div>
+
+</body>
+</html>
