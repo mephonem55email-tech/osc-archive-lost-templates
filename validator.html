@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HTML Validator</title>
+
+<style>
+  body{
+    background:#1e1e1e;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    padding:30px;
+  }
+
+  textarea{
+    width:80%;
+    height:250px;
+    background:#111;
+    color:#00ff88;
+    border:2px solid #555;
+    border-radius:10px;
+    padding:10px;
+    font-size:16px;
+  }
+
+  button{
+    margin-top:20px;
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#00aaff;
+    color:white;
+  }
+
+  #result{
+    margin-top:30px;
+  }
+
+  img{
+    width:180px;
+  }
+
+  .error{
+    color:#ff6666;
+    margin-top:10px;
+    white-space:pre-line;
+  }
+</style>
+</head>
+<body>
+
+<h1>HTML Validator</h1>
+
+<textarea id="code" placeholder="Type your HTML here..."></textarea>
+<br>
+
+<button onclick="validateHTML()">VALIDATE</button>
+
+<div id="result"></div>
+
+<script>
+function validateHTML(){
+
+  const code = document.getElementById("code").value;
+  const result = document.getElementById("result");
+
+  const errors = [];
+
+  // Self-closing tags
+  const selfClosing = [
+    "meta","img","br","hr","input","link"
+  ];
+
+  // Get all tags
+  const tags = code.match(/<\/?[a-zA-Z0-9]+[^>]*>/g) || [];
+
+  const stack = [];
+
+  for(let tag of tags){
+
+    const name = tag.match(/<\/?([a-zA-Z0-9]+)/)[1];
+
+    // Closing tag
+    if(tag.startsWith("</")){
+
+      if(stack.length === 0){
+        errors.push(`Closing tag without opening: </${name}>`);
+        continue;
+      }
+
+      const last = stack.pop();
+
+      if(last !== name){
+        errors.push(
+          `Expected </${last}> but found </${name}>`
+        );
+      }
+
+    } else {
+
+      // Ignore self-closing tags
+      if(
+        !tag.endsWith("/>") &&
+        !selfClosing.includes(name.toLowerCase())
+      ){
+        stack.push(name);
+      }
+    }
+  }
+
+  // Unclosed tags
+  while(stack.length > 0){
+    errors.push(`Unclosed tag: <${stack.pop()}>`);
+  }
+
+  // Result
+  if(errors.length === 0){
+
+    result.innerHTML = `
+      <img src="https://media.tenor.com/iV-zm1NZB3IAAAAj/bfb-four.gif">
+      <h2>HTML IS CORRECT</h2>
+    `;
+
+  } else {
+
+    result.innerHTML = `
+      <img src="https://media.tenor.com/AY8IS4tBRlIAAAAj/bfb-bfdi.gif">
+      <h2>HTML IS INCORRECT</h2>
+      <div class="error">${errors.join("<br>")}</div>
+    `;
+  }
+}
+</script>
+
+</body>
+</html>
